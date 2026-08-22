@@ -8,6 +8,16 @@ ungeschnitten bleibt; Durchkontaktierungen kosten zusaetzlich.
 import heapq, math
 import numpy as np
 
+
+class KeinWeg(RuntimeError):
+    """Ein Netz liess sich nicht verlegen. Traegt den Netznamen mit sich,
+    damit der Aufrufer die Reihenfolge aendern und es erneut versuchen kann."""
+
+    def __init__(self, netz, punkt):
+        super().__init__('Netz %s: kein Weg zu %r' % (netz, punkt))
+        self.netz = netz
+        self.punkt = punkt
+
 GRID = 0.2                     # Rasterweite in mm
 
 
@@ -129,6 +139,18 @@ class Router:
                 self._seg_into(tgt, a, b, wdt / 2 + g)
         return bad
 
+    @staticmethod
+    def _h(i, j, gx, gy):
+        """Restkostenschaetzung (Oktil-Distanz).
+
+        Mit Diagonalschritten zu 1,4142 kostet der Rest mindestens
+        max(dx,dy) + 0.4142*min(dx,dy). Die frueher benutzte Manhattan-Distanz
+        ueberschaetzt das um bis zu 41 % und ist damit nicht zulaessig - A*
+        haette dann nicht mehr den kuerzesten Weg geliefert.
+        """
+        dx, dy = abs(i - gx), abs(j - gy)
+        return (dx if dx > dy else dy) + 0.4142135623730951 * (dy if dx > dy else dx)
+
     # ------------------------------------------------------------------- A*
     NB = [(1, 0, 1.0), (-1, 0, 1.0), (0, 1, 1.0), (0, -1, 1.0),
           (1, 1, 1.4142), (1, -1, 1.4142), (-1, 1, 1.4142), (-1, -1, 1.4142)]
@@ -151,7 +173,7 @@ class Router:
                     best, goal, glay = d, g, gl
             path = self._astar(obs, own, viaobs, tree, goal, glay, via_cost, back_cost)
             if path is None:
-                raise RuntimeError('Netz %s: kein Weg zu %r' % (net, self._pos(*goal)))
+                raise KeinWeg(net, self._pos(*goal))
             todo.remove((goal, glay))
             segs, vs = self._to_segments(path)
             paths += segs
@@ -176,7 +198,7 @@ class Router:
             i, j, L = node
             if 0 <= i < nx and 0 <= j < ny and not obs[L][i, j]:
                 dist[node] = 0.0
-                heapq.heappush(pq, (abs(i - gx) + abs(j - gy), 0.0, node))
+                heapq.heappush(pq, (self._h(i, j, gx, gy), 0.0, node))
         goalset = {(gx, gy, L) for L in glay}
         while pq:
             _, d, node = heapq.heappop(pq)
@@ -201,7 +223,7 @@ class Router:
                 if nd < dist.get(nb, INF):
                     dist[nb] = nd
                     prev[nb] = node
-                    heapq.heappush(pq, (nd + abs(a - gx) + abs(b - gy), nd, nb))
+                    heapq.heappush(pq, (nd + self._h(a, b, gx, gy), nd, nb))
             M = 1 - L
             if not obs[M][i, j] and not viaobs[i, j]:
                 nd = d + via_cost
@@ -209,7 +231,7 @@ class Router:
                 if nd < dist.get(nb, INF):
                     dist[nb] = nd
                     prev[nb] = node
-                    heapq.heappush(pq, (nd + abs(i - gx) + abs(j - gy), nd, nb))
+                    heapq.heappush(pq, (nd + self._h(i, j, gx, gy), nd, nb))
         return None
 
     def _to_segments(self, path):

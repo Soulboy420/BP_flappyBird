@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 """Verdrahtet alle Netze mit dem Rasterverdrahter und schreibt routes.py."""
 import math, sys
+import numpy as np
 import design, libs, layout_pcb as P
 from router import Router, GRID
 from sexp import find, findall
 
 W, H = P.W, P.H
+WARNUNGEN = []
 # Rasterweite 0,2 mm -> Sicherheitszuschlag, damit die Rundung den
 # geforderten Mindestabstand nicht unterschreitet
 GRIDPAD = 0.06
@@ -46,26 +48,46 @@ def pad_table():
     return out
 
 PADS = pad_table()
-R = Router(W, H)
 
-# feste Sperrbereiche
-for x1, y1, x2, y2, _ in P.KEEPOUTS:
-    R.block_rect(None, x1 - 0.3, y1 - 0.3, x2 + 0.3, y2 + 0.3)
-R.block_rect(0, 33.2, 39.0, 48.8, H)          # keine Leiterbahnen unter dem Funkmodul
-R.block_rect(0,  0.6,  1.4, 12.6, 22.6)       # keine Leiterbahnen unter dem USB-Breakout
-for ref in ('H1', 'H2', 'H3', 'H4'):
-    x, y, _ = P.PLACE[ref]
-    R.block_circle(None, x, y, 1.1 + 0.35)
 
-for ref, num, net, cx, cy, w, h, layers, typ in PADS:
-    if net is None:                       # z. B. Befestigungslaschen des Schalters
-        m = 0.25 + 0.3
-        R.block_rect(None if len(layers) == 2 else 0,
-                     cx - w - m, cy - h - m, cx + w + m, cy + h + m)
-        if typ != 'smd':
-            R.block_circle(None, cx, cy, max(w, h) + m)
-    else:
-        R.add_pad(net, layers, cx, cy, w, h)
+def neuer_router():
+    """Baut das Hindernisraster neu auf - fuer jeden Verlegeversuch frisch."""
+    R = Router(W, H)
+    for x1, y1, x2, y2, _ in P.KEEPOUTS:
+        R.block_rect(None, x1 - 0.3, y1 - 0.3, x2 + 0.3, y2 + 0.3)
+    R.block_rect(0, 33.2, 39.0, 48.8, H)      # keine Leiterbahnen unter dem Funkmodul
+    R.block_rect(0,  0.6,  1.4, 12.6, 22.6)   # keine Leiterbahnen unter dem USB-Breakout
+    for ref in ('H1', 'H2', 'H3', 'H4'):
+        x, y, _ = P.PLACE[ref]
+        R.block_circle(None, x, y, 1.1 + 0.35)
+    for ref, num, net, cx, cy, w, h, layers, typ in PADS:
+        if net is None:                       # z. B. Befestigungslaschen des Schalters
+            m = 0.25 + 0.3
+            R.block_rect(None if len(layers) == 2 else 0,
+                         cx - w - m, cy - h - m, cx + w + m, cy + h + m)
+            if typ != 'smd':
+                R.block_circle(None, cx, cy, max(w, h) + m)
+        else:
+            R.add_pad(net, layers, cx, cy, w, h)
+    return R
+
+
+def pad_stummel(pad, ziel, breite=0.4):
+    """Anbindung vom Padmittelpunkt an den ersten Rasterpunkt.
+
+    Der Padmittelpunkt liegt selten genau auf dem 0,2-mm-Raster. Damit keine
+    schraegen oder entarteten Segmente entstehen, wird der Versatz in bis zu
+    zwei waagerechte bzw. senkrechte Stuecke zerlegt.
+    """
+    ax, ay = pad
+    bx, by = ziel
+    if abs(ax - bx) < 1e-9 and abs(ay - by) < 1e-9:
+        return []                                   # Pad liegt schon im Raster
+    if abs(ax - bx) < 1e-9 or abs(ay - by) < 1e-9 or \
+       abs(abs(ax - bx) - abs(ay - by)) < 1e-9:
+        return [((ax, ay), (bx, by))]               # schon H, V oder 45 Grad
+    return [((ax, ay), (bx, ay)), ((bx, ay), (bx, by))]
+
 
 ORDER = ['VBAT', 'BATT_P', 'VBUS', 'USB_DP', 'USB_DM', 'USB_DP_CON', 'USB_DM_CON',
          'VBAT_SW', '+3V3',
@@ -76,44 +98,93 @@ ORDER = ['VBAT', 'BATT_P', 'VBUS', 'USB_DP', 'USB_DM', 'USB_DP_CON', 'USB_DM_CON
          'PROG', 'CHG_A', 'LED_CHG', '+3V3_MCU']
 assert set(ORDER) == set(design.NETS) - {'GND'}, set(design.NETS) - set(ORDER) - {'GND'}
 
-tracks, vias = [], []
+def verlege(reihenfolge):
+    """Verlegt alle Netze in der angegebenen Reihenfolge.
 
-# Massevias der eingeklemmten Mittelpins zuerst reservieren (SOT-23, ESD-Array)
-for ref, pin in (('D1', '2'), ('U2', '2'), ('U3', '2')):
-    cx, cy = [(a, b) for r, n, _, a, b, w, h, L, t in PADS if (r, n) == (ref, pin)][0]
-    r = R.route_to_via('GND', (cx, cy), 0.2, 0.2, maxlen=10.0)
-    if r is None:
-        print('  WARNUNG: kein Massevia (Vorabreservierung) fuer', ref, pin)
-        continue
-    segs, v = r
-    for a, b, L in segs:
-        tracks.append(('GND', 'F.Cu', 0.4, a, b))
-        R.add_track('GND', 0, a, b, 0.4)
-    tracks.append(('GND', 'F.Cu', 0.4, (cx, cy), segs[0][0]))
-    R.add_track('GND', 0, (cx, cy), segs[0][0], 0.4)
-    vias.append(('GND', v[0], v[1], 0.8, 0.4))
-    R.add_via('GND', v[0], v[1], 0.8)
-    print('%-14s Massevia vorab bei %r' % (ref + '.' + pin, v))
+    Gibt (Bahnen, Vias, Bericht) zurueck oder wirft router.KeinWeg. Der
+    Verdrahter arbeitet Netz fuer Netz; wer zuerst kommt, bekommt den kuerzeren
+    Weg. Schlaegt ein Netz fehl, ruft der Aufrufer erneut mit geaenderter
+    Reihenfolge auf (siehe unten).
+    """
+    R = neuer_router()
+    bahnen, durchkontaktierungen, bericht = [], [], []
 
-for net in ORDER:
-    pts = [(cx, cy, L) for ref, num, n, cx, cy, w, h, L, t in PADS if n == net]
-    c = cls(net)
-    wdt = WIDTH_NET.get(net, WIDTH[c])
-    hw = wdt / 2
-    segs, vs = R.route(net, pts, hw, CLEAR[c],
-                       via_cost=VIA_COST, back_cost=BACK_COST)
-    for a, b, L in segs:
-        tracks.append((net, 'F.Cu' if L == 0 else 'B.Cu', wdt, a, b))
-        R.add_track(net, L, a, b, wdt)
-    for vx, vy in vs:
-        vias.append((net, vx, vy, 0.8, 0.4))
-        R.add_via(net, vx, vy, 0.8)
-    print('%-14s %2d Segmente, %d Vias' % (net, len(segs), len(vs)))
+    # Massevias der eingeklemmten Mittelpins zuerst reservieren (SOT-23, ESD-Array)
+    for ref, pin in (('D1', '2'), ('U2', '2'), ('U3', '2')):
+        cx, cy = [(a, b) for r, n, _, a, b, w, h, L, t in PADS if (r, n) == (ref, pin)][0]
+        r = R.route_to_via('GND', (cx, cy), 0.2, 0.2, maxlen=10.0)
+        if r is None:
+            WARNUNGEN.append('kein Massevia (Vorabreservierung) fuer %s %s' % (ref, pin))
+            bericht.append('  WARNUNG: ' + WARNUNGEN[-1])
+            continue
+        segs, v = r
+        for a, b in pad_stummel((cx, cy), segs[0][0]):
+            bahnen.append(('GND', 'F.Cu', 0.4, a, b))
+            R.add_track('GND', 0, a, b, 0.4)
+        for a, b, L in segs:
+            bahnen.append(('GND', 'F.Cu', 0.4, a, b))
+            R.add_track('GND', 0, a, b, 0.4)
+        durchkontaktierungen.append(('GND', v[0], v[1], 0.8, 0.4))
+        R.add_via('GND', v[0], v[1], 0.8)
+        bericht.append('%-14s Massevia vorab bei %r' % (ref + '.' + pin, v))
 
-# ---- Masse: Via neben jedem SMD-Massepad, dann Naehvias ---------------------
-import numpy as np
+    for net in reihenfolge:
+        pts = [(cx, cy, L) for ref, num, n, cx, cy, w, h, L, t in PADS if n == net]
+        c = cls(net)
+        wdt = WIDTH_NET.get(net, WIDTH[c])
+        hw = wdt / 2
+        segs, vs = R.route(net, pts, hw, CLEAR[c],
+                           via_cost=VIA_COST, back_cost=BACK_COST)
+        for a, b, L in segs:
+            bahnen.append((net, 'F.Cu' if L == 0 else 'B.Cu', wdt, a, b))
+            R.add_track(net, L, a, b, wdt)
+        for vx, vy in vs:
+            durchkontaktierungen.append((net, vx, vy, 0.8, 0.4))
+            R.add_via(net, vx, vy, 0.8)
+        bericht.append('%-14s %2d Segmente, %d Vias' % (net, len(segs), len(vs)))
+    return R, bahnen, durchkontaktierungen, bericht
+
+
+import router as _router
+
+reihenfolge = list(ORDER)
+for versuch in range(1, 13):
+    try:
+        R, tracks, vias, bericht = verlege(reihenfolge)
+        break
+    except _router.KeinWeg as e:
+        # Das gescheiterte Netz nach vorn holen und noch einmal versuchen.
+        if e.netz not in reihenfolge or reihenfolge.index(e.netz) == 0:
+            raise
+        i = reihenfolge.index(e.netz)
+        reihenfolge.insert(max(0, i - 4), reihenfolge.pop(i))
+        print('  Versuch %d: %s war nicht verlegbar, wird frueher verlegt'
+              % (versuch, e.netz))
+else:
+    raise SystemExit('Verdrahtung nach 12 Versuchen nicht moeglich')
+
+if reihenfolge != ORDER:
+    print('  Reihenfolge angepasst nach %d Versuch(en)' % versuch)
+print('\n'.join(bericht))
+
 obs, own = R._obstacles('GND', 0.4, 0.25)
+
+HOLES = []
+for ref, num, net, cx, cy, w, h, layers, typ in PADS:
+    if typ != 'smd':
+        HOLES.append((cx, cy, max(w, h)))
+for ref in ('H1', 'H2', 'H3', 'H4'):
+    x, y, _ = P.PLACE[ref]
+    HOLES.append((x, y, 1.1))
+
+def hole_ok(x, y, drill=0.4):
+    for hx, hy, hr in HOLES:
+        if ((x - hx) ** 2 + (y - hy) ** 2) ** 0.5 < drill / 2 + hr + 0.3:
+            return False
+    return True
+
 def _line_free(x1, y1, x2, y2, hw):
+    """True, wenn die Strecke ueberall genug Abstand zu fremdem Kupfer hat."""
     n = max(2, int(math.hypot(x2 - x1, y2 - y1) / 0.15))
     for k in range(n + 1):
         t = k / n
@@ -126,6 +197,7 @@ def _line_free(x1, y1, x2, y2, hw):
 
 
 def free_via(x, y, r=0.65, stub=True):
+    """Sucht ringweise nach einer freien Stelle fuer ein Massevia."""
     i0, j0 = R._idx(x, y)
     for rad in range(4, 34):
         for di in range(-rad, rad + 1):
@@ -145,39 +217,29 @@ def free_via(x, y, r=0.65, stub=True):
                         return px, py
     return None
 
+
 ngnd = 0
-HOLES = []
-for ref, num, net, cx, cy, w, h, layers, typ in PADS:
-    if typ != 'smd':
-        HOLES.append((cx, cy, max(w, h)))
-for ref in ('H1', 'H2', 'H3', 'H4'):
-    x, y, _ = P.PLACE[ref]
-    HOLES.append((x, y, 1.1))
-
-def hole_ok(x, y, drill=0.4):
-    for hx, hy, hr in HOLES:
-        if ((x - hx) ** 2 + (y - hy) ** 2) ** 0.5 < drill / 2 + hr + 0.3:
-            return False
-    return True
-
 DONE = {('D1', '2'), ('U2', '2'), ('U3', '2'), ('U1', '19')}
 for ref, num, net, cx, cy, w, h, layers, typ in PADS:
     if net != 'GND' or typ != 'smd' or (ref, num) in DONE:
         continue   # Waermepad hat eigene Vias im Footprint
     r = R.route_to_via('GND', (cx, cy), 0.2, 0.2)
     if r is None:
-        print('  WARNUNG: kein Massevia fuer', ref, num)
+        WARNUNGEN.append('kein Massevia fuer %s %s' % (ref, num))
+        print('  WARNUNG:', WARNUNGEN[-1])
         continue
     segs, v = r
     if not hole_ok(*v):
-        print('  WARNUNG: Bohrungsabstand', ref, num)
+        WARNUNGEN.append('Bohrungsabstand zu klein bei %s %s' % (ref, num))
+        print('  WARNUNG:', WARNUNGEN[-1])
         continue
     HOLES.append((v[0], v[1], 0.4))
     for a, b, L in segs:
         tracks.append(('GND', 'F.Cu', 0.4, a, b))
         R.add_track('GND', 0, a, b, 0.4)
-    tracks.append(('GND', 'F.Cu', 0.4, (cx, cy), segs[0][0]))
-    R.add_track('GND', 0, (cx, cy), segs[0][0], 0.4)
+    for a, b in pad_stummel((cx, cy), segs[0][0]):
+        tracks.append(('GND', 'F.Cu', 0.4, a, b))
+        R.add_track('GND', 0, a, b, 0.4)
     vias.append(('GND', v[0], v[1], 0.8, 0.4))
     R.add_via('GND', v[0], v[1], 0.8)
     ngnd += 1
@@ -227,3 +289,11 @@ with open('routes.py', 'w') as f:
     f.write('TRACKS = %r\n' % (tracks,))
     f.write('VIAS = %r\n' % (vias,))
 print('routes.py: %d Leiterbahnen, %d Vias' % (len(tracks), len(vias)))
+
+if WARNUNGEN:
+    # Eine nicht angebundene Masseflaeche wuerde spaeter zwar auch das DRC
+    # finden, aber hier ist die Ursache noch sichtbar.
+    print('\nVerdrahtung unvollstaendig:')
+    for w in WARNUNGEN:
+        print('  -', w)
+    sys.exit(1)

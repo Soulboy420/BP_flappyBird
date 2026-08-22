@@ -1,0 +1,15 @@
+# lokale Historie des Editors
+.history/
+hardware/.history/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# KiCad-Sicherungen und Sitzungsdateien
+*-backups/
+*.kicad_prl
+fp-info-cache

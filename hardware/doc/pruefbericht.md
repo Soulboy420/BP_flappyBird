@@ -130,3 +130,100 @@ Wer bei 65 mm bleiben will, muss die Platine auf 90 × 55 mm bringen.
 | 8,1 % der Leiterbahnen auf der Rückseite | die Mittelanschlüsse der SOT-23-Gehäuse sind zwischen ihren eigenen Nachbarpads eingeklemmt; jedes Stück ist von Massevias flankiert |
 | Sperrstrom von D3 im Tiefschlafbudget | wird in M3 gemessen, Ersatztyp ist dokumentiert |
 | C8 mit 10,8 mm Abstand | Stützkondensator für 10-µs-Lastsprünge, Induktivität ohne Bedeutung |
+
+
+---
+
+# Zweiter Durchgang: Prüfung des Werkzeugs
+
+Der erste Durchgang prüfte die Schaltung. Dieser prüft den Code, der sie
+erzeugt — jeder Baustein zuerst einzeln, dann alles zusammen. Aufbau und
+Umfang stehen in `pruefstand.md`.
+
+## 6. Gefunden und behoben
+
+### 6.1 Die Wegsuche benutzte eine unzulässige Schätzfunktion
+
+Der Verdrahter suchte mit A\* und schätzte die Restkosten über die
+Manhattan-Distanz. Weil er aber auch diagonal laufen darf (Kosten 1,414 statt
+2,0), **überschätzt** Manhattan die tatsächlichen Restkosten um bis zu 41 %.
+Eine überschätzende Schätzfunktion ist unzulässig: A\* liefert dann nicht mehr
+garantiert den kürzesten Weg, sondern nur noch irgendeinen.
+
+Ersetzt durch die Oktil-Distanz `max(dx,dy) + 0,414·min(dx,dy)`, die die
+tatsächlichen Kosten nie überschätzt.
+
+**Wirkung:** Gesamtlänge der Leiterbahnen 859,9 mm → **843,5 mm**, Zahl der
+Segmente 376 → 371, bei gleicher Viazahl.
+
+### 6.2 Die Verdrahtung hing an der Reihenfolge
+
+Mit den nun kürzeren Wegen belegten frühe Netze Platz, den `LED_CHG` gebraucht
+hätte — die Verdrahtung schlug fehl. Ein Verdrahter, der Netz für Netz vorgeht
+und nichts zurücknimmt, ist immer reihenfolgeabhängig.
+
+**Behoben:** Schlägt ein Netz fehl, wird es in der Reihenfolge vier Plätze nach
+vorn geschoben und alles noch einmal verlegt (bis zu zwölf Versuche). Hier
+genügt ein Versuch. Der Vorgang ist deterministisch — die Reproduzierbarkeit
+ist geprüft (S3-A).
+
+### 6.3 Entartete Leiterbahnstücke
+
+Die Anbindung eines Massepads an das 0,2-mm-Raster erzeugte **drei Segmente der
+Länge null** und **sechs schräge Stummel** von höchstens 0,12 mm. Beides ist
+elektrisch belanglos, aber Segmente der Länge null sind im Layouteditor lästig
+und in manchen Gerber-Betrachtern auffällig.
+
+**Behoben:** Der Versatz wird jetzt in bis zu zwei waagerechte bzw. senkrechte
+Stücke zerlegt; deckt sich das Pad schon mit dem Raster, entfällt der Stummel.
+
+### 6.4 Warnungen des Verdrahters blieben folgenlos
+
+Konnte ein Massepad kein Via bekommen, stand eine Warnung auf dem Bildschirm —
+das Skript lief aber weiter und `erzeugen.sh` ebenfalls. Aufgefallen wäre das
+erst beim DRC, und auch nur, wenn die Massefläche das Pad nicht ohnehin
+erreicht hätte.
+
+**Behoben:** Der Verdrahter endet jetzt mit Fehlerstatus, wenn eine Warnung
+aufgetreten ist. `erzeugen.sh` bricht dadurch ab.
+
+### 6.5 Ohne den Füllschritt fehlt in den Gerbern die gesamte Massefläche
+
+Der Generator schreibt die Masseflächen nur als Umriss; gefüllt werden sie erst
+von KiCad. Wer `mk_pcb.py` einzeln laufen lässt und danach Gerber erzeugt,
+bekommt **Kupferlagen ganz ohne Massefläche** — und nichts weist darauf hin.
+Nachgemessen: 0 Flächenbereiche statt 17 auf der Oberseite und 1 auf der
+Rückseite.
+
+**Behoben:** Der Füllschritt ist in `erzeugen.sh` als eigener, kommentierter
+Schritt ausgewiesen, und T8 schlägt fehl, wenn eine Kupferzone ungefüllt ist.
+
+### 6.6 Der Prüfstand hängt jetzt am Erzeugen
+
+`erzeugen.sh` hat einen achten Schritt bekommen: Stufe 1 und 2 des Prüfstands
+laufen bei jedem Durchgang mit. Wer die Schaltung ändert, merkt sofort, wenn
+etwas nicht mehr zusammenpasst.
+
+## 7. Zur Kenntnis: KiCad schreibt die Platine in seinem eigenen Format zurück
+
+Der Generator erzeugt das KiCad-9-Format (`version 20241229`). Der Füllschritt
+lässt KiCad die Datei speichern, und KiCad 10 schreibt sie dabei in seinem
+Format zurück (`version 20260206`; die Netztabelle am Dateianfang entfällt,
+Pads nennen ihr Netz beim Namen).
+
+Für die Gruppe heißt das: **die Platinendatei im Repository lässt sich nur mit
+der KiCad-Fassung öffnen, die den Füllschritt ausgeführt hat** — hier KiCad 10.
+Wer mit KiCad 9 arbeitet, lässt `erzeugen.sh` einmal auf seinem Rechner laufen;
+dann liegt die Datei im 9er-Format vor. Der Prüfstand kommt mit beiden Formaten
+zurecht.
+
+## 8. Ergebnis
+
+| Prüfung | Ergebnis |
+|---|---|
+| Stufe 1 und 2 | **1664 Einzelprüfungen, 0 Fehler** |
+| davon Abstandsprüfung ohne KiCad | 645 Kupferstücke paarweise |
+| Reproduzierbarkeit | zweimal erzeugen ergibt **bitgleiche Dateien** |
+| Fehlererkennung | **8 von 8** eingebauten Fehlern gefunden |
+| ERC des Schaltplans | 0 Verstöße |
+| DRC, offene Verbindungen, Abgleich | 0 / 0 / 0 |

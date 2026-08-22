@@ -1,8 +1,8 @@
 (export
 	(version "E")
 	(design
-		(source "/Users/ferdinand/Desktop/VibeCoding/Finanzen/flappy-esp32c3/hardware/flappy-esp32c3.kicad_sch")
-		(date "2026-08-21T23:34:03")
+		(source "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/flappy-esp32c3.kicad_sch")
+		(date "2026-08-22T14:37:03")
 		(tool "Eeschema 10.0.5")
 		(sheet
 			(number "1")
