@@ -266,7 +266,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "A"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -744,7 +744,7 @@
       {
         "filename": "flappy-esp32c3.kicad_sch",
         "name": "flappy-esp32c3",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "uuid": "ccaf1aec-7edc-5c5d-bbbd-2f38978655ed"
       }
     ],
     "used_designators": "",
@@ -752,8 +752,8 @@
   },
   "sheets": [
     [
-      "c0a1b2c3-0000-4000-8000-000000000001",
-      "Root"
+      "ccaf1aec-7edc-5c5d-bbbd-2f38978655ed",
+      "flappy-esp32c3"
     ]
   ],
   "text_variables": {},

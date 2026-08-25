@@ -4452,8 +4452,8 @@
 		(uuid "8ced0319-3841-50db-a97a-66ab9ab1ee10")
 	)
 	(rectangle
-		(start 182.88 40.64)
-		(end 294.64 140.97)
+		(start 185.42 40.64)
+		(end 297.18 140.97)
 		(stroke
 			(width 0.2)
 			(type dash)
@@ -15697,7 +15697,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f93673dc-1053-5cd1-8c0c-a3abb029f66d")
-		(property "Reference" "TP1"
+		(property "Reference" "TP10"
 			(at 304.8 106.045 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15758,7 +15758,7 @@
 		(instances
 			(project "flappy-esp32c3"
 				(path "/ccaf1aec-7edc-5c5d-bbbd-2f38978655ed"
-					(reference "TP1")
+					(reference "TP10")
 					(unit 1)
 				)
 			)
