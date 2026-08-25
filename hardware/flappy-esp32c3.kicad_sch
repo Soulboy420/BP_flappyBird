@@ -4923,14 +4923,6 @@
 		(uuid "55936254-1702-5819-acfd-648e3c1c545a")
 	)
 	(no_connect
-		(at 325.12 53.34)
-		(uuid "8f8d09e2-8ff7-572d-a607-f36412a8f36f")
-	)
-	(no_connect
-		(at 325.12 50.8)
-		(uuid "b626c3cc-209e-56d8-9dbd-dce31034bcbf")
-	)
-	(no_connect
 		(at 260.35 88.9)
 		(uuid "b72ede7f-5abe-5c42-b425-46d1f8d6ba8f")
 	)
@@ -5180,6 +5172,16 @@
 	)
 	(wire
 		(pts
+			(xy 325.12 53.34) (xy 327.66 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ffec3eb-7486-403c-ac48-67cd97f10fae")
+	)
+	(wire
+		(pts
 			(xy 229.87 111.76) (xy 214.63 111.76)
 		)
 		(stroke
@@ -5300,6 +5302,16 @@
 	)
 	(wire
 		(pts
+			(xy 335.28 50.8) (xy 337.82 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6f381399-f496-4903-92af-508dead10ce0")
+	)
+	(wire
+		(pts
 			(xy 322.58 228.6) (xy 316.23 228.6)
 		)
 		(stroke
@@ -5377,6 +5389,16 @@
 			(type default)
 		)
 		(uuid "7dd12225-a642-5062-b85f-137f7ed77c48")
+	)
+	(wire
+		(pts
+			(xy 335.28 53.34) (xy 337.82 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f483d2c-85a6-4db8-8cac-5b4dcf8fadd5")
 	)
 	(wire
 		(pts
@@ -5497,6 +5519,16 @@
 			(type default)
 		)
 		(uuid "a62a0e71-6df2-59b1-89e1-388d6b98b7a1")
+	)
+	(wire
+		(pts
+			(xy 325.12 50.8) (xy 327.66 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a802c119-4abc-4960-87f4-0cb14869933d")
 	)
 	(wire
 		(pts
@@ -8044,6 +8076,85 @@
 			(project "flappy-esp32c3"
 				(path "/ccaf1aec-7edc-5c5d-bbbd-2f38978655ed"
 					(reference "C4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 337.82 50.8 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2187acfb-120c-4766-97d2-b671831228b9")
+		(property "Reference" "#PWR059"
+			(at 337.82 48.26 270)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 337.82 53.34 270)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 337.82 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 337.82 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 337.82 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "da59f32c-bf37-42d0-8528-77c3bd11555a")
+		)
+		(instances
+			(project "flappy-esp32c3"
+				(path "/ccaf1aec-7edc-5c5d-bbbd-2f38978655ed"
+					(reference "#PWR059")
 					(unit 1)
 				)
 			)
@@ -10712,6 +10823,85 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 337.82 53.34 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "64debb6a-1d45-46c4-b454-5c86994eb021")
+		(property "Reference" "#PWR060"
+			(at 337.82 50.8 270)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 337.82 55.88 270)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 337.82 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 337.82 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 337.82 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f42e205d-e21e-4f77-af6b-99c8f22a8640")
+		)
+		(instances
+			(project "flappy-esp32c3"
+				(path "/ccaf1aec-7edc-5c5d-bbbd-2f38978655ed"
+					(reference "#PWR060")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:TestPoint")
 		(at 392.43 100.33 180)
 		(unit 1)
@@ -11912,6 +12102,86 @@
 			(project "flappy-esp32c3"
 				(path "/ccaf1aec-7edc-5c5d-bbbd-2f38978655ed"
 					(reference "#PWR51")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 331.47 53.34 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "99de4d25-52f8-4aac-82be-571ffcf29419")
+		(property "Reference" "R18"
+			(at 331.47 46.99 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "5.1k"
+			(at 331.47 49.53 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 331.47 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 331.47 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Trennstelle Strommessung Modul (M3)"
+			(at 331.47 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "fb7cbbc7-2ee5-4c28-9c02-96fa69cab43a")
+		)
+		(pin "2"
+			(uuid "31065cca-601c-473a-962f-9f8d0e025781")
+		)
+		(instances
+			(project "flappy-esp32c3"
+				(path "/ccaf1aec-7edc-5c5d-bbbd-2f38978655ed"
+					(reference "R18")
 					(unit 1)
 				)
 			)
@@ -15598,6 +15868,86 @@
 			(project "flappy-esp32c3"
 				(path "/ccaf1aec-7edc-5c5d-bbbd-2f38978655ed"
 					(reference "#FLG03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 331.47 50.8 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f44a078b-eaff-45f3-8395-afb5b9ac0540")
+		(property "Reference" "R17"
+			(at 331.47 44.45 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "5.1k"
+			(at 331.47 46.99 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 331.47 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 331.47 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Trennstelle Strommessung Modul (M3)"
+			(at 331.47 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "05d59c8d-c3c6-48ae-9e9f-568d3bde7023")
+		)
+		(pin "2"
+			(uuid "a9e4efb3-f4bb-4596-a11a-b868a874163b")
+		)
+		(instances
+			(project "flappy-esp32c3"
+				(path "/ccaf1aec-7edc-5c5d-bbbd-2f38978655ed"
+					(reference "R17")
 					(unit 1)
 				)
 			)
