@@ -3,6 +3,18 @@
 `hardware/gen/tests.py` und `tests_stufe3.py` prüfen den Entwurf in drei Stufen.
 Stufe 1 und 2 laufen als letzter Schritt von `erzeugen.sh` automatisch mit.
 
+Vorgeschaltet prüft `gen/chk_place.py` (Schritt 3 von `erzeugen.sh`) die
+Platzierung, bevor überhaupt verdrahtet wird: Umrissabstand für die
+Handbestückung (`LOETABSTAND`), Randabstand (`RANDABSTAND`), die
+Antennensperrfläche, die bauteilfreien Flächen unter Funkmodul und
+USB-C-Breakout, und dass jede Kupferfläche aus `NETZONES` mindestens ein Pad
+ihres Netzes enthält. Schlägt eine dieser Prüfungen an, bricht `erzeugen.sh`
+ab.
+
+**T4 und T11 brauchen eine KiCad-Installation** — T4 vergleicht den erzeugten
+Modul-Footprint gegen die unveränderte `RF_Module`-Bibliothek, T11 prüft die
+von `kicad-cli` erzeugten Fertigungsunterlagen.
+
 ```bash
 cd hardware && ./erzeugen.sh          # erzeugt alles und prüft (Stufe 1+2)
 python3 gen/tests.py                  # nur prüfen, etwa 2 Sekunden
@@ -18,7 +30,7 @@ python3 gen/tests_stufe3.py           # Reproduzierbarkeit + Fehlererkennung, et
 | **T3** | Entwurfsdaten: jedes Symbol und jeder Footprint ladbar, **jeder Symbolpin hat ein Pad im Footprint**, jeder Pin genau einmal verdrahtet oder als offen markiert, kein Netz mit nur einem Pin, alle Bauteilwerte lesbar |
 | **T4** | Erzeugte Bibliotheken: Versorgungssymbole haben genau einen Pin mit dem richtigen Netznamen; der Handlöt-Footprint hat 18 um genau 1 mm nach außen verlängerte Pads, die Innenkante bleibt unverändert, die Wärmevias sind auf 0,3 mm aufgebohrt |
 | **T5** | Verdrahter: findet einen Weg um ein Hindernis, meldet einen unmöglichen Weg, wechselt bei Bedarf die Lage und setzt an jedem Lagenwechsel eine Durchkontaktierung; alle erzeugten Segmente sind waagerecht, senkrecht oder 45 Grad, keines hat die Länge null, alle liegen auf der Platine |
-| **T6** | **Abstandsprüfung ohne KiCad**: alle 645 Kupferstücke (Bahnen, Vias, Pads) paarweise gegeneinander, mindestens 0,2 mm zwischen verschiedenen Netzen |
+| **T6** | **Abstandsprüfung ohne KiCad**: alle 661 Kupferstücke (Bahnen, Vias, Pads) paarweise gegeneinander, mindestens 0,2 mm zwischen verschiedenen Netzen |
 
 ## Stufe 2 — Erzeugnisse einzeln
 

@@ -1,10 +1,14 @@
 # Flappy Bird auf ESP32-C3 — Bachelorprojekt HAW Hamburg
 
 Hardware zum Projekt „Flappy Bird auf eigener ESP32-Baugruppe": zweilagige
-Leiterplatte 90 × 60 mm, unbestückt zu beziehen und von Hand zu bestücken,
+Leiterplatte 72 × 51 mm, unbestückt zu beziehen und von Hand zu bestücken,
 Display und Taster über JST-XH-Steckverbinder abgesetzt.
 
-![Leiterplatte](hardware/ausgabe/3d_oben.png)
+> **Vor der Bestellung:** `hardware/fertigung/` und `hardware/ausgabe/` stammen
+> noch aus **Revision A** (90 × 60 mm). Sie passen nicht mehr zum Entwurf.
+> Einmal `cd hardware && ./erzeugen.sh` auf einem Rechner mit KiCad 10 laufen
+> lassen, dann stimmen Gerber, PDFs und Stückliste wieder. Siehe
+> `hardware/fertigung/VERALTET.md`.
 
 ## Alles erzeugen und prüfen
 
@@ -18,14 +22,12 @@ Prüfstand.
 
 | Prüfung | Ergebnis |
 |---|---|
-| ERC des Schaltplans | **0 Verstöße** |
-| DRC des Layouts | **0 Fehler** |
-| offene Verbindungen | **0** |
-| Abgleich Schaltplan ↔ Layout | **0 Abweichungen** |
-| Netzliste gegen `gen/design.py` | **identisch** (34 Netze, 129 Pinverbindungen) |
-| Prüfstand Stufe 1 und 2 | **1664 Prüfungen, 0 Fehler** |
+| Prüfstand T1–T3, T5–T10 (1612 Einzelprüfungen) | **0 Fehler** |
+| Abstandsprüfung ohne KiCad (T6, 661 Kupferstücke paarweise) | **0 Unterschreitungen** |
+| Platzierung: Lötabstand, Rand, Sperrflächen, Kupferflächen | **0 Beanstandungen** |
+| Abgleich Schaltplan ↔ Layout (unabhängig nachgerechnet) | **0 Abweichungen** |
 | Reproduzierbarkeit | zweimal erzeugen ergibt bitgleiche Dateien |
-| Fehlererkennung | 8 von 8 eingebauten Fehlern gefunden |
+| ERC, DRC, Gerber (T4, T11) | **noch offen** — braucht KiCad, siehe Kasten oben |
 
 ## Verzeichnisse
 
@@ -47,15 +49,18 @@ hardware/
 
 ## Kennzahlen
 
-| | |
-|---|---|
-| Platine | 90 × 60 mm, zwei Lagen, 1,6 mm |
-| Bauteile | 55 (41 bestückt, 10 Prüfpunkte, 4 Bohrungen M2) |
-| Leiterbahnen | 371 Segmente, 843 mm; davon 8,4 % auf der Rückseite |
-| Durchkontaktierungen | 113, davon 82 Masse |
-| kleinste Bahn / kleinster Abstand / kleinste Bohrung | 0,25 mm / 0,20 mm / 0,30 mm |
-| Massefläche Rückseite | 4904 mm², **eine** zusammenhängende Fläche |
-| Kühlfläche am Laderegler | 114 mm² (Projektplan 5.2 fordert ≥ 100 mm²) |
+| | Revision A | Revision B |
+|---|---|---|
+| Platine | 90 × 60 mm (5400 mm²) | **72 × 51 mm (3672 mm², −32 %)** |
+| Bauteile | 55 | 57 (43 bestückt, 10 Prüfpunkte, 4 Bohrungen M2) |
+| Leiterbahnen | 371 Segmente, 843 mm | 414 Segmente, 725 mm |
+| davon auf der Rückseite | 8,4 %, längstes Stück 10,8 mm | 10,5 %, längstes Stück **5,4 mm** |
+| Durchkontaktierungen | 113 (82 Masse) | 87 (54 Masse) |
+| kleinster Umrissabstand zwischen zwei Bauteilen | 0,15 mm | **0,82 mm** |
+| kleinste Bahn / kleinster Abstand / kleinste Bohrung | 0,25 / 0,20 / 0,30 mm | unverändert |
+| Kühlfläche am Laderegler | 114 mm², über eine Bahn angebunden | **122 mm², direkt am VBAT-Pad von U2** |
+
+Zwei Lagen, 1,6 mm, Bestückung einseitig oben.
 
 ## Wie der Entwurf entsteht
 
@@ -68,19 +73,36 @@ Wer lieber in KiCad weiterzeichnet, kann das jederzeit tun; dann sollte
 `erzeugen.sh` nicht mehr aufgerufen werden, sonst werden die Handänderungen
 überschrieben.
 
+## Handbestückung
+
+Die Platine wird mit einer kleinen Lötstation von Hand bestückt. Dafür gilt
+im Layout eine feste Regel, die `gen/chk_place.py` bei jedem Durchgang prüft:
+
+* **mindestens 0,8 mm freier Abstand zwischen zwei Bauteilumrissen**
+  (`LOETABSTAND` in `gen/layout_pcb.py`). Der Umriss der Handlöt-Footprints
+  liegt schon 0,25 mm außerhalb der Pads — es bleiben also rund 1,3 mm
+  freies Kupfer zwischen zwei benachbarten Pads, genug für eine
+  1,6-mm-Meißelspitze.
+* **mindestens 0,5 mm zum Platinenrand** (`RANDABSTAND`).
+* alle SMD-Bauteile auf der Oberseite, alle im Handlöt-Footprint (0805
+  statt 0603, verlängerte Pads am Funkmodul).
+
+Schlägt eine dieser Regeln an, bricht `erzeugen.sh` ab.
+
 ## Vor der Bestellung
 
-Drei Punkte am **gekauften** Bauteil nachmessen, siehe
+Vier Punkte am **gekauften** Bauteil nachmessen, siehe
 `hardware/doc/entscheidungen.md` Abschnitt 3:
 
 1. Pinbelegung des USB-C-Breakouts (erwartet VBUS, GND, D−, D+, CC1, CC2)
-2. Aderfolge des OLED-Moduls
-3. Bauform des Schiebeschalters
+2. **Ob das Breakout schon 5,1-kΩ-Widerstände an CC1/CC2 trägt** — wenn ja,
+   R17 und R18 **nicht** bestücken
+3. Aderfolge des OLED-Moduls
+4. Bauform des Schiebeschalters
 
 ## Werkzeug
 
 KiCad 10. Der Generator schreibt das KiCad-9-Format; der Füllschritt lässt
-KiCad die Platine in seinem eigenen Format zurückschreiben. Die Datei im
-Repository liegt daher im KiCad-10-Format. Wer KiCad 9 benutzt, lässt
-`erzeugen.sh` einmal auf seinem Rechner laufen. Für den Verdrahter wird
-zusätzlich NumPy gebraucht.
+KiCad die Platine in seinem eigenen Format zurückschreiben. Wer KiCad 9
+benutzt, lässt `erzeugen.sh` einmal auf seinem Rechner laufen. Für den
+Verdrahter wird zusätzlich NumPy gebraucht.

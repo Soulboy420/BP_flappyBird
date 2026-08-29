@@ -268,6 +268,7 @@ def sym_instance(libid, ref, value, footprint, descr, x, y, rot, mirror,
 labeled = {n for n, *_ in L.LABELS} | {n for *_, n in L.STUB_LABELS} | set(POWERSYM)
 LBL_PIN = {
     'USB_DM_CON': ('J1', '3'), 'USB_DP_CON': ('J1', '4'),
+    'CC1': ('R17', '1'), 'CC2': ('R18', '1'),
     'PROG': ('R1', '1'), 'CHG_A': ('D2', '2'), 'LED_CHG': ('D2', '1'),
     'BATT_P': ('J2', '1'), 'EN': ('C10', '1'), 'BOOT': ('TP7', '1'),
     'IO2': ('R15', '2'), 'BTN_SW': ('R12', '1'), 'BTN_CON': ('J4', '1'),

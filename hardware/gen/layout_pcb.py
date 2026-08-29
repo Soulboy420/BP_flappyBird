@@ -1,94 +1,149 @@
 # -*- coding: utf-8 -*-
 """Platzierung, Sperrflaechen und Beschriftung der Leiterplatte.
 Koordinaten in Platinen-Millimetern, Nullpunkt links oben, y nach unten.
-Die Leiterbahnen selbst entstehen in gen/autoroute.py und liegen in routes.py."""
+Die Leiterbahnen selbst entstehen in gen/autoroute.py und liegen in routes.py.
+
+Aufteilung der Platine
+    oberer Streifen   USB-C-Breakout, Laderegler, Akku, Schalter, Regler
+    Mitte links       Piezo, Anzeige, Tastereingabe
+    Mitte             Funkmodul, Antenne an der Unterkante
+    Mitte rechts      Abblockung, Reset, Serienterminierung, Displaykabel
+    unterer Streifen  0-Ohm-Trennstelle und Pruefpunkte neben der Antenne
+"""
 
 BX, BY = 30.0, 30.0        # Versatz der Platine auf dem Zeichnungsblatt
-W, H = 90.0, 60.0          # Platinenmass
+W, H = 72.0, 51.0          # Platinenmass
+
+# Handbestueckung: geforderter freier Abstand zwischen zwei Bauteilumrissen
+# und zum Platinenrand. Der Umriss (F.CrtYd) liegt bei den Handloet-Footprints
+# schon 0,25 mm ausserhalb der Pads; 0,8 mm Umrissabstand ergeben also rund
+# 1,3 mm freies Kupfer zwischen zwei Pads - genug fuer eine 1,6-mm-Meisselspitze.
+LOETABSTAND = 0.8
+RANDABSTAND = 0.5
 
 # ref -> (x, y, drehung)
 PLACE = {
-    'U1':   ( 41.00,  46.90, 180),
-    'J1':   ( 13.50,   8.00,   0),
-    'D1':   ( 24.00,  20.00,   0),
-    'TP1':  ( 32.00,  12.50,   0),
-    'C1':   ( 32.00,   8.00, 270),
-    'C2':   ( 36.00,   8.00, 270),
-    'U2':   ( 44.00,  10.00,   0),
-    'R1':   ( 40.00,  15.00,   0),
-    'R2':   ( 52.00,   8.00,   0),
-    'D2':   ( 58.00,   8.00,   0),
-    'C3':   ( 52.00,  14.00, 270),
-    'C4':   ( 56.00,  14.00, 270),
-    'TP2':  ( 62.00,  14.00,   0),
-    'F1':   ( 68.00,   8.00,   0),
-    'J2':   ( 76.00,   8.00,   0),
-    'D3':   ( 68.00,  14.00,   0),
-    'SW1':  ( 72.00,  22.00,   0),
-    'LS1':  ( 14.00,  30.00,   0),
-    'R13':  ( 26.00,  30.00,   0),
-    'D4':   ( 10.00,  40.00,   0),
-    'R14':  ( 16.00,  40.00,   0),
-    'R15':  ( 22.00,  40.00,   0),
-    'J4':   (  4.00,  55.00,   0),
-    'R12':  ( 12.00,  55.00,   0),
-    'R11':  ( 18.00,  55.00,   0),
-    'C11':  ( 28.00,  43.00,  90),
-    'R10':  ( 10.00,  50.00,   0),
-    'TP5':  ( 24.00,  50.00,   0),
-    'TP7':  ( 53.50,  38.00,   0),
-    'R9':   ( 56.00,  43.90,   0),
-    'R8':   ( 61.00,  45.40,   0),
-    'R7':   ( 56.00,  46.90,   0),
-    'R6':   ( 61.00,  48.40,   0),
-    'R5':   ( 56.00,  49.90,   0),
-    'R16':  ( 70.00,  44.00,   0),
-    'J3':   ( 84.00,  56.00,  90),
-    'U3':   ( 74.50,  51.50,   0),
-    'C6':   ( 79.50,  50.50, 270),
-    'C7':   ( 79.50,  55.00, 270),
-    'C5':   ( 70.00,  57.50,   0),
-    'TP3':  ( 75.00,  57.50,   0),
-    'R4':   ( 56.00,  40.50,   0),
-    'TP6':  ( 66.00,  40.50,   0),
-    'C10':  ( 61.00,  40.50,   0),
-    'R3':   ( 66.00,  52.60, 180),
-    'C8':   ( 61.00,  51.60,  90),
-    'C9':   ( 53.00,  51.60,  90),
-    'TP4':  ( 66.00,  57.20,   0),
-    'TP10': ( 36.00,  12.50,   0),
-    'TP11': ( 24.00,  46.00,   0),
-    'TP12': (  8.00,  46.00,   0),
-    'H1':   (  3.50,   3.50,   0),
-    'H2':   ( 85.00,   3.50,   0),
-    'H3':   ( 85.00,  33.00,   0),
-    'H4':   (  3.50,  45.00,   0),
+    # --- Funkmodul, Antenne buendig mit der Unterkante (Projektplan 4.5.7) ---
+    'U1':   ( 36.00,  37.90, 180),
+
+    # --- oberer Streifen, links: USB-C-Breakout und ESD-Schutz ---
+    'J1':   ( 13.50,  11.00,   0),
+    'D1':   ( 19.50,  16.00,   0),
+    'R17':  ( 21.00,  20.50,   0),
+    'R18':  ( 21.00,  24.00,   0),
+
+    # --- oberer Streifen, Mitte: VBUS, Laderegler, Ladeanzeige ---
+    'C1':   ( 25.00,   9.00,  90),
+    'C2':   ( 28.50,   9.00,  90),
+    'TP1':  ( 25.00,   4.50,   0),
+    'TP10': ( 28.50,   4.50,   0),
+    'U2':   ( 34.00,   9.00, 180),
+    'R1':   ( 33.00,  13.50,   0),
+    'R2':   ( 33.00,   4.50,   0),
+    'D2':   ( 39.00,   4.00,   0),
+    'C3':   ( 39.50,   8.50,   0),
+    'C4':   ( 44.50,   8.50,   0),
+    'TP2':  ( 47.00,  12.00,   0),
+
+    # --- oberer Streifen, rechts: Akkupfad, Schalter, Spannungsregler ---
+    'F1':   ( 53.00,   4.00,   0),
+    'D3':   ( 53.00,   9.00,   0),
+    'J2':   ( 60.00,   4.50,   0),
+    'SW1':  ( 61.50,  12.00,   0),
+    'U3':   ( 52.00,  19.00, 180),
+    'C5':   ( 57.50,  19.00,   0),
+    'C7':   ( 52.50,  23.50,   0),
+    'C6':   ( 57.50,  23.50,   0),
+
+    # --- Mitte links: Piezo, Anzeige, Tastereingabe ---
+    'LS1':  (  4.60,  37.00,   0),
+    'R13':  ( 22.00,  42.00,  90),
+    'C11':  ( 22.00,  37.40,  90),
+    'R15':  ( 22.00,  32.80,  90),
+    'R10':  ( 22.00,  28.20,  90),
+    'TP5':  ( 18.40,  42.00,   0),
+    'R11':  ( 18.40,  37.40,  90),
+    'R12':  ( 18.40,  32.80,  90),
+    'J4':   (  7.50,  46.50,   0),
+    'R14':  ( 16.00,  46.50,   0),
+    'D4':   ( 16.00,  49.50,   0),
+    'TP11': ( 19.85,  47.50,   0),
+    
+    # --- Mitte rechts, Spalte A: Abblockung, Reset, Strapping ---
+    'C9':   ( 49.40,  42.80,   0),
+    'C8':   ( 49.40,  40.00,   0),
+    'R4':   ( 49.40,  36.60,   0),
+    'C10':  ( 49.40,  33.20,   0),
+    'R16':  ( 49.40,  30.00,   0),
+    'TP7':  ( 49.40,  26.80,   0),
+
+    # --- Mitte rechts, Spalte B: Serienterminierung zum Display ---
+    'R5':   ( 53.95,  40.00,   0),
+    'R6':   ( 53.95,  37.20,   0),
+    'R7':   ( 53.95,  34.40,   0),
+    'R8':   ( 53.95,  31.60,   0),
+    'R9':   ( 53.95,  28.80,   0),
+
+    # --- rechter Rand: Displaykabel ---
+    'J3':   ( 66.00,  43.50,  90),
+
+    # --- unterer Streifen neben der Antenne: Trennstelle und Pruefpunkte ---
+    'TP4':  ( 52.20,  48.40,   0),
+    'R3':   ( 56.40,  48.40,   0),
+    'TP3':  ( 60.50,  48.40,   0),
+    'TP12': ( 64.00,  48.40,   0),
+    'TP6':  ( 67.50,  48.40,   0),
+
+    # --- Befestigung ---
+    'H1':   (  3.00,   2.00,   0),
+    'H2':   ( 69.00,   3.00,   0),
+    'H3':   ( 69.00,  21.00,   0),
+    'H4':   (  2.20,  47.00,   0),
 }
 
-# Sperrflaeche um die Modulantenne: x1, y1, x2, y2, Name
-KEEPOUTS = [(26.75, 53.75, 55.25, 60.0, 'Antennen-Sperrflaeche ESP32-C3-WROOM-02')]
+
+def _rel(ref, dx1, dy1, dx2, dy2):
+    """Rechteck relativ zu einem platzierten Bauteil."""
+    x, y, _ = PLACE[ref]
+    return (x + dx1, y + dy1, x + dx2, y + dy2)
+
+
+# Sperrflaeche um die Modulantenne: x1, y1, x2, y2, Name.
+# Kein Kupfer auf beiden Lagen, keine Bauteile.
+KEEPOUTS = [_rel('U1', -14.25, 6.85, 14.25, 13.10)
+            + ('Antennen-Sperrflaeche ESP32-C3-WROOM-02',)]
+
+# Flaechen ohne Bauteile und ohne Leiterbahnen der Oberseite (Projektplan
+# 4.5.2). Aus der Platzierung abgeleitet, damit sie beim Verschieben von
+# Modul oder Breakout mitwandern.
+BAUTEILFREI = [_rel('J1', -12.9, -6.6, -0.9, 14.6) + ('Flaeche unter dem USB-C-Breakout',)]
+NO_TRACK_F = [_rel('U1', -7.8, -7.9, 7.8, 13.1)] + [b[:4] for b in BAUTEILFREI]
 
 # Kupferflaeche zur Waermeabfuhr des Ladereglers (>= 100 mm^2, Projektplan 5.2)
-NETZONES = [(48.0, 16.5, 66.0, 23.0, 'VBAT')]
+NETZONES = [(35.5, 7.0, 49.0, 16.0, 'VBAT')]
 
 # Beschriftungen: x, y, Text, Groesse, Lage, Drehung
 TEXTS = [
-    # Rueckseite: nur im kupferfreien Antennenbereich, dort stoert nichts
-    (54.0, 56.0, 'FLAPPY BIRD ESP32-C3   REV. A', 1.6, 'B.SilkS', 0),
-    (54.0, 58.6, 'HAW HAMBURG   BACHELORPROJEKT 2026', 1.1, 'B.SilkS', 0),
-    # Vorderseite: Anschlussbelegung des USB-C-Breakouts
-    (15.3,  8.00, 'VBUS', 0.8, 'F.SilkS', 0),
-    (15.3, 10.54, 'GND',  0.8, 'F.SilkS', 0),
-    (15.3, 13.08, 'D-',   0.8, 'F.SilkS', 0),
-    (15.3, 15.62, 'D+',   0.8, 'F.SilkS', 0),
-    (15.3, 18.16, 'CC1',  0.8, 'F.SilkS', 0),
-    (15.3, 20.70, 'CC2',  0.8, 'F.SilkS', 0),
-    # Vorderseite: Legende im bauteilfreien Mittelfeld
-    (28.0, 27.0, 'J3 Display:  1 GND  2 VCC  3 SCLK  4 MOSI  5 RES  6 DC  7 CS', 1.1, 'F.SilkS', 0),
-    (28.0, 30.5, 'Laden nur im ausgeschalteten Zustand (kein Lastpfad)', 1.1, 'F.SilkS', 0),
-    (74.6,  4.6, '+',    0.9, 'F.SilkS', 0),
-    (79.0,  4.6, '-',    0.9, 'F.SilkS', 0),
-    (1.5,  48.6, 'TASTER', 0.8, 'F.SilkS', 0),
+    # Rueckseite: nur im kupferfreien Antennenbereich, dort stoert nichts.
+    # Gespiegelter Text laeuft in Platinenkoordinaten nach links, deshalb
+    # sitzt der Ankerpunkt am rechten Rand der Sperrflaeche.
+    (49.5, 47.0, 'FLAPPY BIRD ESP32-C3   REV. B', 1.3, 'B.SilkS', 0),
+    (49.5, 49.3, 'HAW HAMBURG   BACHELORPROJEKT 2026', 0.9, 'B.SilkS', 0),
+    # Vorderseite: Anschlussbelegung des USB-C-Breakouts, Zeile fuer Zeile
+    # neben dem zugehoerigen Stift von J1
+    (15.5, 11.00, 'VBUS', 0.8, 'F.SilkS', 0),
+    (15.5, 13.54, 'GND',  0.8, 'F.SilkS', 0),
+    (15.5, 16.08, 'D-',   0.8, 'F.SilkS', 0),
+    (15.5, 18.62, 'D+',   0.8, 'F.SilkS', 0),
+    (15.5, 21.16, 'CC1',  0.8, 'F.SilkS', 0),
+    (15.5, 23.70, 'CC2',  0.8, 'F.SilkS', 0),
+    # Vorderseite: Hinweise im bauteilfreien Band oberhalb des Funkmoduls
+    (24.5, 21.5, 'R17/R18 nur ohne CC am Breakout', 0.8, 'F.SilkS', 0),
+    (24.5, 27.0, 'J3: GND VCC SCLK MOSI RES DC CS', 0.8, 'F.SilkS', 0),
+    (24.5, 29.0, 'Laden nur ausgeschaltet', 0.8, 'F.SilkS', 0),
+    (59.6,  1.9, '+',    0.9, 'F.SilkS', 0),
+    (61.6,  1.9, '-',    0.9, 'F.SilkS', 0),
+    (5.0,  43.0, 'TASTER', 0.8, 'F.SilkS', 0),
 ]
 
 try:

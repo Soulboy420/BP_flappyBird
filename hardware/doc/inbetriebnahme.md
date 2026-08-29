@@ -10,7 +10,10 @@ Flach vor hoch, klein vor groß:
 
 1. U1 noch **nicht** bestücken.
 2. SOT-23: U2 (MCP73831), U3 (AP2112K-3.3), D1 (USBLC6-2SC6), D3 (B5819W, SOD-123)
-3. Passive 0805: R1…R16, F1, C1…C11
+3. Passive 0805: R1…R18, F1, C1…C11
+   **R17 und R18 (5,1 kΩ, CC1/CC2) nur bestücken, wenn das USB-C-Breakout
+   selbst keine CC-Widerstände trägt** — nachmessen, siehe
+   `entscheidungen.md` Abschnitt 3. Der Siebdruck erinnert daran.
 4. LEDs D2 (rot, zu U2) und D4 (grün, links unten) — Polarität beachten
 5. **U1** (ESP32-C3-WROOM-02): die Pads ragen 1,5 mm über die Modulkante,
    von außen anlöten, Modul nicht mit der Spitze berühren
@@ -21,7 +24,8 @@ Flach vor hoch, klein vor groß:
 
 | Stufe | Vorgehen | Erwartung | gemessen | i.O. |
 |---|---|---|---|---|
-| 0 | Sichtprüfung unter der Lupe; Durchgangsprüfung TP3–TP10 (3V3–GND) und TP2–TP11 (VBAT–GND) | hochohmig, kein Kurzschluss | | ☐ |
+| 0 | Sichtprüfung unter der Lupe; Durchgangsprüfung TP3–TP12 (3V3–GND) und TP2–TP10 (VBAT–GND) | hochohmig, kein Kurzschluss | | ☐ |
+| 0b | Widerstand CC1 bzw. CC2 gegen GND messen (an J1-5/J1-6) | 5,1 kΩ ± 5 %. 2,55 kΩ heißt: das Breakout hat eigene Widerstände, R17/R18 wieder auslöten | | ☐ |
 | 1 | U1 noch nicht bestückt. Labornetzteil 5 V, Strombegrenzung 100 mA an TP1 (VBUS) und TP10 (GND) | TP3 = 3,30 V ± 3 %, Aufnahme < 1 mA, grüne LED **aus** (sie hängt am GPIO) | | ☐ |
 | 2 | Akku an J2 (Pluspol am Pad mit dem „+" im Siebdruck), Strommessgerät in Reihe, USB anstecken, SW1 auf **Aus** | Ladestrom 147 mA ± 10 %, rote LED D2 leuchtet | | ☐ |
 | 3 | U1 bestücken, Strombegrenzung 300 mA, SW1 auf **Ein** | 20…30 mA, kein Bauteil wird warm | | ☐ |
@@ -34,7 +38,7 @@ Flach vor hoch, klein vor groß:
 ## Wenn Stufe 1 fehlschlägt
 
 * TP3 = 0 V → U3 falsch herum, SW1 in Stellung Aus oder Kurzschluss nach GND.
-  Widerstand TP3–TP10 messen; unter 10 Ω deutet auf einen Lötzinnschluss an C6/C7.
+  Widerstand TP3–TP12 messen; unter 10 Ω deutet auf einen Lötzinnschluss an C6/C7.
 * TP3 = VBUS → U3 nicht angelötet (Durchgang von TP2 nach TP3).
 * Stromaufnahme > 5 mA ohne U1 → Zinnbrücke an einem SOT-23 suchen.
 
@@ -52,10 +56,10 @@ Flach vor hoch, klein vor groß:
 
 | Nr. | Messung | Messpunkte auf dieser Platine |
 |---|---|---|
-| M1 | Prellverhalten des Tasters | TP5 (Tasterknoten) gegen TP11/TP12 |
+| M1 | Prellverhalten des Tasters | TP5 (Tasterknoten) gegen TP11 (liegt daneben) |
 | M2 | Bildzeit | freier GPIO IO10 am Modulrandkontakt |
 | M3 | Stromaufnahme der Modulversorgung | R3 auslöten, Shunt zwischen TP3 und TP4 |
 | M4 | Lade- und Entladekurve | TP2 (VBAT) gegen TP10 |
 | M5 | Jitter des Physiktakts | IO10 am Modulrandkontakt |
-| M7 | Einbruch der 3,3-V-Schiene | TP4 gegen TP11, wechselspannungsgekoppelt |
+| M7 | Einbruch der 3,3-V-Schiene | TP4 gegen TP12 (liegt daneben), wechselspannungsgekoppelt |
 | M8 | Signalintegrität am Displaykabel | am Displayende messen; R5…R9 sind einzeln gegen 0/33/68/100 Ω tauschbar |

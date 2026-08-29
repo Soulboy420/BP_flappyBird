@@ -49,6 +49,8 @@ COMPONENTS = {
  'R14':('Device:R', '1k',   R0805, 'Vorwiderstand Betriebs-LED'),
  'R15':('Device:R', '10k',  R0805, 'Pull-up Strapping IO2'),
  'R16':('Device:R', '10k',  R0805, 'Pull-up Strapping IO8'),
+ 'R17':('Device:R', '5k1',  R0805, 'Rd an CC1 (USB-C, nur bestuecken wenn das Breakout keinen hat)'),
+ 'R18':('Device:R', '5k1',  R0805, 'Rd an CC2 (USB-C, nur bestuecken wenn das Breakout keinen hat)'),
  'C1': ('Device:C', '4u7',  C0805, 'Eingangskondensator VBUS'),
  'C2': ('Device:C', '100n', C0805, 'HF-Abblockung VBUS'),
  'C3': ('Device:C', '4u7',  C0805, 'Ausgangskondensator Laderegler'),
@@ -81,8 +83,11 @@ NETS = {
  'GND': [('J1','2'),('D1','2'),('C1','2'),('C2','2'),('U2','2'),('C3','2'),('C4','2'),
          ('R1','2'),('J2','2'),('D3','2'),('C5','2'),('U3','2'),('C6','2'),('C7','2'),
          ('C8','2'),('C9','2'),('U1','9'),('U1','19'),('C10','2'),('J3','1'),('C11','2'),
-         ('J4','2'),('LS1','2'),('D4','1'),('TP10','1'),('TP11','1'),('TP12','1')],
+         ('J4','2'),('LS1','2'),('D4','1'),('TP10','1'),('TP11','1'),('TP12','1'),
+         ('R17','2'),('R18','2')],
  'VBUS':      [('J1','1'),('D1','5'),('C1','1'),('C2','1'),('U2','4'),('R2','1'),('TP1','1')],
+ 'CC1':        [('J1','5'),('R17','1')],
+ 'CC2':        [('J1','6'),('R18','1')],
  'USB_DP_CON':[('J1','4'),('D1','3')],
  'USB_DM_CON':[('J1','3'),('D1','1')],
  'USB_DP':    [('D1','4'),('U1','14')],   # IO19
@@ -119,7 +124,7 @@ NETS = {
 }
 
 # Pins ohne Netz -> No-Connect-Markierung im Schaltplan
-NO_CONNECT = [('U3','4'), ('SW1','3'), ('J1','5'), ('J1','6'),
+NO_CONNECT = [('U3','4'), ('SW1','3'),
               ('U1','10'), ('U1','11'), ('U1','12')]   # IO10, RXD, TXD frei
 
 # Netze, die als reine "nicht angeschlossen"-Pads gelten (nur ein Pin)

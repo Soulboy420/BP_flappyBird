@@ -6,6 +6,8 @@ Alle Koordinaten sind Vielfache von 1,27 mm (KiCad-Standardraster)."""
 PLACE = {
     # --- A  USB-Anschluss und ESD-Schutz -------------------------------------
     'J1':  (320.04,  45.72,   0, 'y'),
+    'R18': (330.20,  57.15,   0, None),
+    'R17': (337.82,  54.61,   0, None),
     'D1':  (368.30,  45.72,   0, None),
     # --- B  Ladeschaltung -----------------------------------------------------
     'TP1': (302.26, 107.95, 180, None),
@@ -76,6 +78,8 @@ WIRES = [
     # --- A: USB-Breakout -> ESD-Array -> Mikrocontroller ----------------------
     [('J1', '3'), ('D1', '1')],                      # USB_DM_CON
     [('J1', '4'), ('D1', '3')],                      # USB_DP_CON
+    [('J1', '5'), ('R17', '1')],                     # CC1 -> Rd
+    [('J1', '6'), ('R18', '1')],                     # CC2 -> Rd
     [('D1', '6'), (381.00, 45.72)],                  # USB_DM  -> Bezeichner
     [('D1', '4'), (381.00, 48.26)],                  # USB_DP  -> Bezeichner
     # --- B: Ladeschaltung -----------------------------------------------------
@@ -211,7 +215,9 @@ NOTES = [
     ('IO2 und IO8 sind Strapping-Pins: R15 bzw. R16 halten sie beim Start hoch.', 189.23, 143.51, 1.27),
     ('IO18/IO19 fuehren direkt zur USB-Serial-JTAG-Einheit - keine Serienwiderstaende.', 189.23, 146.05, 1.27),
     ('IO3 ist RTC-faehig und weckt das Geraet aus dem Tiefschlaf (F-13).', 189.23, 148.59, 1.27),
-    ('Pinbelegung J1 pruefen! VBUS/GND/D-/D+/CC1/CC2 - siehe README.', 300.99, 60.96, 1.27),
+    ('Pinbelegung J1 pruefen! VBUS/GND/D-/D+/CC1/CC2 - siehe README.', 300.99, 64.77, 1.27),
+    ('R17/R18 = 5k1 (Rd): ohne sie liefert eine C-nach-C-Leitung kein VBUS.', 300.99, 67.31, 1.27),
+    ('Nur bestuecken, wenn das Breakout selbst keine CC-Widerstaende traegt.', 300.99, 69.85, 1.27),
     ('C1 4u7 + C2 100n: USB-seitige Abblockung (Einschaltstrom < 10 uF-Grenze).', 300.99, 146.05, 1.27),
     ('R1 = 6k8  ->  I_chg = 1000 V / 6k8 = 147 mA = 0,3 C  (5.2)', 300.99, 148.59, 1.27),
     ('Keine Lastpfadumschaltung: zum Laden wird das Geraet ausgeschaltet (4.1).', 300.99, 151.13, 1.27),
@@ -233,6 +239,8 @@ FIELD_OFF = {
     'R8': ((2.54, -2.54), (-2.54, 2.54)),
     'R9': ((2.54, -2.54), (-2.54, 2.54)),
     'R4':  ((0.0, -2.54), (0.0, 2.54)),
+    'R17': ((2.54, -2.54), (2.54, 0.0)),
+    'R18': ((-2.54, -2.54), (-2.54, 0.0)),
     'R15': ((0.0, -2.54), (0.0, 2.54)),
     'R16': ((0.0, -2.54), (0.0, 2.54)),
     'D2':  ((3.81, -1.27), (3.81, 1.27)),

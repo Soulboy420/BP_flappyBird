@@ -28,6 +28,10 @@ def cls(net):
 
 PADNET = {(r, p): n for n, l in design.NETS.items() for r, p in l}
 
+# Mittelanschluesse, die zwischen ihren eigenen Nachbarpads eingeklemmt sind
+# und deshalb vorab eine Durchkontaktierung bekommen (siehe verlege()).
+VORAB_VIA = [('D1', '2'), ('D1', '5'), ('U2', '2'), ('U3', '2')]
+
 def pad_table():
     out = []
     for ref, (x, y, rot) in P.PLACE.items():
@@ -55,8 +59,8 @@ def neuer_router():
     R = Router(W, H)
     for x1, y1, x2, y2, _ in P.KEEPOUTS:
         R.block_rect(None, x1 - 0.3, y1 - 0.3, x2 + 0.3, y2 + 0.3)
-    R.block_rect(0, 33.2, 39.0, 48.8, H)      # keine Leiterbahnen unter dem Funkmodul
-    R.block_rect(0,  0.6,  1.4, 12.6, 22.6)   # keine Leiterbahnen unter dem USB-Breakout
+    for x1, y1, x2, y2 in P.NO_TRACK_F:       # unter Funkmodul und USB-Breakout
+        R.block_rect(0, x1, y1, min(x2, W), min(y2, H))
     for ref in ('H1', 'H2', 'H3', 'H4'):
         x, y, _ = P.PLACE[ref]
         R.block_circle(None, x, y, 1.1 + 0.35)
@@ -90,6 +94,7 @@ def pad_stummel(pad, ziel, breite=0.4):
 
 
 ORDER = ['VBAT', 'BATT_P', 'VBUS', 'USB_DP', 'USB_DM', 'USB_DP_CON', 'USB_DM_CON',
+         'CC1', 'CC2',
          'VBAT_SW', '+3V3',
          'SCLK_MCU', 'MOSI_MCU', 'OLED_RES_MCU', 'OLED_DC_MCU', 'OLED_CS_MCU',
          'SCLK', 'MOSI', 'OLED_RES', 'OLED_DC', 'OLED_CS',
@@ -109,24 +114,31 @@ def verlege(reihenfolge):
     R = neuer_router()
     bahnen, durchkontaktierungen, bericht = [], [], []
 
-    # Massevias der eingeklemmten Mittelpins zuerst reservieren (SOT-23, ESD-Array)
-    for ref, pin in (('D1', '2'), ('U2', '2'), ('U3', '2')):
+    # Eingeklemmte Mittelanschluesse der SOT-23-Gehaeuse zuerst bedienen.
+    # Sie liegen zwischen ihren eigenen Nachbarpads und kommen auf der
+    # Oberseite nicht heraus; ihr Weg auf die Rueckseite wird vorab
+    # reserviert, bevor die Nachbarnetze den Platz belegen.
+    for ref, pin in VORAB_VIA:
         cx, cy = [(a, b) for r, n, _, a, b, w, h, L, t in PADS if (r, n) == (ref, pin)][0]
-        r = R.route_to_via('GND', (cx, cy), 0.2, 0.2, maxlen=10.0)
+        netz = PADNET[(ref, pin)]
+        # 0,4 mm breit und 0,2 mm Abstand: zwischen den 0,95 mm entfernten
+        # Nachbarpads ist mehr nicht unterzubringen.
+        wdt = 0.4
+        r = R.route_to_via(netz, (cx, cy), wdt / 2, 0.2, maxlen=10.0)
         if r is None:
-            WARNUNGEN.append('kein Massevia (Vorabreservierung) fuer %s %s' % (ref, pin))
+            WARNUNGEN.append('kein Via (Vorabreservierung) fuer %s %s' % (ref, pin))
             bericht.append('  WARNUNG: ' + WARNUNGEN[-1])
             continue
         segs, v = r
         for a, b in pad_stummel((cx, cy), segs[0][0]):
-            bahnen.append(('GND', 'F.Cu', 0.4, a, b))
-            R.add_track('GND', 0, a, b, 0.4)
+            bahnen.append((netz, 'F.Cu', wdt, a, b))
+            R.add_track(netz, 0, a, b, wdt)
         for a, b, L in segs:
-            bahnen.append(('GND', 'F.Cu', 0.4, a, b))
-            R.add_track('GND', 0, a, b, 0.4)
-        durchkontaktierungen.append(('GND', v[0], v[1], 0.8, 0.4))
-        R.add_via('GND', v[0], v[1], 0.8)
-        bericht.append('%-14s Massevia vorab bei %r' % (ref + '.' + pin, v))
+            bahnen.append((netz, 'F.Cu', wdt, a, b))
+            R.add_track(netz, 0, a, b, wdt)
+        durchkontaktierungen.append((netz, v[0], v[1], 0.8, 0.4))
+        R.add_via(netz, v[0], v[1], 0.8)
+        bericht.append('%-14s Via vorab bei %r (%s)' % (ref + '.' + pin, v, netz))
 
     for net in reihenfolge:
         pts = [(cx, cy, L) for ref, num, n, cx, cy, w, h, L, t in PADS if n == net]

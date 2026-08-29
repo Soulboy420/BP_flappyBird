@@ -21,7 +21,7 @@ ESP32-C3-WROOM-02, Abschnitt „Pin Definitions".
 | 14 | IO19 | `USB_DP` | USB D+ | über D1 auf J1-4 |
 | 15 | IO3 | `BTN` | Taster | RTC-fähig → weckt aus dem Tiefschlaf (F-13); Pull-up R10, C11, R11, R12 |
 | 16 | IO2 | – | **Strapping-Pin** | R15 = 10 kΩ nach 3V3, sonst unbenutzt |
-| 17 | IO1 | `BUZZ` | Piezo über LEDC | R13 = 100 Ω in Reihe zu LS1 |
+| 17 | IO1 | `BUZZ` | Piezo über LEDC | R13 = 220 Ω in Reihe zu LS1 (nicht 100 Ω, siehe `pruefbericht.md` 2.1) |
 | 18 | IO0 | `LED_G` | Betriebsanzeige | R14 = 1 kΩ, D4 grün; **muss im Tiefschlaf auf 0 gesetzt werden** |
 | 19 | – | `GND` | Wärmepad | im Footprint mit 12 Vias zur Massefläche |
 

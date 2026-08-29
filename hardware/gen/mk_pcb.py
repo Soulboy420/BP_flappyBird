@@ -238,7 +238,9 @@ def zone(layer, uid, prio, poly, net='GND'):
     pts = ['pts'] + [['xy', str(px), str(py)] for px, py in poly]
     return ['zone', ['net', str(NETNO[net])], ['net_name', Str(net)],
             ['layer', Str(layer)], ['uuid', uid],
-            ['name', Str('Masseflaeche ' + layer)], ['hatch', 'edge', '0.5'],
+            ['name', Str(('Masseflaeche ' if net == 'GND'
+                          else 'Kupferflaeche %s ' % net) + layer)],
+            ['hatch', 'edge', '0.5'],
             ['priority', str(prio)],
             ['connect_pads', ['clearance', '0.3']],
             ['min_thickness', '0.25'], ['filled_areas_thickness', 'no'],
