@@ -11,6 +11,7 @@ __pycache__/
 
 # KiCad-Sicherungen und Sitzungsdateien
 *-backups/
+_restore_backup_*/
 *.kicad_prl
 fp-info-cache
 ~*.lck

@@ -70,9 +70,14 @@ oberhalb weniger Kilohertz ohnehin niederohmig.
 
 ### 2.3 Rückseitige Leitungsstücke reduziert
 
-Durch die Umplatzierung sank der Anteil der Leiterbahnen auf der Rückseite von
-9,0 % auf **8,1 %** (69 mm von 860 mm, längstes Einzelstück 10,8 mm). Die
-Massefläche auf B.Cu bleibt **eine zusammenhängende Fläche von 4904 mm²**.
+Durch die Umplatzierung sank der Anteil der Leiterbahnen auf der Rückseite auf
+**8,4 %** (71 mm von 843 mm, längstes Einzelstück 10,8 mm). Die Massefläche auf
+B.Cu bleibt eine zusammenhängende Fläche.
+
+*Nachgetragen im dritten Durchgang:* hier standen ursprünglich 8,1 % (69 mm von
+860 mm) und 4904 mm². Nachgemessen an der eingecheckten Revision A sind es
+8,4 %; die 4904 mm² lassen sich nur mit gefüllten Kupferflächen bestimmen,
+also erst nach einem Lauf von `erzeugen.sh`.
 
 ### 2.4 Layout und Schaltplan waren auseinandergelaufen
 
@@ -243,7 +248,7 @@ von NF-07 (110 × 70 × 30 mm) und auch innerhalb der im Projektplan genannten
 
 | Punkt | Begründung |
 |---|---|
-| 10,5 % der Leiterbahnen auf der Rückseite (vorher 8,1 %) | die Mittelanschlüsse der SOT-23-Gehäuse sind zwischen ihren eigenen Nachbarpads eingeklemmt. Das längste Rückseitenstück ist dafür von 10,8 mm auf **5,4 mm** gesunken, und jedes Stück ist von Massevias flankiert — für den Rückstrom zählt die Länge des einzelnen Schnitts, nicht die Summe |
+| 10,5 % der Leiterbahnen auf der Rückseite (vorher 8,4 %) | die Mittelanschlüsse der SOT-23-Gehäuse sind zwischen ihren eigenen Nachbarpads eingeklemmt. Das längste Rückseitenstück ist dafür von 10,8 mm auf **5,4 mm** gesunken, und jedes Stück ist von Massevias flankiert — für den Rückstrom zählt die Länge des einzelnen Schnitts, nicht die Summe |
 | Sperrstrom von D3 im Tiefschlafbudget | wird in M3 gemessen, Ersatztyp ist dokumentiert |
 | C10 (Reset) mit 9,6 mm Abstand | Zeitkonstante 1 ms, der 100-nF-Kondensator hält den Knoten oberhalb weniger Kilohertz niederohmig |
 | Prüfpunkte teils weit vom Messobjekt | TP10 liegt bei TP1 (VBUS), TP11 bei TP5 (Taster), TP12 bei TP3/TP4 (3,3 V) — jeder Messpunkt hat seine Masse in der Nähe, die Durchgangsprüfungen sind gleichstromig und dürfen weiter greifen |

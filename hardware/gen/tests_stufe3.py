@@ -9,7 +9,9 @@ import hashlib, os, shutil, subprocess, sys, tempfile
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 WURZEL = os.path.abspath(os.path.join(HIER, '..'))
-KICAD = '/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli'
+sys.path.insert(0, HIER)
+import design
+KICAD = design.kicad_cli()
 
 _fehler = []
 

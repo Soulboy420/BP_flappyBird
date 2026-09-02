@@ -5938,7 +5938,7 @@
 				)
 			)
 		)
-		(property "Value" "5k1"
+		(property "Value" "5.1k"
 			(at 0 1.4 0)
 			(layer "F.Fab")
 			(uuid "3e011e56-0d31-50b9-848b-5242f2b93f9c")
@@ -6088,7 +6088,7 @@
 				)
 			)
 		)
-		(property "Value" "5k1"
+		(property "Value" "5.1k"
 			(at 0 1.4 0)
 			(layer "F.Fab")
 			(uuid "3a008a03-a31d-5894-a835-5e994ba49fcd")

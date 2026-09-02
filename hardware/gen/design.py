@@ -2,8 +2,42 @@
 """Zentrale Entwurfsdaten: Bauteile und Netzliste.
 Einzige Wahrheitsquelle fuer Schaltplan und Layout."""
 
-SYMLIB = '/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols'
-FPLIB  = '/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints'
+import glob, os, shutil
+
+# KiCad liegt je nach Betriebssystem woanders. Reihenfolge der Suche:
+# eigene Umgebungsvariable, KiCads eigene Variablen, uebliche Installationsorte.
+# Gefunden wird nichts erzwungen - wer einen Sonderfall hat, setzt
+# FLAPPY_KICAD_SYMBOLS, FLAPPY_KICAD_FOOTPRINTS bzw. FLAPPY_KICAD_CLI.
+
+def _erster_vorhandener(kandidaten):
+    for p in kandidaten:
+        if p and os.path.exists(p):
+            return p
+    return None
+
+
+def _kicad_bibliothek(art):
+    """art ist 'symbols' oder 'footprints'."""
+    eigen = os.environ.get('FLAPPY_KICAD_' + art.upper())
+    kicads = [os.environ.get('KICAD%d_%s_DIR' % (v, art[:-1].upper()))
+              for v in (10, 9, 8, 7)]
+    fest = ['/Applications/KiCad/KiCad.app/Contents/SharedSupport/' + art,
+            '/usr/share/kicad/' + art,
+            '/usr/local/share/kicad/' + art]
+    fest += sorted(glob.glob('C:/Program Files/KiCad/*/share/kicad/' + art), reverse=True)
+    return _erster_vorhandener([eigen] + kicads + fest) or fest[0]
+
+
+def kicad_cli():
+    """Pfad zum Programm kicad-cli."""
+    fest = ['/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli']
+    fest += sorted(glob.glob('C:/Program Files/KiCad/*/bin/kicad-cli.exe'), reverse=True)
+    return (os.environ.get('FLAPPY_KICAD_CLI') or shutil.which('kicad-cli')
+            or _erster_vorhandener(fest) or 'kicad-cli')
+
+
+SYMLIB = _kicad_bibliothek('symbols')
+FPLIB  = _kicad_bibliothek('footprints')
 
 R0805 = 'Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'
 C0805 = 'Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder'
@@ -49,8 +83,8 @@ COMPONENTS = {
  'R14':('Device:R', '1k',   R0805, 'Vorwiderstand Betriebs-LED'),
  'R15':('Device:R', '10k',  R0805, 'Pull-up Strapping IO2'),
  'R16':('Device:R', '10k',  R0805, 'Pull-up Strapping IO8'),
- 'R17':('Device:R', '5k1',  R0805, 'Rd an CC1 (USB-C, nur bestuecken wenn das Breakout keinen hat)'),
- 'R18':('Device:R', '5k1',  R0805, 'Rd an CC2 (USB-C, nur bestuecken wenn das Breakout keinen hat)'),
+ 'R17':('Device:R', '5.1k',  R0805, 'Rd an CC1 (USB-C, nur bestuecken wenn das Breakout keinen hat)'),
+ 'R18':('Device:R', '5.1k',  R0805, 'Rd an CC2 (USB-C, nur bestuecken wenn das Breakout keinen hat)'),
  'C1': ('Device:C', '4u7',  C0805, 'Eingangskondensator VBUS'),
  'C2': ('Device:C', '100n', C0805, 'HF-Abblockung VBUS'),
  'C3': ('Device:C', '4u7',  C0805, 'Ausgangskondensator Laderegler'),

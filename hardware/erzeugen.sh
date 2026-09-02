@@ -2,7 +2,19 @@
 # Erzeugt Schaltplan, Layout und Fertigungsunterlagen neu und prueft sie.
 # Einzige Wahrheitsquelle ist gen/design.py (Bauteile und Netzliste).
 set -e
-KICAD=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli
+# kicad-cli suchen: eigene Variable, dann PATH, dann uebliche Installationsorte.
+KICAD=${FLAPPY_KICAD_CLI:-$(command -v kicad-cli || true)}
+if [ -z "$KICAD" ]; then
+  for k in /Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
+           "/c/Program Files/KiCad/10.0/bin/kicad-cli.exe" \
+           "/c/Program Files/KiCad/9.0/bin/kicad-cli.exe"; do
+    if [ -x "$k" ]; then KICAD=$k; break; fi
+  done
+fi
+if [ -z "$KICAD" ]; then
+  echo "kicad-cli nicht gefunden. Pfad in FLAPPY_KICAD_CLI setzen." >&2
+  exit 1
+fi
 HIER=$(cd "$(dirname "$0")" && pwd)
 cd "$HIER/gen"
 

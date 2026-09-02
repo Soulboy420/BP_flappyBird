@@ -204,7 +204,9 @@ def t3_entwurfsdaten():
     import re
     for ref, (symbol, wert, *_r) in design.COMPONENTS.items():
         if symbol == 'Device:R':
-            pruefe(re.fullmatch(r'\d+[kMR]?\d*|0R', wert.replace(' ', '')),
+            # zwei Schreibweisen sind ueblich und beide zulaessig:
+            # '6k8' (Einheit an der Kommastelle) und '5.1k' (Dezimalpunkt)
+            pruefe(re.fullmatch(r'\d+(\.\d+)?[kMR]?\d*|0R', wert.replace(' ', '')),
                    'Widerstandswert lesbar', '%s = %s' % (ref, wert))
         if symbol == 'Device:C':
             pruefe(re.fullmatch(r'\d+[unp]\d*', wert.replace(' ', '')),
@@ -690,7 +692,7 @@ def t8_platine(datei):
 #  T9  Schaltungstopologie und Ruhestrom
 # =====================================================================
 def _wert(text):
-    """'6k8' -> 6800.0, '100R' -> 100.0, '0R' -> 0.0"""
+    """'6k8' -> 6800.0, '5.1k' -> 5100.0, '100R' -> 100.0, '0R' -> 0.0"""
     t = text.replace(' ', '')
     for e, f in (('k', 1e3), ('M', 1e6), ('R', 1.0)):
         if e in t:

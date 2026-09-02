@@ -102,7 +102,22 @@ Vier Punkte am **gekauften** Bauteil nachmessen, siehe
 
 ## Werkzeug
 
-KiCad 10. Der Generator schreibt das KiCad-9-Format; der Füllschritt lässt
-KiCad die Platine in seinem eigenen Format zurückschreiben. Wer KiCad 9
-benutzt, lässt `erzeugen.sh` einmal auf seinem Rechner laufen. Für den
-Verdrahter wird zusätzlich NumPy gebraucht.
+KiCad 10 und Python 3 mit NumPy (für den Verdrahter). Der Generator schreibt
+das KiCad-9-Format; der Füllschritt lässt KiCad die Platine in seinem eigenen
+Format zurückschreiben. Wer KiCad 9 benutzt, lässt `erzeugen.sh` einmal auf
+seinem Rechner laufen.
+
+`erzeugen.sh` und `gen/design.py` suchen KiCad selbst — erst in den unten
+genannten Umgebungsvariablen, dann im `PATH` bzw. in KiCads eigenen
+`KICAD*_SYMBOL_DIR`/`KICAD*_FOOTPRINT_DIR`, dann an den üblichen
+Installationsorten von macOS, Linux und Windows. Nur wenn das fehlschlägt,
+muss von Hand nachgeholfen werden:
+
+| Variable | wofür |
+|---|---|
+| `FLAPPY_KICAD_CLI` | Pfad zum Programm `kicad-cli` |
+| `FLAPPY_KICAD_SYMBOLS` | Verzeichnis mit den `*.kicad_sym` der Standardbibliothek |
+| `FLAPPY_KICAD_FOOTPRINTS` | Verzeichnis mit den `*.pretty` der Standardbibliothek |
+
+Findet `erzeugen.sh` kein `kicad-cli`, bricht es gleich am Anfang mit einer
+Meldung ab, statt eine halb erzeugte Platine zu hinterlassen.
