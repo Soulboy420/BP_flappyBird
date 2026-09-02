@@ -9,7 +9,7 @@ Stufe 3  Gesamtlauf (ERC, DRC, Abgleich) - macht erzeugen.sh
 Aufruf:  python3 tests.py [stufe1|stufe2|alles]
 Rueckgabewert 0, wenn alle Pruefungen bestanden sind.
 """
-import math, os, subprocess, sys, copy
+import itertools, json, math, os, subprocess, sys, copy
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HIER)
@@ -353,6 +353,42 @@ def t5_verdrahter():
     pruefe(not fehlt, 'jedes Signalnetz hat Leiterbahnen', str(fehlt))
 
 
+def _kupfer_abstand(A, B):
+    """Abstand zweier Kupferstuecke; negativ, wenn sie sich ueberlappen.
+
+    Ein Stueck ist ein Tupel, dessen Felder 2 bis 4 Art ('seg', 'kreis',
+    'rect'), Geometrie und halbe Breite tragen. T6 (Abstaende) und T12
+    (Durchgang) rechnen damit dasselbe.
+    """
+    ta, ga, ra = A[2], A[3], A[4]
+    tb, gb, rb = B[2], B[3], B[4]
+    if ta == 'seg' and tb == 'seg':
+        return _seg_abstand(ga[0], ga[1], gb[0], gb[1]) - ra - rb
+    if ta == 'rect' or tb == 'rect':
+        if ta != 'rect':
+            ta, ga, ra, tb, gb, rb = tb, gb, rb, ta, ga, ra
+        cx, cy, w, h = ga
+        if tb == 'rect':
+            dxr = max(abs(gb[0]-cx) - w - gb[2], 0.0)
+            dyr = max(abs(gb[1]-cy) - h - gb[3], 0.0)
+            return math.hypot(dxr, dyr)
+        if tb == 'kreis':
+            dx = max(abs(gb[0]-cx) - w, 0.0)
+            dy = max(abs(gb[1]-cy) - h, 0.0)
+            return math.hypot(dx, dy) - rb
+        ecken = [(cx-w, cy-h), (cx+w, cy-h), (cx+w, cy+h), (cx-w, cy+h)]
+        kanten = list(zip(ecken, ecken[1:] + ecken[:1]))
+        d = min(_seg_abstand(k[0], k[1], gb[0], gb[1]) for k in kanten)
+        if cx-w <= gb[0][0] <= cx+w and cy-h <= gb[0][1] <= cy+h:
+            d = 0.0
+        return d - rb
+    if ta == 'kreis' and tb == 'kreis':
+        return math.hypot(ga[0]-gb[0], ga[1]-gb[1]) - ra - rb
+    if ta == 'kreis':
+        ta, ga, ra, tb, gb, rb = tb, gb, rb, ta, ga, ra
+    return _seg_abstand(ga[0], ga[1], (gb[0], gb[1]), (gb[0], gb[1])) - ra - rb
+
+
 # =====================================================================
 #  T6  unabhaengige Abstandspruefung auf der Platine
 # =====================================================================
@@ -403,38 +439,7 @@ def t6_abstaende():
     def lagen_treffen(a, b):
         return a == b or a == 'both' or b == 'both'
 
-    def abstand(A, B):
-        _, _, ta, ga, ra = A
-        _, _, tb, gb, rb = B
-        if ta == 'seg' and tb == 'seg':
-            return _seg_abstand(ga[0], ga[1], gb[0], gb[1]) - ra - rb
-        if ta == 'rect' or tb == 'rect':
-            if ta != 'rect':
-                A, B = B, A
-                _, _, ta, ga, ra = A
-                _, _, tb, gb, rb = B
-            cx, cy, w, h = ga
-            ecken = [(cx-w, cy-h), (cx+w, cy-h), (cx+w, cy+h), (cx-w, cy+h)]
-            kanten = list(zip(ecken, ecken[1:] + ecken[:1]))
-            if tb == 'seg':
-                d = min(_seg_abstand(k[0], k[1], gb[0], gb[1]) for k in kanten)
-                if (cx-w <= gb[0][0] <= cx+w and cy-h <= gb[0][1] <= cy+h):
-                    d = 0.0
-                return d - rb
-            if tb == 'kreis':
-                dx = max(abs(gb[0]-cx) - w, 0.0)
-                dy = max(abs(gb[1]-cy) - h, 0.0)
-                return math.hypot(dx, dy) - rb
-            dxr = max(abs(gb[0]-cx) - w - gb[2], 0.0)
-            dyr = max(abs(gb[1]-cy) - h - gb[3], 0.0)
-            return math.hypot(dxr, dyr)
-        if ta == 'kreis' and tb == 'kreis':
-            return math.hypot(ga[0]-gb[0], ga[1]-gb[1]) - ra - rb
-        if ta == 'kreis':
-            A, B = B, A
-            _, _, ta, ga, ra = A
-            _, _, tb, gb, rb = B
-        return _seg_abstand(ga[0], ga[1], (gb[0], gb[1]), (gb[0], gb[1])) - ra - rb
+    abstand = _kupfer_abstand
 
     verstoss = []
     n = len(stuecke)
@@ -686,6 +691,98 @@ def t8_platine(datei):
             drin.append(('Via', netz, (x, y)))
     pruefe(not drin, 'kein Kupfer in der Antennensperrflaeche', str(drin[:4]))
 
+    # Kupfer zum Platinenrand und Siebdruck auf Pads: beides sind Regeln aus
+    # flappy-esp32c3.kicad_pro, die sonst erst KiCad findet.
+    regeln = json.load(open(os.path.join(WURZEL, 'flappy-esp32c3.kicad_pro'),
+                            encoding='utf-8'))['board']['design_settings']['rules']
+    randregel = regeln['min_copper_edge_clearance']
+    umriss = [((float(a[1]), float(a[2])), (float(b[1]), float(b[2]))) for a, b in kanten]
+
+    def zum_rand(p):
+        return min(_seg_abstand(p, p, a, b) for a, b in umriss)
+
+    pads, texte = [], []
+    for fp in findall(n, 'footprint'):
+        at = find(fp, 'at'); fx, fy = float(at[1]), float(at[2])
+        frot = float(at[3]) if len(at) > 3 else 0.0
+        a = math.radians(frot)
+        def dreh(px, py):
+            return (fx + px*math.cos(a) + py*math.sin(a),
+                    fy - px*math.sin(a) + py*math.cos(a))
+        ref = [str(q[2]) for q in findall(fp, 'property')
+               if str(q[1]) == 'Reference'][0]
+        for pad in findall(fp, 'pad'):
+            pat, psz = find(pad, 'at'), find(pad, 'size')
+            w, h = float(psz[1])/2, float(psz[2])/2
+            prot = (float(pat[3]) if len(pat) > 3 else 0.0) + frot
+            if round(prot % 180) == 90:
+                w, h = h, w
+            cx, cy = dreh(float(pat[1]), float(pat[2]))
+            pads.append((ref, str(pad[1]), cx, cy, w, h,
+                         [str(z) for z in find(pad, 'layers')[1:]]))
+        # Die Referenzbezeichner stehen als property-Knoten im Footprint,
+        # nicht als fp_text - beide Formen zaehlen, beide in Footprint-
+        # Koordinaten.
+        for txt in findall(fp, 'fp_text') + findall(fp, 'property'):
+            lay = find(txt, 'layer')
+            if lay is None or not str(lay[1]).endswith('SilkS'):
+                continue
+            if find(txt, 'hide') is not None:
+                continue
+            inhalt = str(txt[2])
+            if not inhalt or inhalt.startswith('${'):
+                continue
+            tat = find(txt, 'at')
+            groesse = float(find(find(find(txt, 'effects'), 'font'), 'size')[1])
+            texte.append((inhalt, dreh(float(tat[1]), float(tat[2])),
+                          groesse, str(lay[1])))
+
+    knapp = [('%s.%s' % (r, nr), round(d, 3))
+             for r, nr, cx, cy, w, h, _l in pads
+             for d in [min(zum_rand((cx+sx*w, cy+sy*h))
+                           for sx in (-1, 1) for sy in (-1, 1))]
+             if d < randregel]
+    # routes.py rechnet in Platinenkoordinaten, die Datei in Blattkoordinaten
+    def aufs_blatt(q):
+        return (q[0] + P.BX, q[1] + P.BY)
+    for netz, lage, br, a, b in routes.TRACKS:
+        for q in (a, b):
+            d = zum_rand(aufs_blatt(q)) - br/2
+            if d < randregel:
+                knapp.append(('Bahn %s' % netz, round(d, 3)))
+    for netz, x, y, dia, drill in routes.VIAS:
+        d = zum_rand(aufs_blatt((x, y))) - dia/2
+        if d < randregel:
+            knapp.append(('Via %s' % netz, round(d, 3)))
+    pruefe(not knapp, 'Kupfer haelt %.2f mm vom Platinenrand' % randregel,
+           str(knapp[:4]))
+
+    # Siebdruck auf einem Pad verbrennt beim Loeten und verunreinigt die Stelle
+    auf_pad = []
+    for txt, (tx, ty), groesse, lage in texte:
+        tw, th = len(txt)*groesse*0.78/2, groesse*1.2/2
+        seite = 'F.Cu' if lage.startswith('F.') else 'B.Cu'
+        for r, nr, cx, cy, w, h, lagen in pads:
+            if seite not in lagen and '*.Cu' not in lagen:
+                continue
+            if abs(cx-tx) < tw+w and abs(cy-ty) < th+h:
+                auf_pad.append((txt, '%s.%s' % (r, nr)))
+                break
+    pruefe(not auf_pad, 'kein Siebdruckbezeichner auf einem Pad', str(auf_pad[:4]))
+
+    # Zwei Texte uebereinander sind beim Bestuecken nicht mehr zuzuordnen
+    uebereinander = []
+    for A, B in itertools.combinations(texte, 2):
+        if A[3] != B[3]:
+            continue
+        aw, ah = len(A[0])*A[2]*0.78/2, A[2]*1.2/2
+        bw, bh = len(B[0])*B[2]*0.78/2, B[2]*1.2/2
+        if abs(A[1][0]-B[1][0]) < aw+bw and abs(A[1][1]-B[1][1]) < ah+bh:
+            uebereinander.append((A[0], B[0]))
+    pruefe(not uebereinander, 'keine zwei Siebdrucktexte uebereinander',
+           str(uebereinander[:4]))
+    print('     %d Siebdrucktexte, %d Pads geprueft' % (len(texte), len(pads)))
+
 
 
 # =====================================================================
@@ -896,6 +993,97 @@ def t10_kritische_abstaende():
 
 
 # =====================================================================
+#  T12  Durchgang und Bohrbild (unabhaengig von KiCad)
+# =====================================================================
+def t12_durchgang():
+    """Bildet das Kupfer jedes Netzes eine zusammenhaengende Insel?
+
+    Das ist die zweite Haelfte dessen, was der DRC macht: T6 prueft, dass
+    verschiedene Netze sich nicht beruehren, T12 prueft, dass ein Netz nicht
+    auseinanderfaellt. Eine offene Verbindung faellt sonst erst beim
+    fertigen Geraet auf.
+    """
+    print('T12 Durchgang und Bohrbild (unabhaengig von KiCad)')
+    import routes, layout_pcb as P
+    padnet = {(r, p): nz for nz, l in design.NETS.items() for r, p in l}
+    stuecke = []
+    for netz, lage, breite, a, b in routes.TRACKS:
+        stuecke.append((netz, {lage}, 'seg', (a, b), breite/2, 'Bahn'))
+    for netz, x, y, dia, drill in routes.VIAS:
+        stuecke.append((netz, {'F.Cu', 'B.Cu'}, 'kreis', (x, y), dia/2, 'Via'))
+    bohrungen = [('Via', x, y, drill/2) for _n, x, y, _d, drill in routes.VIAS]
+    for ref, (x, y, rot) in P.PLACE.items():
+        for pad in findall(libs.load_footprint(design.COMPONENTS[ref][2]), 'pad'):
+            nr = str(pad[1])
+            at, sz = find(pad, 'at'), find(pad, 'size')
+            w, h = float(sz[1])/2, float(sz[2])/2
+            prot = float(at[3]) if len(at) > 3 else 0.0
+            if round((prot + rot) % 180) == 90:
+                w, h = h, w
+            cx, cy = libs.fp_transform(float(at[1]), float(at[2]), x, y, rot)
+            stuecke.append((padnet.get((ref, nr)),
+                            {'F.Cu'} if pad[2] == 'smd' else {'F.Cu', 'B.Cu'},
+                            'rect', (cx, cy, w, h), 0.0, '%s.%s' % (ref, nr)))
+            dr = find(pad, 'drill')
+            if dr is not None and len(dr) > 1 and pad[2] != 'np_thru_hole':
+                bohrungen.append(('%s.%s' % (ref, nr), cx, cy, float(dr[1])/2))
+
+    def beruehrt(A, B):
+        return _kupfer_abstand(A, B) <= 1e-6
+
+    # Netze, die ueber eine Kupferflaeche laufen, duerfen in Inseln zerfallen -
+    # jede Insel muss die Flaeche auf B.Cu aber erreichen (Via oder Durchsteckpad).
+    flaechen = {'GND'} | {nz for *_r, nz in P.NETZONES}
+    offen, ohne_flaeche = [], []
+    for netz in sorted(design.NETS):
+        teile = [s for s in stuecke if s[0] == netz]
+        if not teile:
+            continue
+        eltern = list(range(len(teile)))
+        def wurzel(i):
+            while eltern[i] != i:
+                eltern[i] = eltern[eltern[i]]; i = eltern[i]
+            return i
+        for i, j in itertools.combinations(range(len(teile)), 2):
+            if teile[i][1] & teile[j][1] and beruehrt(teile[i], teile[j]):
+                a, b = wurzel(i), wurzel(j)
+                if a != b:
+                    eltern[a] = b
+        gruppen = {}
+        for i in range(len(teile)):
+            gruppen.setdefault(wurzel(i), []).append(i)
+        mit_pad = [g for g in gruppen.values()
+                   if any(teile[i][2] == 'rect' for i in g)]
+        if netz in flaechen:
+            for g in mit_pad:
+                erreicht = any(teile[i][2] == 'kreis' or 'B.Cu' in teile[i][1]
+                               for i in g)
+                if not erreicht:
+                    ohne_flaeche.append((netz, [teile[i][5] for i in g
+                                                if teile[i][2] == 'rect']))
+        elif len(mit_pad) > 1:
+            offen.append((netz, [sorted(teile[i][5] for i in g
+                                        if teile[i][2] == 'rect')
+                                 for g in mit_pad]))
+    pruefe(not offen, 'jedes Netz haengt zusammen', str(offen[:2]))
+    pruefe(not ohne_flaeche, 'jede Insel erreicht die Kupferflaeche',
+           str(ohne_flaeche[:3]))
+
+    # Bohrung zu Bohrung: zwei Bohrungen an derselben Stelle sind ein
+    # Verstoss und stehen doppelt in der Excellon-Datei.
+    regeln = json.load(open(os.path.join(WURZEL, 'flappy-esp32c3.kicad_pro'),
+                            encoding='utf-8'))['board']['design_settings']['rules']
+    grenze = regeln['min_hole_to_hole']
+    eng = []
+    for (n1, x1, y1, r1), (n2, x2, y2, r2) in itertools.combinations(bohrungen, 2):
+        d = math.hypot(x1-x2, y1-y2) - r1 - r2
+        if d < grenze:
+            eng.append((n1, n2, round(d, 3)))
+    pruefe(not eng, 'Bohrung zu Bohrung mindestens %.2f mm' % grenze, str(eng[:4]))
+    print('     %d Kupferstuecke, %d Bohrungen' % (len(stuecke), len(bohrungen)))
+
+
+# =====================================================================
 #  T11  Fertigungsunterlagen gegen die Platine
 # =====================================================================
 def t11_fertigung():
@@ -1010,5 +1198,6 @@ if __name__ == '__main__':
     t9_topologie()
     t10_kritische_abstaende()
     t11_fertigung()
+    t12_durchgang()
     print('\n%d Pruefungen, %d Fehler' % (_geprueft, len(_fehler)))
     sys.exit(1 if _fehler else 0)

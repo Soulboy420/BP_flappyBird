@@ -19,7 +19,8 @@ def pad_boxes():
             if round((prot + rot) % 180) == 90:
                 w, h = h, w
             cx, cy = libs.fp_transform(px, py, x, y, rot)
-            out.append((cx - w - 0.15, cy - h - 0.15, cx + w + 0.15, cy + h + 0.15))
+            out.append(((cx - w - 0.15, cy - h - 0.15,
+                         cx + w + 0.15, cy + h + 0.15), 'Pad'))
         for tx in findall(node, 'fp_text'):
             lay = find(tx, 'layer')
             if lay is None or str(lay[1]) != 'F.SilkS':
@@ -27,7 +28,7 @@ def pad_boxes():
             a = find(tx, 'at')
             p = libs.fp_transform(float(a[1]), float(a[2]), x, y, rot)
             wtxt = len(str(tx[2])) * CH / 2 + 0.3
-            out.append((p[0] - wtxt, p[1] - 0.7, p[0] + wtxt, p[1] + 0.7))
+            out.append(((p[0] - wtxt, p[1] - 0.7, p[0] + wtxt, p[1] + 0.7), 'Druck'))
         for cc in findall(node, 'fp_circle') + findall(node, 'fp_arc'):
             lay = find(cc, 'layer')
             if lay is None or str(lay[1]) != 'F.SilkS':
@@ -39,8 +40,8 @@ def pad_boxes():
                     pts.append(libs.fp_transform(float(q[1]), float(q[2]), x, y, rot))
             if len(pts) >= 2:
                 r = max(((p[0]-pts[0][0])**2 + (p[1]-pts[0][1])**2) ** 0.5 for p in pts[1:])
-                out.append((pts[0][0]-r-0.15, pts[0][1]-r-0.15,
-                            pts[0][0]+r+0.15, pts[0][1]+r+0.15))
+                out.append(((pts[0][0]-r-0.15, pts[0][1]-r-0.15,
+                             pts[0][0]+r+0.15, pts[0][1]+r+0.15), 'Druck'))
         for ln in findall(node, 'fp_line') + findall(node, 'fp_rect'):
             lay = find(ln, 'layer')
             if lay is None or str(lay[1]) != 'F.SilkS':
@@ -48,8 +49,8 @@ def pad_boxes():
             a, b = find(ln, 'start'), find(ln, 'end')
             p1 = libs.fp_transform(float(a[1]), float(a[2]), x, y, rot)
             p2 = libs.fp_transform(float(b[1]), float(b[2]), x, y, rot)
-            out.append((min(p1[0], p2[0]) - 0.15, min(p1[1], p2[1]) - 0.15,
-                        max(p1[0], p2[0]) + 0.15, max(p1[1], p2[1]) + 0.15))
+            out.append(((min(p1[0], p2[0]) - 0.15, min(p1[1], p2[1]) - 0.15,
+                         max(p1[0], p2[0]) + 0.15, max(p1[1], p2[1]) + 0.15), 'Druck'))
     return out
 
 def text_boxes():
@@ -58,7 +59,7 @@ def text_boxes():
         if not layer.startswith('F.'):
             continue
         w = len(txt) * size * 0.78 + 0.3
-        out.append((x - 0.3, y - size / 2 - 0.3, x + w, y + size / 2 + 0.3))
+        out.append(((x - 0.3, y - size / 2 - 0.3, x + w, y + size / 2 + 0.3), 'Druck'))
     return out
 
 
@@ -89,7 +90,11 @@ def main():
         x, y, rot = P.PLACE[ref]
         tw, th = len(ref) * CH / 2 + 0.2, SIZE / 2 + 0.2
         best = None
-        for d in (1.6, 2.0, 2.5, 3.1, 3.8, 4.6, 5.6):
+        # Findet sich nichts Freies, ist die Stelle mit den wenigsten
+        # Ueberdeckungen immer noch besser als ein blinder Festwert - der
+        # legte den Bezeichner sonst auf die Polaritaetsmarkierung.
+        notfall = None
+        for d in (1.6, 2.0, 2.5, 3.1, 3.8, 4.6, 5.6, 6.8, 8.2):
             for dx, dy in ((0, -1), (0, 1), (-1, 0), (1, 0),
                            (-0.8, -0.8), (0.8, -0.8), (-0.8, 0.8), (0.8, 0.8)):
                 cx, cy = x + dx * d, y + dy * d
@@ -99,11 +104,17 @@ def main():
                 kx1, ky1, kx2, ky2, _ = P.KEEPOUTS[0]
                 if overlap(box, (kx1, ky1, kx2, ky2)):
                     continue
-                if any(overlap(box, o) for o in obst):
-                    continue
-                if any(overlap(box, o) for o in placed):
-                    continue
                 pen = sum(1 for o in tr if overlap(box, o))
+                auf_pad = sum(1 for o, art in obst
+                              if art == 'Pad' and overlap(box, o))
+                sonst = (sum(1 for o, art in obst
+                             if art != 'Pad' and overlap(box, o))
+                         + sum(1 for o in placed if overlap(box, o)))
+                if auf_pad or sonst:
+                    marke = (auf_pad, sonst, pen)
+                    if notfall is None or marke < notfall[0]:
+                        notfall = (marke, cx - x, cy - y, box)
+                    continue
                 if best is None or pen < best[0]:
                     best = (pen, cx - x, cy - y, box)
                 if pen == 0:
@@ -111,8 +122,12 @@ def main():
             if best and best[0] == 0:
                 break
         if best is None:
-            off[ref] = (0.0, -2.2)
-            continue
+            if notfall is None:
+                off[ref] = (0.0, -2.2)
+                continue
+            print('  %s beengt: %d Pad-, %d Druckueberdeckung(en) unvermeidbar'
+                  % (ref, notfall[0][0], notfall[0][1]))
+            best = (notfall[0][2], notfall[1], notfall[2], notfall[3])
         off[ref] = (round(best[1], 2), round(best[2], 2))
         placed.append(best[3])
     with open('labels.py', 'w') as f:

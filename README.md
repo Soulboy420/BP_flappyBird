@@ -21,8 +21,9 @@ Prüfstand.
 
 | Prüfung | Ergebnis |
 |---|---|
-| Prüfstand T1–T3, T5–T10 (1612 Einzelprüfungen) | **0 Fehler** |
-| Abstandsprüfung ohne KiCad (T6, 661 Kupferstücke paarweise) | **0 Unterschreitungen** |
+| Prüfstand T1–T3, T5–T10, T12 (1618 Einzelprüfungen) | **0 Fehler** |
+| Abstandsprüfung ohne KiCad (T6, 659 Kupferstücke paarweise) | **0 Unterschreitungen** |
+| Durchgang ohne KiCad (T12, alle 36 Netze) | **0 offene Verbindungen** |
 | Platzierung: Lötabstand, Rand, Sperrflächen, Kupferflächen | **0 Beanstandungen** |
 | Abgleich Schaltplan ↔ Layout (unabhängig nachgerechnet) | **0 Abweichungen** |
 | Reproduzierbarkeit | zweimal erzeugen ergibt bitgleiche Dateien |
@@ -62,9 +63,9 @@ Versionsverwaltung, damit nie eine veraltete Fassung zur Bestellung geht:
 |---|---|---|
 | Platine | 90 × 60 mm (5400 mm²) | **72 × 51 mm (3672 mm², −32 %)** |
 | Bauteile | 55 | 57 (43 bestückt, 10 Prüfpunkte, 4 Bohrungen M2) |
-| Leiterbahnen | 371 Segmente, 843 mm | 414 Segmente, 725 mm |
+| Leiterbahnen | 371 Segmente, 843 mm | 413 Segmente, 723 mm |
 | davon auf der Rückseite | 8,4 %, längstes Stück 10,8 mm | 10,5 %, längstes Stück **5,4 mm** |
-| Durchkontaktierungen | 113 (82 Masse) | 87 (54 Masse) |
+| Durchkontaktierungen | 113 (82 Masse) | 86 (54 Masse) |
 | kleinster Umrissabstand zwischen zwei Bauteilen | 0,15 mm | **0,82 mm** |
 | kleinste Bahn / kleinster Abstand / kleinste Bohrung | 0,25 / 0,20 / 0,30 mm | unverändert |
 | Kühlfläche am Laderegler | 114 mm², über eine Bahn angebunden | **122 mm², direkt am VBAT-Pad von U2** |

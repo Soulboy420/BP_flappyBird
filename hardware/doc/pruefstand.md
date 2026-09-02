@@ -11,6 +11,10 @@ USB-C-Breakout, und dass jede Kupferfläche aus `NETZONES` mindestens ein Pad
 ihres Netzes enthält. Schlägt eine dieser Prüfungen an, bricht `erzeugen.sh`
 ab.
 
+T6 und T12 sind zusammen das, was ein DRC prüft: T6, dass verschiedene Netze
+sich nicht berühren, T12, dass ein Netz nicht auseinanderfällt. Beide laufen
+ohne KiCad.
+
 **T4 und T11 brauchen eine KiCad-Installation** — T4 vergleicht den erzeugten
 Modul-Footprint gegen die unveränderte `RF_Module`-Bibliothek, T11 prüft die
 von `kicad-cli` erzeugten Fertigungsunterlagen.
@@ -37,10 +41,11 @@ python3 gen/tests_stufe3.py           # Reproduzierbarkeit + Fehlererkennung, et
 | | Prüfung |
 |---|---|
 | **T7** | Schaltplan: jedes Bauteil genau einmal, Wert und Footprint stimmen mit `design.py`, Position stimmt mit dem Layoutmodul, **jeder Pin ist nachweislich angebunden** (Draht, Bezeichner, Versorgungssymbol oder Nichtanschluss an genau seiner Koordinate), kein Draht der Länge null, alle Drahtenden im 1,27-mm-Raster, Verknüpfungspunkt an jeder T-Stelle, keine zwei verschiedenen Versorgungssymbole aufeinander |
-| **T8** | Platine: jedes Bauteil an der geplanten Stelle und Drehung, **jedes Pad trägt das richtige Netz**, nur Kupferlagen benutzt, kleinste Bahn ≥ 0,2 mm, kleinste Bohrung ≥ 0,3 mm, Umriss geschlossen, **alle Kupferzonen gefüllt**, kein Kupfer in der Antennensperrfläche |
+| **T8** | Platine: jedes Bauteil an der geplanten Stelle und Drehung, **jedes Pad trägt das richtige Netz**, nur Kupferlagen benutzt, kleinste Bahn ≥ 0,2 mm, kleinste Bohrung ≥ 0,3 mm, Umriss geschlossen, **alle Kupferzonen gefüllt**, kein Kupfer in der Antennensperrfläche, Kupfer hält den Randabstand aus `flappy-esp32c3.kicad_pro` ein, **kein Siebdruckbezeichner auf einem Pad und keine zwei Texte übereinander** |
 | **T9** | Schaltungstopologie: **kein rein ohmscher Pfad von einer Versorgung nach Masse** (das wäre ein Dauerstrom und würde NF-04 sprengen), `+3V3` und `+3V3_MCU` hängen ausschließlich über R3 zusammen, jedes Displaysignal führt über genau einen 68-Ω-Widerstand zwischen Modul und Steckverbinder, Strapping-Pins haben ihren Pull-up, die Sicherung sitzt direkt an der Akkubuchse; Ladestrom, LED-Ströme, Piezostrom gegen das ESP32-C3-Datenblatt, Entprell- und Reset-Zeitkonstante |
 | **T10** | Funktionskritische Abstände auf der Platine (Abblockung, Serienterminierung) und Strombelastbarkeit nach IPC-2221 |
-| **T11** | Fertigungsunterlagen: Bohrungszahl in der Excellon-Datei gegen die Platine, Umrissmaß im Gerber, **Masseflächen in den Kupfer-Gerbern vorhanden**, Stückliste enthält genau die bestückten Bauteile |
+| **T11** | Fertigungsunterlagen: Bohrungszahl in der Excellon-Datei gegen die Platine, Umrissmaß im Gerber, **Masseflächen in den Kupfer-Gerbern vorhanden**, Stückliste enthält genau die bestückten Bauteile. Übersprungen, solange `fertigung/` noch nicht erzeugt ist |
+| **T12** | **Durchgang ohne KiCad**: bildet das Kupfer jedes Netzes eine zusammenhängende Insel? Netze, die über eine Kupferfläche laufen, dürfen zerfallen — jede Insel muss die Fläche auf B.Cu aber über ein Via oder ein Durchsteckpad erreichen. Dazu Bohrung zu Bohrung gegen die Regel aus `flappy-esp32c3.kicad_pro` |
 
 ## Stufe 3 — Verhalten des Werkzeugs
 

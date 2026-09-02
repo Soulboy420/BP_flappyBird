@@ -339,14 +339,70 @@ Wer mit KiCad 9 arbeitet, lässt `erzeugen.sh` einmal auf seinem Rechner laufen;
 dann liegt die Datei im 9er-Format vor. Der Prüfstand kommt mit beiden Formaten
 zurecht.
 
+## 7a. Vierter Durchgang: was ein DRC gefunden haette
+
+Der dritte Durchgang liess ERC, DRC und die Fertigungsdaten offen, weil KiCad
+fehlte. Der vierte hat deshalb nachgebaut, was davon ohne KiCad prueffbar ist —
+und dabei drei Fehler gefunden, die sonst erst beim DRC oder beim Bestuecken
+aufgefallen waeren.
+
+### 7a.1 Zwei Vias in derselben Bohrung
+
+Die im dritten Durchgang ergaenzte Via-Vorabreservierung (`VORAB_VIA`, siehe
+2.5) legt fuer den eingeklemmten Mittelanschluss D1-5 eine Stichleitung samt
+Durchkontaktierung. Anschliessend verlegt der Hauptlauf das Netz VBUS und
+faehrt **denselben Weg noch einmal ab**: ein Bahnstueck und ein Via
+deckungsgleich obendrauf.
+
+Bei den Massepins fiel das nie auf, weil GND gar nicht als Netz verlegt wird.
+VBUS wird es — und damit standen zwei Bohrungen an derselben Stelle:
+Bohrung-zu-Bohrung-Abstand **−0,4 mm**, ein DRC-Verstoss, und die Bohrung
+stuende doppelt in der Excellon-Datei.
+
+**Behoben:** `entdoppeln()` in `autoroute.py` wirft deckungsgleiches Kupfer
+weg, bevor `routes.py` geschrieben wird, und bricht ab, wenn zwei
+**verschiedene** Netze auf derselben Bohrung liegen — das waere ein
+Kurzschluss.
+
+### 7a.2 Der Bezeichner LS1 lag auf der Polaritaetsmarkierung
+
+`mk_labels.py` sucht fuer jede Referenzbezeichnung eine freie Stelle. Findet
+es keine, setzte es sie **ungeprueft** auf einen Festwert (0, −2,2). Genau das
+passierte bei LS1 und J4, weil beide gross und randnah sind. Der Festwert
+legte „LS1" auf das „+" des Piezo-Footprints — die Polaritaetsmarkierung war
+auf dem Bestueckungsdruck nicht mehr zu lesen.
+
+**Behoben:** statt des Festwerts nimmt der Notfallzweig jetzt die Stelle mit
+den wenigsten Ueberdeckungen und gewichtet dabei Pads schwerer als
+Siebdrucklinien; der Suchradius reicht weiter. LS1 findet damit eine ganz
+freie Stelle, J4 eine, die nur eine Siebdrucklinie kreuzt — und meldet das.
+
+### 7a.3 Der Durchgang war ueberhaupt nicht geprueft
+
+T6 prueft seit dem zweiten Durchgang, dass sich **verschiedene** Netze nicht
+zu nahe kommen. Dass ein Netz nicht **auseinanderfaellt**, prueffte nichts —
+das kam allein vom DRC, und der lief nicht. Eine offene Verbindung waere erst
+am fertigen Geraet aufgefallen.
+
+**Ergaenzt:** T12 baut aus Bahnen, Vias und Pads je Netz den Beruehrungsgraphen
+und verlangt eine einzige Insel. Netze an einer Kupferflaeche (GND, VBAT)
+duerfen zerfallen, aber jede Insel muss die Flaeche auf B.Cu ueber ein Via
+oder ein Durchsteckpad erreichen. Ergebnis: 35 Netze durchgehend, GND in
+29 Inseln, **alle 29 mit Anbindung**.
+
+T8 hat ausserdem den Randabstand des Kupfers, Siebdruck auf Pads und zwei
+Texte uebereinander dazubekommen. Alle vier neuen Pruefungen wurden gegen
+absichtlich eingebaute Fehler gehalten und haben sie gefunden.
+
 ## 8. Ergebnis
 
-Stand nach dem dritten Durchgang (Revision B):
+Stand nach dem vierten Durchgang (Revision B):
 
 | Prüfung | Ergebnis |
 |---|---|
-| Prüfstand T1–T3 und T5–T10 | **1612 Einzelprüfungen, 0 Fehler** |
-| davon Abstandsprüfung ohne KiCad (T6) | **661 Kupferstücke paarweise, 0 Unterschreitungen** |
+| Prüfstand T1–T3, T5–T10 und T12 | **1618 Einzelprüfungen, 0 Fehler** |
+| davon Abstandsprüfung ohne KiCad (T6) | **659 Kupferstücke paarweise, 0 Unterschreitungen** |
+| davon Durchgangsprüfung ohne KiCad (T12) | **alle 36 Netze zusammenhängend, 122 Bohrungen ohne Konflikt** |
 | Platzierung (`chk_place.py`) | 0 Beanstandungen |
 | Abgleich Schaltplan ↔ Layout, unabhängig nachgerechnet | **0 Abweichungen** |
 | Siebdruck auf Pads | keine Stelle |

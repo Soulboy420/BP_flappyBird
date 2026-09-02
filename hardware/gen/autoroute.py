@@ -295,6 +295,40 @@ for gx in np.arange(5.0, W - 4.0, 8.0):
             stitch += 1
 print('Naehvias:', stitch)
 
+
+def entdoppeln(tracks, vias):
+    """Vorab reservierte Stichleitungen legt der Hauptlauf noch einmal an:
+    er faehrt denselben Weg vom Pad zum Via ab. Deckungsgleiches Kupfer ist
+    elektrisch belanglos, aber zwei Bohrungen an derselben Stelle sind ein
+    DRC-Verstoss (Bohrung zu Bohrung = 0) und stehen doppelt in der
+    Excellon-Datei. Reihenfolge bleibt erhalten, damit der Lauf
+    reproduzierbar bleibt."""
+    def kante(t):
+        netz, lage, br, a, b = t
+        a = (round(a[0], 4), round(a[1], 4)); b = (round(b[0], 4), round(b[1], 4))
+        return (netz, lage, br, min(a, b), max(a, b))
+    gesehen, t_neu = set(), []
+    for s in tracks:
+        k = kante(s)
+        if k not in gesehen:
+            gesehen.add(k); t_neu.append(s)
+    orte, v_neu = {}, []
+    for v in vias:
+        ort = (round(v[1], 4), round(v[2], 4))
+        if ort in orte:
+            # Zwei Netze an derselben Bohrung waeren ein Kurzschluss.
+            assert orte[ort] == v[0], \
+                'Vias verschiedener Netze bei %r: %s und %s' % (ort, orte[ort], v[0])
+            continue
+        orte[ort] = v[0]; v_neu.append(v)
+    if len(t_neu) != len(tracks) or len(v_neu) != len(vias):
+        print('entdoppelt: %d Bahnstuecke, %d Vias'
+              % (len(tracks) - len(t_neu), len(vias) - len(v_neu)))
+    return t_neu, v_neu
+
+
+tracks, vias = entdoppeln(tracks, vias)
+
 with open('routes.py', 'w') as f:
     f.write('# -*- coding: utf-8 -*-\n')
     f.write('"""Automatisch erzeugt von autoroute.py - nicht von Hand aendern."""\n')
