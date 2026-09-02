@@ -8,12 +8,25 @@ _symcache = {}
 
 LOCALLIB = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'lib'))
 
+HINWEIS = ('%s nicht gefunden:\n  %s\n'
+           'Die KiCad-Standardbibliothek fehlt oder liegt woanders. KiCad '
+           'installieren oder das Verzeichnis in %s setzen (siehe README, '
+           'Abschnitt Werkzeug).')
+
+
+def lies(pfad, was, variable):
+    """Liest eine Bibliotheksdatei und erklaert im Fehlerfall, was fehlt."""
+    if not os.path.exists(pfad):
+        raise FileNotFoundError(HINWEIS % (was, pfad, variable))
+    return open(pfad, encoding='utf-8').read()
+
 def load_symlib(lib):
     if lib not in _symcache:
         p = os.path.join(LOCALLIB, lib + '.kicad_sym')
         if not os.path.exists(p):
             p = os.path.join(design.SYMLIB, lib + '.kicad_sym')
-        _symcache[lib] = parse(open(p, encoding='utf-8').read())
+        _symcache[lib] = parse(lies(p, 'Symbolbibliothek ' + lib,
+                                    'FLAPPY_KICAD_SYMBOLS'))
     return _symcache[lib]
 
 
@@ -114,7 +127,7 @@ def load_footprint(fpid, localdir=None):
     p = os.path.join(LOCALLIB, lib + '.pretty', name + '.kicad_mod')
     if not os.path.exists(p):
         p = os.path.join(design.FPLIB, lib + '.pretty', name + '.kicad_mod')
-    node = parse(open(p, encoding='utf-8').read())
+    node = parse(lies(p, 'Footprint ' + fpid, 'FLAPPY_KICAD_FOOTPRINTS'))
     _fpcache[fpid] = node
     return node
 

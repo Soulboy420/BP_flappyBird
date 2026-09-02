@@ -2,12 +2,13 @@
 """Erzeugt die projekteigene Footprint-Bibliothek lib/flappy.pretty."""
 import os, re, sys
 from sexp import parse, dump, find, findall, Str
-import design
+import design, libs
 
 OUT = os.path.join(os.path.dirname(__file__), '..', 'lib', 'flappy.pretty')
 SRC = os.path.join(design.FPLIB, 'RF_Module.pretty', 'ESP32-C3-WROOM-02.kicad_mod')
 
-node = parse(open(SRC, encoding='utf-8').read())
+node = parse(libs.lies(SRC, 'Footprint RF_Module:ESP32-C3-WROOM-02',
+                       'FLAPPY_KICAD_FOOTPRINTS'))
 node[1] = Str('ESP32-C3-WROOM-02_HandSolder')
 
 for d in findall(node, 'descr'):
@@ -64,7 +65,6 @@ open(os.path.join(OUT, 'ESP32-C3-WROOM-02_HandSolder.kicad_mod'), 'w',
 print('geschrieben:', n, 'Pads verlaengert')
 
 # Kontrolle
-import libs
 libs._fpcache.clear()
 pads = libs.fp_pads('flappy:ESP32-C3-WROOM-02_HandSolder',
                     os.path.join(os.path.dirname(__file__), '..', 'lib'))

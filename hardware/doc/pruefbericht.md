@@ -368,5 +368,5 @@ Prüfungen konnten deshalb **für Revision B nicht laufen** und stehen aus:
 | Stufe 3 (Reproduzierbarkeit mit KiCad, Fehlererkennung) | `python3 gen/tests_stufe3.py` |
 
 Ein einziger Lauf von `./erzeugen.sh` erledigt alles bis auf Stufe 3.
-Die Dateien in `fertigung/` und `ausgabe/` stammen bis dahin aus Revision A
-und dürfen **nicht** zur Bestellung benutzt werden.
+`fertigung/` und `ausgabe/` liegen nicht im Repository — die Fassung aus
+Revision A wurde entfernt, damit sie niemand versehentlich bestellt.

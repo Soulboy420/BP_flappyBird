@@ -903,7 +903,10 @@ def t11_fertigung():
     import re
     fert = os.path.join(WURZEL, 'fertigung')
     if not os.path.isdir(fert):
-        pruefe(False, 'Fertigungsordner vorhanden'); return
+        # Die Fertigungsunterlagen entstehen erst in Schritt 7 von
+        # erzeugen.sh. Wer nur tests.py aufruft, hat sie noch nicht.
+        print('     uebersprungen - fertigung/ fehlt, erst ./erzeugen.sh laufen lassen')
+        return
     pcb = parse(open(os.path.join(WURZEL, 'flappy-esp32c3.kicad_pcb'),
                      encoding='utf-8').read())
 

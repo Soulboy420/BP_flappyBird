@@ -2,9 +2,10 @@
 """Erzeugt lib/flappy.kicad_sym mit den projekteigenen Versorgungssymbolen."""
 import os, sys
 from sexp import parse, dump, find, findall, Str
-import design
+import design, libs
 
-src = parse(open(design.SYMLIB + '/power.kicad_sym', encoding='utf-8').read())
+src = parse(libs.lies(os.path.join(design.SYMLIB, 'power.kicad_sym'),
+                      'Symbolbibliothek power', 'FLAPPY_KICAD_SYMBOLS'))
 blocks = {str(s[1]): s for s in findall(src, 'symbol')}
 tpl = blocks['+3V3']
 

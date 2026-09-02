@@ -14,7 +14,7 @@ Layoutentwurf tatsächlich entschieden wurde. Jede Abweichung ist begründet.
 | 4.5.5 Prüfpunkte 1,5 mm | TP1 VBUS, TP2 VBAT, TP3 3V3, TP4 3V3_MCU, TP5 Tasterknoten, TP6 EN, TP7 BOOT, TP10–TP12 Masse (verteilt, für den kurzen Tastkopfanschluss) |
 | 4.5.6 0-Ω-Trennstelle | R3 zwischen `+3V3` und `+3V3_MCU`; TP3 und TP4 liegen links und rechts davon, ein Shunt lässt sich direkt einlöten |
 | 4.5.7 Antennenfreiraum | Modulkante bündig mit der Platinenunterkante; darüber eine Sperrfläche 28,5 × 6,25 mm ohne Kupfer auf **beiden** Lagen und ohne Bauteile |
-| 4.5.8 Bestückungsdruck mit Werten | Referenzen auf dem Siebdruck, Werte auf `F.Fab`; `ausgabe/bestueckungsplan.pdf` zeigt beides |
+| 4.5.8 Bestückungsdruck mit Werten | Referenzen auf dem Siebdruck, Werte auf `F.Fab`; `erzeugen.sh` legt daraus `ausgabe/bestueckungsplan.pdf` an, das beides zeigt |
 | 5.2 ≥ 100 mm² Kupfer am Laderegler | eigene VBAT-Fläche, **122 mm²**, unmittelbar am VBAT-Pad von U2, schließt C3, C4 und TP2 ein |
 | 5.4 Stützkondensatoren | C6 = 22 µF am Reglerausgang, C8 = 10 µF und C9 = 100 nF unmittelbar am Modulpin 1 |
 | 5.5 Entprellung auf der Platine | R10 10 k, C11 100 n, R11 100 Ω, R12 220 Ω — alle nahe am Controller, nicht am Steckverbinder |

@@ -57,6 +57,8 @@ $KICAD pcb export pos --format csv --units mm --side front --use-drill-file-orig
 $KICAD sch export pdf -o ausgabe/schaltplan.pdf flappy-esp32c3.kicad_sch
 $KICAD pcb export pdf --layers "F.Cu,F.SilkS,Edge.Cuts" --mode-single -o ausgabe/layout_oben.pdf flappy-esp32c3.kicad_pcb
 $KICAD pcb export pdf --layers "B.Cu,B.SilkS,Edge.Cuts" --mirror --mode-single -o ausgabe/layout_unten.pdf flappy-esp32c3.kicad_pcb
+# Bestueckungsplan (Projektplan 4.5.8): Referenzen vom Siebdruck, Werte von F.Fab
+$KICAD pcb export pdf --layers "F.SilkS,F.Fab,Edge.Cuts" --mode-single -o ausgabe/bestueckungsplan.pdf flappy-esp32c3.kicad_pcb
 $KICAD sch export bom --fields "Reference,Value,Footprint,\${QUANTITY},Description" \
        --labels "Referenz,Wert,Footprint,Anzahl,Beschreibung" \
        --group-by "Value,Footprint" --field-delimiter ";" -o ausgabe/stueckliste.csv flappy-esp32c3.kicad_sch

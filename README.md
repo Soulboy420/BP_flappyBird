@@ -4,11 +4,10 @@ Hardware zum Projekt „Flappy Bird auf eigener ESP32-Baugruppe": zweilagige
 Leiterplatte 72 × 51 mm, unbestückt zu beziehen und von Hand zu bestücken,
 Display und Taster über JST-XH-Steckverbinder abgesetzt.
 
-> **Vor der Bestellung:** `hardware/fertigung/` und `hardware/ausgabe/` stammen
-> noch aus **Revision A** (90 × 60 mm). Sie passen nicht mehr zum Entwurf.
-> Einmal `cd hardware && ./erzeugen.sh` auf einem Rechner mit KiCad 10 laufen
-> lassen, dann stimmen Gerber, PDFs und Stückliste wieder. Siehe
-> `hardware/fertigung/VERALTET.md`.
+> **Vor der Bestellung:** Im Repository liegen nur die Quellen, keine
+> Fertigungsunterlagen. Einmal `cd hardware && ./erzeugen.sh` auf einem
+> Rechner mit KiCad 10 laufen lassen — das legt `ausgabe/` und `fertigung/`
+> an und prüft dabei ERC, DRC und den Netzlistenabgleich mit.
 
 ## Alles erzeugen und prüfen
 
@@ -31,6 +30,8 @@ Prüfstand.
 
 ## Verzeichnisse
 
+Im Repository liegen nur Quellen — alles Erzeugte entsteht aus ihnen neu.
+
 ```
 hardware/
   flappy-esp32c3.kicad_pro / .kicad_sch / .kicad_pcb   Projektdateien
@@ -38,13 +39,21 @@ hardware/
   gen/                            Quellen des Entwurfs
   gen/tests.py, tests_stufe3.py   Prüfstand
   lib/                            projekteigene Symbole und Footprints
+  fp-lib-table, sym-lib-table     damit KiCad lib/ findet
   doc/pruefbericht.md             Entwurfsprüfung: Befunde, Fläche, Gehäuse
   doc/pruefstand.md               was der Prüfstand prüft
   doc/pinbelegung.md              GPIO-Belegung, verbindlich für die Firmware
   doc/entscheidungen.md           Entwurfsentscheidungen und Abweichungen
   doc/inbetriebnahme.md           gestuftes Protokoll nach Projektplan 4.5
-  ausgabe/                        Schaltplan-PDF, Layout-PDF, Stückliste, 3D-Bild
-  fertigung/                      Gerber, Bohrdaten, Bestückungsdatei
+```
+
+`./erzeugen.sh` legt zusätzlich an — beides bleibt bewusst außerhalb der
+Versionsverwaltung, damit nie eine veraltete Fassung zur Bestellung geht:
+
+```
+  ausgabe/     Schaltplan-PDF, Layout-PDFs, Bestückungsplan, Stückliste,
+               3D-Bild, ERC- und DRC-Bericht, exportierte Netzliste
+  fertigung/   Gerber, Bohrdaten, Bestückungsdatei
 ```
 
 ## Kennzahlen

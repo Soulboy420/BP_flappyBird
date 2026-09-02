@@ -9,6 +9,11 @@ hardware/.history/
 __pycache__/
 *.pyc
 
+# von erzeugen.sh erzeugte Unterlagen - entstehen aus den Quellen neu und
+# haben im Repository nichts verloren, sonst wird eine veraltete Fassung bestellt
+hardware/ausgabe/
+hardware/fertigung/
+
 # KiCad-Sicherungen und Sitzungsdateien
 *-backups/
 _restore_backup_*/
