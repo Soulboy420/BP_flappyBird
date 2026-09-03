@@ -28,6 +28,7 @@ python3 gen/tests_stufe3.py           # Reproduzierbarkeit + Fehlererkennung, et
 | **T8** | Platine: jedes Bauteil an der geplanten Stelle und Drehung, **jedes Pad trägt das richtige Netz**, nur Kupferlagen benutzt, kleinste Bahn ≥ 0,2 mm, kleinste Bohrung ≥ 0,3 mm, Umriss geschlossen, **alle Kupferzonen gefüllt**, kein Kupfer in der Antennensperrfläche |
 | **T9** | Schaltungstopologie: **kein rein ohmscher Pfad von einer Versorgung nach Masse** (das wäre ein Dauerstrom und würde NF-04 sprengen), `+3V3` und `+3V3_MCU` hängen ausschließlich über R3 zusammen, jedes Displaysignal führt über genau einen 68-Ω-Widerstand zwischen Modul und Steckverbinder, Strapping-Pins haben ihren Pull-up, die Sicherung sitzt direkt an der Akkubuchse; Ladestrom, LED-Ströme, Piezostrom gegen das ESP32-C3-Datenblatt, Entprell- und Reset-Zeitkonstante |
 | **T10** | Funktionskritische Abstände auf der Platine (Abblockung, Serienterminierung) und Strombelastbarkeit nach IPC-2221 |
+| **T12** | **Datenblattbelege**: jeder Beleg wird geoeffnet und sein Inhalt gegen die Kennung des Bauteils geprueft; jedes bestueckte Bauteil braucht einen Beleg oder einen begruendeten Eintrag in `BELEG_FEHLT`. Diese Stufe schliesst Befund K-4 — ein falsch abgelegtes PDF kann nicht mehr unbemerkt als Nachweis durchgehen. Ohne `pdfplumber` wird nur die Existenz geprueft. |
 | **T11** | Fertigungsunterlagen: Bohrungszahl in der Excellon-Datei gegen die Platine, Umrissmaß im Gerber, **Masseflächen in den Kupfer-Gerbern vorhanden**, Stückliste enthält genau die bestückten Bauteile |
 
 ## Stufe 3 — Verhalten des Werkzeugs
@@ -50,8 +51,16 @@ Die eingebauten Fehler und wie sie auffallen:
 | Pull-up am Strapping-Pin entfernt | „kein Netz mit nur einem Pin" |
 | Serienwiderstand überbrückt | „kein Pin in zwei Netzen" |
 | Dauerstrompfad von 3,3 V nach Masse eingebaut | „kein Pin in zwei Netzen" |
+| Kondensatorwert ohne Spannungsklasse | T3 „Kondensatorwert mit Spannung und Dielektrikum“ |
+| Spannungsklasse unter 2 x Betriebsspannung | T9j „Spannungsklasse >= 2 x Betriebsspannung“ |
+| Datenblatt eines fremden Bauteils abgelegt | T12 „Beleg passt zum Bauteil“ |
 
-Die letzten drei zeigen, dass die inhaltlichen Prüfungen greifen und nicht nur
+Die drei letzten Zeilen sind aus dem Befundbericht nachgeruestet. Sie decken die
+Klasse ab, die der Pruefstand bis dahin konstruktionsbedingt nicht sehen konnte:
+Fehler, die nicht in der Netzliste oder der Geometrie stehen, sondern in der
+Bauteilwirklichkeit — Bauteilmass, Spannungsfestigkeit, Beleglage.
+
+Die letzten drei der urspruenglichen Mutationen zeigen, dass die inhaltlichen Prüfungen greifen und nicht nur
 veraltete Dateien auffallen: nach jeder Mutation wird erst neu erzeugt.
 
 **Achtung:** `tests_stufe3.py mutation` verändert `design.py` vorübergehend.

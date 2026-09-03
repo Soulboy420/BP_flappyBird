@@ -6,8 +6,11 @@ import layout_pcb as P, design, libs
 from sexp import find, findall
 
 # Sonderfaelle: Koerperausdehnung fuer Footprints ohne Umriss
-MANUAL = {'Buzzer_Beeper:Buzzer_12x9.5RM7.6': (-2.4, -5.05, 10.0, 5.05),
-          'Button_Switch_THT:SW_Slide_SPDT_Straight_CK_OS102011MS2Q': (-3.7, -2.7, 7.7, 2.7)}
+# Sonderfall nur noch fuer den Schiebeschalter: sein Footprint hat keinen
+# Umriss. Der frueher hier gepflegte Buzzer-Eintrag war die Ursache von Befund
+# K-1 - ein handgesetztes Koerpermass, das nie gegen das Datenblatt geprueft
+# wurde. Der Piezo sitzt jetzt am Kabel (J5), der Eintrag ist entfallen.
+MANUAL = {'Button_Switch_THT:SW_Slide_SPDT_Straight_CK_OS102011MS2Q': (-3.7, -2.7, 7.7, 2.7)}
 
 def boxes_of(ref):
     fpid = design.COMPONENTS[ref][2]

@@ -138,7 +138,10 @@ def place_footprint(ref):
     for key in ('attr',):
         k = find(node, key)
         if k is not None:
-            out.append(copy.deepcopy(k))
+            k = copy.deepcopy(k)
+            if ref in design.DNP and 'dnp' not in k:   # Befund K-2
+                k.append('dnp')
+            out.append(k)
     GRAPH = ('fp_line', 'fp_rect', 'fp_poly', 'fp_circle', 'fp_arc',
              'fp_text', 'fp_text_box', 'pad', 'zone')
     n_item = 0
@@ -234,13 +237,23 @@ for i, (net, x, y, dia, drill) in enumerate(P.vias()):
                 ['net', str(NETNO[net])], ['uuid', U('via/%d' % i)]])
 
 # ------------------------------------------------------------------ Massefluten
-def zone(layer, uid, prio, poly, net='GND'):
+def zone(layer, uid, prio, poly, net='GND', voll=False):
+    """voll=True bindet Pads ohne Waermefalle an (Befund M-2).
+
+    Die Voreinstellung (Waermefalle, 0,4 mm Spalt und 0,6 mm Stege) ist fuer
+    Loetbarkeit richtig, aber sie kostet Waermeleitung - und bei nur 0,275 mm
+    Ueberdeckung bleibt fuer einen Steg gar kein Platz, die Flaeche zieht sich
+    dann ganz vom Pad zurueck. Fuer die Kuehlflaeche des Ladereglers ist die
+    Vollanbindung gewollt: sie ist der ganze Zweck der Zone.
+    """
     pts = ['pts'] + [['xy', str(px), str(py)] for px, py in poly]
     return ['zone', ['net', str(NETNO[net])], ['net_name', Str(net)],
             ['layer', Str(layer)], ['uuid', uid],
-            ['name', Str('Masseflaeche ' + layer)], ['hatch', 'edge', '0.5'],
+            ['name', Str(('Kuehlflaeche ' if voll else 'Masseflaeche ') + layer)],
+            ['hatch', 'edge', '0.5'],
             ['priority', str(prio)],
-            ['connect_pads', ['clearance', '0.3']],
+            ['connect_pads'] + (['yes'] if voll else []) +
+            [['clearance', '0' if voll else '0.3']],
             ['min_thickness', '0.25'], ['filled_areas_thickness', 'no'],
             ['fill', 'yes', ['thermal_gap', '0.4'], ['thermal_bridge_width', '0.6'],
              ['smoothing', 'fillet'], ['radius', '0.5'],
@@ -254,7 +267,7 @@ pcb.append(zone('B.Cu', U('zoneB'), 0, poly))
 for i, (x1, y1, x2, y2, net) in enumerate(P.NETZONES):
     a, b = A(x1, y1), A(x2, y2)
     pcb.append(zone('F.Cu', U('nzone/%d' % i), 10 + i,
-                    [a, (b[0], a[1]), b, (a[0], b[1])], net))
+                    [a, (b[0], a[1]), b, (a[0], b[1])], net, voll=True))
 
 open(OUT, 'w', encoding='utf-8').write(dump(pcb) + '\n')
 print('geschrieben:', OUT)

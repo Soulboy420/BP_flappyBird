@@ -10,6 +10,8 @@ W, H = 90.0, 60.0          # Platinenmass
 PLACE = {
     'U1':   ( 41.00,  46.90, 180),
     'J1':   ( 13.50,   8.00,   0),
+    'R17':  ( 20.00,  14.00,   0),
+    'R18':  ( 20.00,  16.50,   0),
     'D1':   ( 24.00,  20.00,   0),
     'TP1':  ( 32.00,  12.50,   0),
     'C1':   ( 32.00,   8.00, 270),
@@ -25,7 +27,7 @@ PLACE = {
     'J2':   ( 76.00,   8.00,   0),
     'D3':   ( 68.00,  14.00,   0),
     'SW1':  ( 72.00,  22.00,   0),
-    'LS1':  ( 14.00,  30.00,   0),
+    'J5':   ( 12.00,  30.00,   0),
     'R13':  ( 26.00,  30.00,   0),
     'D4':   ( 10.00,  40.00,   0),
     'R14':  ( 16.00,  40.00,   0),
@@ -69,7 +71,27 @@ PLACE = {
 KEEPOUTS = [(26.75, 53.75, 55.25, 60.0, 'Antennen-Sperrflaeche ESP32-C3-WROOM-02')]
 
 # Kupferflaeche zur Waermeabfuhr des Ladereglers (>= 100 mm^2, Projektplan 5.2)
-NETZONES = [(48.0, 16.5, 66.0, 23.0, 'VBAT')]
+#
+# Befund M-2: Die alte Zone (48,0/16,5)-(66,0/23,0) lag 7,92 mm von U2 Pad 3
+# entfernt und war nur ueber 0,5-mm-Bahnen angebunden:
+#   R_th = L/(kappa*A) = 12e-3 / (400 * 0,5e-3 * 35e-6) ~ 1720 K/W
+# gegen R_thJA(SOT-23-5) = 230 K/W - die Flaeche war thermisch wirkungslos.
+# Die Vorgabe ">= 100 mm^2" war als Zahl erfuellt, physikalisch nicht.
+#
+# Jetzt zweiteilig: ein schmaler Streifen fasst Pad 3 unmittelbar an (VBAT ist
+# dasselbe Netz, die Zone darf das Pad beruehren), der grosse Teil haengt
+# unmittelbar daran. U2 Pad 3 liegt bei (42,65/10,95), Pad 4 (VBUS) beginnt bei
+# x = 44,57 - der Streifen endet bei 44,2 und haelt damit 0,37 mm Abstand.
+# Pad 3 reicht von y = 10,625 bis 11,275; der Streifen beginnt bei 10,70 und
+# ueberdeckt es damit um 0,575 mm. Pad 2 (GND) endet bei 10,325 -> 0,375 mm frei.
+NETZONES = [(41.6, 10.7, 44.2, 16.4, 'VBAT'),      # ueberdeckt U2 Pad 3
+            (41.6, 16.0, 66.0, 23.0, 'VBAT')]      # Hauptflaeche, jetzt angebunden
+
+# Zusaetzliche Massevias dicht am Laderegler (Befund M-2). U2 Pad 2 (V_SS) haengt
+# an der 3731 mm^2 grossen Massefluer auf F.Cu; diese Vias binden sie an die
+# durchgehende Flaeche auf B.Cu an und verdoppeln die Spreizflaeche.
+# Zielpunkte - autoroute.py sucht die naechste freie Stelle dazu.
+THERMOVIAS = [(41.6, 10.0), (41.6, 11.6), (44.0, 8.0), (46.6, 10.0)]
 
 # Beschriftungen: x, y, Text, Groesse, Lage, Drehung
 TEXTS = [
@@ -85,10 +107,14 @@ TEXTS = [
     (15.3, 20.70, 'CC2',  0.8, 'F.SilkS', 0),
     # Vorderseite: Legende im bauteilfreien Mittelfeld
     (28.0, 27.0, 'J3 Display:  1 GND  2 VCC  3 SCLK  4 MOSI  5 RES  6 DC  7 CS', 1.1, 'F.SilkS', 0),
+    (28.0, 33.5, 'J5 Piezo:  1 = +,  2 = -   (CEP-1114 sitzt am Kabel)', 1.1, 'F.SilkS', 0),
     (28.0, 30.5, 'Laden nur im ausgeschalteten Zustand (kein Lastpfad)', 1.1, 'F.SilkS', 0),
     (74.6,  4.6, '+',    0.9, 'F.SilkS', 0),
     (79.0,  4.6, '-',    0.9, 'F.SilkS', 0),
     (1.5,  48.6, 'TASTER', 0.8, 'F.SilkS', 0),
+    (1.5,  25.6, 'PIEZO', 0.8, 'F.SilkS', 0),
+    # Befund K-2: die Bestueckungsvariante muss am Stecker ablesbar sein.
+    (21.5,  23.4, 'R17/R18 nur bestuecken, wenn Breakout ohne 5k1-Rd', 0.9, 'F.SilkS', 0),
 ]
 
 try:

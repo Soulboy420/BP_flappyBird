@@ -14,10 +14,30 @@ GRIDPAD = 0.06
 CLEAR = {'Leistung': 0.2 + GRIDPAD, 'USB': 0.2 + GRIDPAD, 'Default': 0.2 + GRIDPAD}
 WIDTH = {'Leistung': 0.6, 'USB': 0.3, 'Default': 0.25}
 # VBUS muss zwischen den Pads des ESD-Arrays hindurch -> schmaler
-# Lagenwechsel teuer machen: die Massefläche auf B.Cu soll moeglichst
-# ungeschnitten bleiben (Ruecklaufpfad der SPI-Signale, Abschnitt 5.7).
-VIA_COST = 220.0
-BACK_COST = 8.0
+#
+# Lagenwechsel bepreisen (Befund M-7): Auf der Rueckseite liegt die
+# durchgehende Massefläche. Jedes Signalstueck dort schneidet einen Schlitz
+# hinein, und jede Bahn auf F.Cu, die darueber laeuft, muss ihren Rueckstrom um
+# den Schlitz herumfuehren - gemeinsame Rueckimpedanz und damit Uebersprechen.
+#
+# VIA_COST ist ein einmaliger Aufschlag pro Lagenwechsel, BACK_COST ein
+# Faktor je Rasterschritt auf B.Cu. Entscheidend ist BACK_COST: er macht lange
+# Ausfluege auf die Rueckseite teuer, waehrend ein billiges Via das kurze
+# "rueber, einmal kreuzen, sofort zurueck" erlaubt. Genau das ist gewuenscht.
+#
+# Messreihe ueber 18 Kombinationen, bewertet mit
+#     Guete = L(B.Cu) + 2*L(B.Cu, schnelle Netze) + 3*Kreuzungen(schnell)
+#   via=220 back=8   (alt)  83,9 mm | 37 Kreuzungen (25 schnell) | 241,0
+#   via=2000 back=8         184,9 mm | 41 Kreuzungen (24 schnell) | 483,1
+#   via=220 back=25          67,6 mm | 36 Kreuzungen (24 schnell) | 210,8
+#   via=60  back=40  (neu)   60,8 mm | 36 Kreuzungen (23 schnell) | 191,8  <-
+#
+# Verworfen: +3V3_MCU hart auf F.Cu zu zwingen. Das Netz verschwand zwar von
+# der Rueckseite, verdraengte dort aber SCLK und OLED_RES (je 17 mm auf B.Cu) -
+# die Guete verschlechterte sich von 241 auf 356. Ein Versorgungsnetz auf der
+# Masselage ist harmloser als ein schnelles Signal.
+VIA_COST = 60.0
+BACK_COST = 40.0
 
 WIDTH_NET = {'VBUS': 0.4, 'VBAT': 0.5, 'VBAT_SW': 0.5, '+3V3': 0.5, '+3V3_MCU': 0.5}
 
@@ -90,6 +110,7 @@ def pad_stummel(pad, ziel, breite=0.4):
 
 
 ORDER = ['VBAT', 'BATT_P', 'VBUS', 'USB_DP', 'USB_DM', 'USB_DP_CON', 'USB_DM_CON',
+         'USB_CC1', 'USB_CC2',
          'VBAT_SW', '+3V3',
          'SCLK_MCU', 'MOSI_MCU', 'OLED_RES_MCU', 'OLED_DC_MCU', 'OLED_CS_MCU',
          'SCLK', 'MOSI', 'OLED_RES', 'OLED_DC', 'OLED_CS',
@@ -282,6 +303,37 @@ for gx in np.arange(5.0, W - 4.0, 8.0):
             obs, own = R._obstacles('GND', 0.4, 0.25)
             stitch += 1
 print('Naehvias:', stitch)
+
+# Waermevias am Laderegler (Befund M-2): binden die Massefluer auf F.Cu rund um
+# U2 Pad 2 an die durchgehende Flaeche auf B.Cu an. Sie tragen keinen Strom,
+# sondern spreizen die Verlustleistung von 0,415 W auf beide Lagen.
+therm = 0
+for tx, ty in getattr(P, 'THERMOVIAS', []):
+    best = None
+    for rad in range(1, 13):                       # 0,2 mm Raster, bis 2,4 mm
+        i0, j0 = R._idx(tx, ty)
+        for di in range(-rad, rad + 1):
+            for dj in (-rad, rad):
+                for a, b in ((i0 + di, j0 + dj), (i0 + dj, j0 + di)):
+                    if not (0 <= a < R.nx and 0 <= b < R.ny):
+                        continue
+                    vx, vy = R._pos(a, b)
+                    if R._clash_via('GND', vx, vy) or not hole_ok(vx, vy):
+                        continue
+                    d = math.hypot(vx - tx, vy - ty)
+                    if best is None or d < best[0]:
+                        best = (d, vx, vy)
+        if best:
+            break
+    if best is None:
+        print('  WARNUNG: kein Platz fuer Waermevia bei %.1f/%.1f' % (tx, ty))
+        continue
+    d, vx, vy = best
+    vias.append(('GND', vx, vy, 0.8, 0.4))
+    R.add_via('GND', vx, vy, 0.8)
+    HOLES.append((vx, vy, 0.4))
+    therm += 1
+print('Waermevias am Laderegler:', therm)
 
 with open('routes.py', 'w') as f:
     f.write('# -*- coding: utf-8 -*-\n')

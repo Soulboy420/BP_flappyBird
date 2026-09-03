@@ -207,8 +207,13 @@ def t3_entwurfsdaten():
             pruefe(re.fullmatch(r'\d+[kMR]?\d*|0R', wert.replace(' ', '')),
                    'Widerstandswert lesbar', '%s = %s' % (ref, wert))
         if symbol == 'Device:C':
-            pruefe(re.fullmatch(r'\d+[unp]\d*', wert.replace(' ', '')),
-                   'Kondensatorwert lesbar', '%s = %s' % (ref, wert))
+            # Befund K-3: Ein blosser Wert wie "4u7" hat keine Physik. Ohne
+            # Spannungsklasse und Dielektrikum ist die wirksame Kapazitaet unter
+            # DC-Bias unbestimmt - genau die Luecke, durch die C3 mit 1,6 statt
+            # 4,7 uF durchgefallen waere. Beides ist jetzt Pflichtangabe.
+            pruefe(re.fullmatch(r'\d+[unp]\d*\s+\d+V\s+(?:C0G|X5R|X7R)', wert),
+                   'Kondensatorwert mit Spannung und Dielektrikum',
+                   '%s = %s' % (ref, wert))
 
 
 # =====================================================================
@@ -792,6 +797,30 @@ def t9_topologie():
     r4 = _wert(design.COMPONENTS['R4'][1])
     pruefe(0.5 <= r4 * 100e-9 * 1000 <= 2.0, 'Reset-Zeitkonstante 0,5..2 ms')
 
+    # 9j  Spannungsderating der Kondensatoren (Befund K-3)
+    #     Klasse-II-Keramik verliert unter DC-Bias erheblich an Kapazitaet. Die
+    #     Faustregel >= 2 x Betriebsspannung haelt den Verlust im Rahmen und ist
+    #     hier maschinell nachpruefbar, weil die Spannungsklasse im Wert steht.
+    RAIL = {'VBUS': 5.25, 'VBAT': 4.2, 'VBAT_SW': 4.2,
+            '+3V3': 3.3, '+3V3_MCU': 3.3, 'EN': 3.3, 'BTN': 3.3}
+    import re as _re
+    for ref, (symbol, wert, *_r) in sorted(design.COMPONENTS.items()):
+        if symbol != 'Device:C':
+            continue
+        m = _re.search(r'(\d+)V', wert)
+        if not m:
+            continue
+        u_nenn = float(m.group(1))
+        netz = netz_von.get((ref, '1'))
+        u_betrieb = RAIL.get(netz)
+        pruefe(u_betrieb is not None, 'Kondensator haengt an bekannter Schiene',
+               '%s an %s' % (ref, netz))
+        if u_betrieb:
+            pruefe(u_nenn >= 2 * u_betrieb,
+                   'Spannungsklasse >= 2 x Betriebsspannung',
+                   '%s: %.0f V an %s (%.2f V) -> gefordert %.1f V'
+                   % (ref, u_nenn, netz, u_betrieb, 2 * u_betrieb))
+
     # 9i  Displaypfad: genau ein Serienwiderstand je Signal, alle gleich gross
     paare = [('SCLK_MCU', 'SCLK'), ('MOSI_MCU', 'MOSI'),
              ('OLED_RES_MCU', 'OLED_RES'), ('OLED_DC_MCU', 'OLED_DC'),
@@ -993,6 +1022,70 @@ def t11_fertigung():
                '%d Zeilen' % len(zeilen))
 
 
+# =====================================================================
+#  T12  Datenblattbelege (Befund K-4)
+# =====================================================================
+def t12_datenblaetter():
+    """Vergleicht jeden abgelegten Beleg gegen die Kennung des Bauteils.
+
+    Befund K-4: D3_B5819W_DiodesInc.pdf enthielt das Datenblatt der
+    1N4148WS/BAV16WS. Ein rein geometrischer und netzlistenbasierter Pruefstand
+    kann das nicht sehen - er oeffnet keine PDF. Diese Pruefung schliesst die
+    Luecke: ein Beleg, dessen Inhalt dem deklarierten Bauteil widerspricht,
+    faellt jetzt durch.
+    """
+    print('T12 Datenblattbelege')
+    ordner = os.path.join(WURZEL, 'doc', 'datenblaetter')
+    try:
+        import pdfplumber, warnings, logging
+        warnings.filterwarnings('ignore')
+        logging.getLogger('pdfminer').setLevel(logging.ERROR)
+    except ImportError:
+        pdfplumber = None
+
+    for ref, eintrag in sorted(design.DATENBLATT.items()):
+        datei, kennung = eintrag
+        pfad = os.path.join(ordner, datei)
+        if not pruefe(os.path.exists(pfad), 'Beleg vorhanden',
+                      '%s -> %s' % (ref, datei)):
+            continue
+        if kennung is None or pdfplumber is None:
+            continue
+        try:
+            with pdfplumber.open(pfad) as pdf:
+                kopf = (pdf.pages[0].extract_text() or '')
+        except Exception as e:
+            pruefe(False, 'Beleg lesbar', '%s (%s)' % (datei, e))
+            continue
+        pruefe(kennung.lower() in kopf.lower(),
+               'Beleg passt zum Bauteil',
+               '%s: "%s" steht nicht auf Seite 1 von %s' % (ref, kennung, datei))
+
+    if pdfplumber is None:
+        print('     pdfplumber fehlt - nur Existenz geprueft, kein Inhaltsabgleich')
+
+    # Jedes bestueckte Bauteil braucht einen Beleg oder einen begruendeten Eintrag
+    # in BELEG_FEHLT. Stillschweigend fehlen darf keiner.
+    GENERISCH = {'R', 'C', 'TP', 'H'}
+    for ref in sorted(design.COMPONENTS):
+        praefix = ''.join(ch for ch in ref if ch.isalpha())
+        if praefix in GENERISCH and praefix not in ('R', 'C'):
+            continue
+        if praefix in ('R', 'C'):
+            leit = 'R1' if praefix == 'R' else 'C1'   # eine Reihe, ein Beleg
+            pruefe(leit in design.DATENBLATT or leit in design.BELEG_FEHLT,
+                   'Beleg fuer die Bauteilreihe erfasst', praefix)
+            continue
+        pruefe(ref in design.DATENBLATT or ref in design.BELEG_FEHLT,
+               'Beleg erfasst oder Fehlen begruendet', ref)
+
+    if design.BELEG_FEHLT:
+        print('     offene Belege (%d) - Beschaffungsaufgabe, kein Entwurfsfehler:'
+              % len(design.BELEG_FEHLT))
+        for ref, grund in sorted(design.BELEG_FEHLT.items()):
+            print('       %-4s %s' % (ref, grund.split(':')[0]))
+
+
 if __name__ == '__main__':
     t1_sexp()
     t2_transformationen()
@@ -1005,5 +1098,6 @@ if __name__ == '__main__':
     t9_topologie()
     t10_kritische_abstaende()
     t11_fertigung()
+    t12_datenblaetter()
     print('\n%d Pruefungen, %d Fehler' % (_geprueft, len(_fehler)))
     sys.exit(1 if _fehler else 0)

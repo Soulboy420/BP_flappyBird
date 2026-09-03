@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/flappy-esp32c3.kicad_sch")
-		(date "2026-08-22T14:37:03")
+		(date "2026-09-03T17:38:45")
 		(tool "Eeschema 10.0.5")
 		(sheet
 			(number "1")
@@ -56,9 +56,9 @@
 	(components
 		(comp
 			(ref "C1")
-			(value "4u7")
+			(value "4u7 25V X7R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
-			(description "Eingangskondensator VBUS")
+			(description "Eingangskondensator VBUS (VBUS 5,25 V -> >= 2x Derating)")
 			(fields
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
@@ -66,7 +66,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Eingangskondensator VBUS")
+					(name "Description") "Eingangskondensator VBUS (VBUS 5,25 V -> >= 2x Derating)")
 			)
 			(libsource
 				(lib "Device")
@@ -110,7 +110,7 @@
 		)
 		(comp
 			(ref "C2")
-			(value "100n")
+			(value "100n 50V X7R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(description "HF-Abblockung VBUS")
 			(fields
@@ -164,9 +164,9 @@
 		)
 		(comp
 			(ref "C3")
-			(value "4u7")
+			(value "10u 25V X7R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
-			(description "Ausgangskondensator Laderegler")
+			(description "Ausgangskondensator Laderegler: >= 4,7 uF wirksam bei 4,2 V")
 			(fields
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
@@ -174,7 +174,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Ausgangskondensator Laderegler")
+					(name "Description") "Ausgangskondensator Laderegler: >= 4,7 uF wirksam bei 4,2 V")
 			)
 			(libsource
 				(lib "Device")
@@ -218,7 +218,7 @@
 		)
 		(comp
 			(ref "C4")
-			(value "100n")
+			(value "100n 50V X7R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(description "HF-Abblockung VBAT")
 			(fields
@@ -272,9 +272,9 @@
 		)
 		(comp
 			(ref "C5")
-			(value "1u")
+			(value "2u2 16V X7R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
-			(description "Eingangskondensator LDO")
+			(description "Eingangskondensator LDO: >= 1 uF wirksam bei 4,2 V")
 			(fields
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
@@ -282,7 +282,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Eingangskondensator LDO")
+					(name "Description") "Eingangskondensator LDO: >= 1 uF wirksam bei 4,2 V")
 			)
 			(libsource
 				(lib "Device")
@@ -326,7 +326,7 @@
 		)
 		(comp
 			(ref "C6")
-			(value "22u")
+			(value "22u 10V X5R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(description "Ausgangskondensator LDO (5.4)")
 			(fields
@@ -380,7 +380,7 @@
 		)
 		(comp
 			(ref "C7")
-			(value "100n")
+			(value "100n 50V X7R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(description "HF-Abblockung 3V3")
 			(fields
@@ -434,7 +434,7 @@
 		)
 		(comp
 			(ref "C8")
-			(value "10u")
+			(value "10u 16V X7R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(description "Stuetzkondensator am Modul (5.4)")
 			(fields
@@ -488,7 +488,7 @@
 		)
 		(comp
 			(ref "C9")
-			(value "100n")
+			(value "100n 50V X7R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(description "HF-Abblockung am Modul")
 			(fields
@@ -542,7 +542,7 @@
 		)
 		(comp
 			(ref "C10")
-			(value "100n")
+			(value "100n 50V X7R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(description "Reset-Zeitkonstante EN")
 			(fields
@@ -596,7 +596,7 @@
 		)
 		(comp
 			(ref "C11")
-			(value "100n")
+			(value "100n 50V X7R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(description "Entprellkondensator Taster")
 			(fields
@@ -1374,23 +1374,23 @@
 			)
 		)
 		(comp
-			(ref "LS1")
-			(value "Piezo 12 mm")
-			(footprint "Buzzer_Beeper:Buzzer_12x9.5RM7.6")
-			(description "passiver Schallwandler")
+			(ref "J5")
+			(value "Piezo CEP-1114")
+			(footprint "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical")
+			(description "Buzzerkabel JST-XH 2-polig")
 			(fields
 				(field
-					(name "Footprint") "Buzzer_Beeper:Buzzer_12x9.5RM7.6")
+					(name "Footprint") "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "passiver Schallwandler")
+					(name "Description") "Buzzerkabel JST-XH 2-polig")
 			)
 			(libsource
-				(lib "Device")
-				(part "Buzzer")
-				(description "Buzzer, polarized")
+				(lib "Connector_Generic")
+				(part "Conn_01x02")
+				(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			)
 			(property
 				(name "Sheetname")
@@ -1402,17 +1402,17 @@
 			)
 			(property
 				(name "ki_keywords")
-				(value "quartz resonator ceramic")
+				(value "connector")
 			)
 			(property
 				(name "ki_fp_filters")
-				(value "*Buzzer*")
+				(value "Connector*:*_1x??_*")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "fa1058cf-1ba9-5e89-b971-b65e55a672da")
+			(tstamps "8f8d291a-ec7b-502c-9c8f-33e5a88a945d")
 			(units
 				(unit
 					(name "A")
@@ -1483,9 +1483,9 @@
 		)
 		(comp
 			(ref "R2")
-			(value "1k")
+			(value "560R")
 			(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
-			(description "Vorwiderstand Lade-LED")
+			(description "Vorwiderstand Lade-LED: (5,0-1,8-0,4)/560 = 5,0 mA")
 			(fields
 				(field
 					(name "Footprint") "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
@@ -1493,7 +1493,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Vorwiderstand Lade-LED")
+					(name "Description") "Vorwiderstand Lade-LED: (5,0-1,8-0,4)/560 = 5,0 mA")
 			)
 			(libsource
 				(lib "Device")
@@ -2131,9 +2131,9 @@
 		)
 		(comp
 			(ref "R14")
-			(value "1k")
+			(value "330R")
 			(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
-			(description "Vorwiderstand Betriebs-LED")
+			(description "Vorwiderstand Betriebs-LED: (3,3-1,95)/330 = 4,1 mA")
 			(fields
 				(field
 					(name "Footprint") "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
@@ -2141,7 +2141,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Vorwiderstand Betriebs-LED")
+					(name "Description") "Vorwiderstand Betriebs-LED: (3,3-1,95)/330 = 4,1 mA")
 			)
 			(libsource
 				(lib "Device")
@@ -2277,6 +2277,120 @@
 				(tstamps "/")
 			)
 			(tstamps "c4dc603e-71e0-50b2-9abe-d98a655b0dd6")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R17")
+			(value "5k1")
+			(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+			(description "NICHT BESTUECKEN (DNP) - Pull-down CC1, nur wenn Breakout ohne Rd")
+			(fields
+				(field
+					(name "Footprint") "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "NICHT BESTUECKEN (DNP) - Pull-down CC1, nur wenn Breakout ohne Rd")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "flappy-esp32c3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "flappy-esp32c3.kicad_sch")
+			)
+			(property
+				(name "dnp")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "527934bd-69b4-50ca-aaeb-53890fe7da0f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R18")
+			(value "5k1")
+			(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+			(description "NICHT BESTUECKEN (DNP) - Pull-down CC2, nur wenn Breakout ohne Rd")
+			(fields
+				(field
+					(name "Footprint") "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "NICHT BESTUECKEN (DNP) - Pull-down CC2, nur wenn Breakout ohne Rd")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "flappy-esp32c3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "flappy-esp32c3.kicad_sch")
+			)
+			(property
+				(name "dnp")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a3fb412d-0722-5bb5-acdd-ed5d21880216")
 			(units
 				(unit
 					(name "A")
@@ -2991,9 +3105,9 @@
 		)
 		(comp
 			(ref "U2")
-			(value "MCP73831-2-OT")
+			(value "MCP73831T-2ACI/OT")
 			(footprint "Package_TO_SOT_SMD:SOT-23-5_HandSoldering")
-			(description "LiPo-Laderegler 4,20 V")
+			(description "LiPo-Laderegler 4,20 V, 10 % Vorkond., 7,5 % Abschaltung")
 			(fields
 				(field
 					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-5_HandSoldering")
@@ -3001,7 +3115,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "LiPo-Laderegler 4,20 V")
+					(name "Description") "LiPo-Laderegler 4,20 V, 10 % Vorkond., 7,5 % Abschaltung")
 			)
 			(libsource
 				(lib "Battery_Management")
@@ -3340,40 +3454,6 @@
 				(pin
 					(num "7")
 					(name "Pin_7")
-					(type "passive")
-				)
-			)
-		)
-		(libpart
-			(lib "Device")
-			(part "Buzzer")
-			(description "Buzzer, polarized")
-			(footprints
-				(fp "*Buzzer*")
-			)
-			(fields
-				(field
-					(name "Reference") "BZ")
-				(field
-					(name "Value") "Buzzer")
-				(field
-					(name "Footprint")
-				)
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description") "Buzzer, polarized")
-			)
-			(pins
-				(pin
-					(num "1")
-					(name "+")
-					(type "passive")
-				)
-				(pin
-					(num "2")
-					(name "-")
 					(type "passive")
 				)
 			)
@@ -4080,9 +4160,9 @@
 			(name "BUZZ_P")
 			(class "Default")
 			(node
-				(ref "LS1")
+				(ref "J5")
 				(pin "1")
-				(pinfunction "+_1")
+				(pinfunction "Pin_1_1")
 				(pintype "passive")
 			)
 			(node
@@ -4236,13 +4316,23 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "LS1")
+				(ref "J5")
 				(pin "2")
-				(pinfunction "-_2")
+				(pinfunction "Pin_2_2")
 				(pintype "passive")
 			)
 			(node
 				(ref "R1")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R17")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R18")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -4537,6 +4627,38 @@
 		)
 		(net
 			(code "28")
+			(name "USB_CC1")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "5")
+				(pinfunction "Pin_5_5")
+				(pintype "passive")
+			)
+			(node
+				(ref "R17")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "29")
+			(name "USB_CC2")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "6")
+				(pinfunction "Pin_6_6")
+				(pintype "passive")
+			)
+			(node
+				(ref "R18")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "30")
 			(name "USB_DM")
 			(class "USB")
 			(node
@@ -4553,7 +4675,7 @@
 			)
 		)
 		(net
-			(code "29")
+			(code "31")
 			(name "USB_DM_CON")
 			(class "USB")
 			(node
@@ -4570,7 +4692,7 @@
 			)
 		)
 		(net
-			(code "30")
+			(code "32")
 			(name "USB_DP")
 			(class "USB")
 			(node
@@ -4587,7 +4709,7 @@
 			)
 		)
 		(net
-			(code "31")
+			(code "33")
 			(name "USB_DP_CON")
 			(class "USB")
 			(node
@@ -4604,7 +4726,7 @@
 			)
 		)
 		(net
-			(code "32")
+			(code "34")
 			(name "VBAT")
 			(class "Leistung")
 			(node
@@ -4648,7 +4770,7 @@
 			)
 		)
 		(net
-			(code "33")
+			(code "35")
 			(name "VBAT_SW")
 			(class "Leistung")
 			(node
@@ -4676,7 +4798,7 @@
 			)
 		)
 		(net
-			(code "34")
+			(code "36")
 			(name "VBUS")
 			(class "Leistung")
 			(node
@@ -4717,28 +4839,6 @@
 				(pin "4")
 				(pinfunction "V_{DD}_4")
 				(pintype "power_in")
-			)
-		)
-		(net
-			(code "35")
-			(name "unconnected-(J1-Pin_5-Pad5)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "5")
-				(pinfunction "Pin_5_5")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "36")
-			(name "unconnected-(J1-Pin_6-Pad6)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "6")
-				(pinfunction "Pin_6_6")
-				(pintype "passive+no_connect")
 			)
 		)
 		(net

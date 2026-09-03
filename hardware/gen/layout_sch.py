@@ -7,6 +7,8 @@ PLACE = {
     # --- A  USB-Anschluss und ESD-Schutz -------------------------------------
     'J1':  (320.04,  45.72,   0, 'y'),
     'D1':  (368.30,  45.72,   0, None),
+    'R17': (331.47,  50.80,  90, None),
+    'R18': (331.47,  53.34,  90, None),
     # --- B  Ladeschaltung -----------------------------------------------------
     'TP1': (302.26, 107.95, 180, None),
     'C1':  (313.69, 107.95,   0, None),
@@ -57,7 +59,7 @@ PLACE = {
     'J4':  (127.00, 146.05,   0, None),
     # --- H  Tonausgabe und Anzeigen -------------------------------------------
     'R13': ( 53.34, 205.74,  90, None),
-    'LS1': ( 69.85, 205.74,   0, None),
+    'J5':  ( 69.85, 205.74,   0, None),
     'R14': ( 53.34, 222.25,  90, None),
     'D4':  ( 68.58, 222.25, 180, None),
     'TP10':(146.05, 205.74,   0, None),
@@ -76,6 +78,8 @@ WIRES = [
     # --- A: USB-Breakout -> ESD-Array -> Mikrocontroller ----------------------
     [('J1', '3'), ('D1', '1')],                      # USB_DM_CON
     [('J1', '4'), ('D1', '3')],                      # USB_DP_CON
+    [('J1', '5'), ('R17', '1')],                     # USB_CC1
+    [('J1', '6'), ('R18', '1')],                     # USB_CC2
     [('D1', '6'), (381.00, 45.72)],                  # USB_DM  -> Bezeichner
     [('D1', '4'), (381.00, 48.26)],                  # USB_DP  -> Bezeichner
     # --- B: Ladeschaltung -----------------------------------------------------
@@ -123,7 +127,7 @@ WIRES = [
     [('R12','2'), ('J4',  '1')],                     # BTN_CON
     # --- H: Ton und Anzeigen ---------------------------------------------------
     [( 41.91, 205.74), ('R13', '1')],                # BUZZ
-    [('R13','2'), ( 62.23, 205.74), ( 62.23, 203.20), ('LS1', '1')],
+    [('R13','2'), ( 62.23, 205.74), ( 62.23, 203.20), ('J5', '1')],
     [( 41.91, 222.25), ('R14', '1')],                # LED_G
     [('R14','2'), ('D4',  '2')],                     # LED_G_A
     # --- Netzflaggen -----------------------------------------------------------
@@ -188,7 +192,7 @@ STUB_LABELS = [
 FRAMES = [
     ( 20.32,  30.48, 172.72, 100.33, 'F  Displayanbindung: Serienterminierung 68 R + JST-XH 7-polig'),
     ( 20.32, 116.84, 172.72, 172.72, 'G  Tastereingabe: Entprellung, ESD-Begrenzung, JST-XH 2-polig'),
-    ( 20.32, 186.69, 172.72, 245.11, 'H  Tonausgabe, Betriebsanzeige, Pruefpunkte'),
+    ( 20.32, 186.69, 172.72, 245.11, 'H  Tonausgabe (JST-XH 2-polig), Betriebsanzeige, Pruefpunkte'),
     (185.42,  40.64, 302.26, 140.97, 'E  Mikrocontroller ESP32-C3-WROOM-02-N4'),
     (185.42, 246.38, 302.26, 271.78, 'Netzflaggen (nur fuer die ERC-Pruefung)'),
     (297.18,  20.32, 415.29,  71.12, 'A  USB-Anschluss und ESD-Schutz'),
@@ -205,21 +209,28 @@ NOTES = [
     ('tau = R10 * C11 = 10 k * 100 n = 1,0 ms;  Sperrzeit in Software 20 ms', 24.13, 160.02, 1.27),
     ('R11 + R12 begrenzen den Kontaktstrom auf 3,3 V / 320 R = 10 mA', 24.13, 162.56, 1.27),
     ('R12 zusaetzlich als ESD-Strombegrenzung am Steckverbinder', 24.13, 165.10, 1.27),
+    ('LS1 (CEP-1114) ist D30 mm / RM 20 mm und sitzt abgesetzt am Kabel an J5 (K-1).', 24.13, 209.55, 1.27),
+    ('R13 begrenzt den GPIO-Strom auf 3,3 V / 220 R = 15 mA; C_Piezo = 45 nF typ.', 24.13, 212.09, 1.27),
     ('D4 wird vom GPIO getrieben, damit sie im Tiefschlaf abschaltbar ist (NF-04)', 24.13, 232.41, 1.27),
+    ('R14 = 330 R -> 4,1 mA: die GaP-Gruene ist bei 1,3 mA praktisch unsichtbar (M-9).', 24.13, 234.95, 1.27),
     ('IO10, RXD und TXD bleiben frei - die Konsole laeuft ueber USB-Serial-JTAG.', 24.13, 236.22, 1.27),
     ('R3 = 0 R: Trennstelle fuer die Strommessung der Modulversorgung (M3, 4.5.6)', 189.23, 55.88, 1.27),
     ('IO2 und IO8 sind Strapping-Pins: R15 bzw. R16 halten sie beim Start hoch.', 189.23, 143.51, 1.27),
     ('IO18/IO19 fuehren direkt zur USB-Serial-JTAG-Einheit - keine Serienwiderstaende.', 189.23, 146.05, 1.27),
     ('IO3 ist RTC-faehig und weckt das Geraet aus dem Tiefschlaf (F-13).', 189.23, 148.59, 1.27),
     ('Pinbelegung J1 pruefen! VBUS/GND/D-/D+/CC1/CC2 - siehe README.', 300.99, 60.96, 1.27),
+    ('R17/R18 ab Werk NICHT bestueckt (K-2): hat das Breakout eigene 5k1, ergeben', 300.99, 63.50, 1.27),
+    ('2,55 k an CC bei 80 uA nur 0,204 V - Totzone zwischen vRa und vRd-Connect.', 300.99, 66.04, 1.27),
     ('C1 4u7 + C2 100n: USB-seitige Abblockung (Einschaltstrom < 10 uF-Grenze).', 300.99, 146.05, 1.27),
     ('R1 = 6k8  ->  I_chg = 1000 V / 6k8 = 147 mA = 0,3 C  (5.2)', 300.99, 148.59, 1.27),
     ('Keine Lastpfadumschaltung: zum Laden wird das Geraet ausgeschaltet (4.1).', 300.99, 151.13, 1.27),
     ('F1 + D3: Crowbar-Verpolungsschutz. Bei verpolter Zelle leitet D3 und F1 loest aus.', 300.99, 193.04, 1.27),
     ('Sperrstrom von D3 geht in das Tiefschlafbudget ein - wird in M3 gemessen.', 300.99, 195.58, 1.27),
-    ('C6 = 22 uF stuetzt die Sendespitze: 350 mA * 10 us / 100 mV = 35 uF (5.4),', 300.99, 243.84, 1.27),
-    ('zusammen mit C8 = 10 uF unmittelbar am Modul. X5R-Derating beachten.', 300.99, 246.38, 1.27),
-    ('U3 EN fest auf VBAT_SW: der Schiebeschalter schaltet die gesamte Versorgung.', 300.99, 248.92, 1.27),
+    ('Beleg fuer D3 fehlt (K-4): das echte B5819W-Datenblatt ist noch abzulegen.', 300.99, 198.12, 1.27),
+    ('C6 = 22u/10V X5R + C8 = 10u/16V X7R stuetzen die Sendespitze. Wirksame', 300.99, 243.84, 1.27),
+    ('Kapazitaet bei 3,3 V DC-Bias im Datenblatt des gewaehlten Typs pruefen (K-3):', 300.99, 246.38, 1.27),
+    ('nominell 32 uF, derated eher 15..18 uF -> Droop 350 mA * 10 us / 16 uF = 220 mV.', 300.99, 248.92, 1.27),
+    ('U3 EN fest auf VBAT_SW: der Schiebeschalter schaltet die gesamte Versorgung.', 300.99, 251.46, 1.27),
 ]
 
 # Feinplatzierung von Referenz und Wert, wo es eng wird:
@@ -232,6 +243,8 @@ FIELD_OFF = {
     'R7': ((2.54, -2.54), (-2.54, 2.54)),
     'R8': ((2.54, -2.54), (-2.54, 2.54)),
     'R9': ((2.54, -2.54), (-2.54, 2.54)),
+    'R17':((2.54, -2.54), (-2.54, 2.54)),
+    'R18':((2.54, -2.54), (-2.54, 2.54)),
     'R4':  ((0.0, -2.54), (0.0, 2.54)),
     'R15': ((0.0, -2.54), (0.0, 2.54)),
     'R16': ((0.0, -2.54), (0.0, 2.54)),
@@ -239,7 +252,7 @@ FIELD_OFF = {
     'D3':  ((3.81, -1.27), (3.81, 1.27)),
     'D4':  ((0.0, -2.54), (0.0, 2.54)),
     'F1':  ((0.0, -3.81), (0.0, 3.81)),
-    'LS1': ((5.08, -3.81), (5.08, -1.27)),
+    'J5':  ((-6.35, -5.08), (-6.35, -2.54)),
     'SW1': ((0.0, -6.35), (0.0, 6.35)),
     'J1':  ((-3.81, -10.16), (-3.81, -7.62)),
     'J2':  ((-3.81, -5.08), (-3.81, -2.54)),
