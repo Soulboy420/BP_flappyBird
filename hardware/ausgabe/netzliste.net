@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/flappy-esp32c3.kicad_sch")
-		(date "2026-09-03T17:38:45")
+		(date "2026-09-03T20:20:06")
 		(tool "Eeschema 10.0.5")
 		(sheet
 			(number "1")
@@ -649,6 +649,60 @@
 			)
 		)
 		(comp
+			(ref "C12")
+			(value "100n 50V X7R")
+			(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
+			(description "Glaettung am ADC-Eingang, tau = 500k * 100n = 50 ms")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Glaettung am ADC-Eingang, tau = 500k * 100n = 50 ms")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "flappy-esp32c3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "flappy-esp32c3.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "59f1c498-2044-5906-9213-b2bfe3640489")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "D1")
 			(value "USBLC6-2SC6")
 			(footprint "Package_TO_SOT_SMD:SOT-23-6_Handsoldering")
@@ -871,6 +925,72 @@
 						)
 						(pin
 							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "D5")
+			(value "USBLC6-2SC6")
+			(footprint "Package_TO_SOT_SMD:SOT-23-6_Handsoldering")
+			(description "ESD-Klemme Taster- und Piezokabel; klemmt zugleich den Piezo-Rueckschlag")
+			(fields
+				(field
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-6_Handsoldering")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "ESD-Klemme Taster- und Piezokabel; klemmt zugleich den Piezo-Rueckschlag")
+			)
+			(libsource
+				(lib "Power_Protection")
+				(part "USBLC6-2SC6")
+				(description "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
+			)
+			(property
+				(name "Sheetname")
+				(value "flappy-esp32c3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "flappy-esp32c3.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "usb ethernet video")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "5e5fb12e-2e9d-5675-8589-6ee666572320")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "4")
 						)
 					)
 				)
@@ -1253,21 +1373,21 @@
 		(comp
 			(ref "J3")
 			(value "OLED SSD1306 SPI")
-			(footprint "Connector_JST:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical")
-			(description "Displaykabel JST-XH 7-polig")
+			(footprint "Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical")
+			(description "Displaykabel JST-XH 8-polig")
 			(fields
 				(field
-					(name "Footprint") "Connector_JST:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical")
+					(name "Footprint") "Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Displaykabel JST-XH 7-polig")
+					(name "Description") "Displaykabel JST-XH 8-polig")
 			)
 			(libsource
 				(lib "Connector_Generic")
-				(part "Conn_01x07")
-				(description "Generic connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)")
+				(part "Conn_01x08")
+				(description "Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			)
 			(property
 				(name "Sheetname")
@@ -1314,6 +1434,9 @@
 						)
 						(pin
 							(num "7")
+						)
+						(pin
+							(num "8")
 						)
 					)
 				)
@@ -2406,6 +2529,276 @@
 			)
 		)
 		(comp
+			(ref "R19")
+			(value "1M")
+			(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+			(description "Pull-down LDO_EN: haelt EN sicher unten, 5,6 uA Kontaktstrom")
+			(fields
+				(field
+					(name "Footprint") "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Pull-down LDO_EN: haelt EN sicher unten, 5,6 uA Kontaktstrom")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "flappy-esp32c3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "flappy-esp32c3.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6cb833df-4051-523c-8bef-8bf54b633597")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R20")
+			(value "100k")
+			(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+			(description "VBUS-Teiler oben: 5,25 V -> 2,63 V an IO20")
+			(fields
+				(field
+					(name "Footprint") "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "VBUS-Teiler oben: 5,25 V -> 2,63 V an IO20")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "flappy-esp32c3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "flappy-esp32c3.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "4a8dea44-5b24-532b-805d-2ee925a65eb8")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R21")
+			(value "100k")
+			(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+			(description "VBUS-Teiler unten")
+			(fields
+				(field
+					(name "Footprint") "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "VBUS-Teiler unten")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "flappy-esp32c3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "flappy-esp32c3.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "7c34e434-a38f-52cd-83bc-6e2b25d6504d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R22")
+			(value "1M")
+			(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+			(description "VBAT-Teiler oben: 4,2 V -> 2,10 V an IO0 (ADC1_CH0)")
+			(fields
+				(field
+					(name "Footprint") "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "VBAT-Teiler oben: 4,2 V -> 2,10 V an IO0 (ADC1_CH0)")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "flappy-esp32c3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "flappy-esp32c3.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "fe20dbb9-7033-5345-ad4e-c6ed235cd175")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R23")
+			(value "1M")
+			(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+			(description "VBAT-Teiler unten, 2,1 uA Dauerlast")
+			(fields
+				(field
+					(name "Footprint") "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "VBAT-Teiler unten, 2,1 uA Dauerlast")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "flappy-esp32c3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "flappy-esp32c3.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "60fc8b93-d27e-5ec6-a1dc-b2ac6f65b4ba")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "SW1")
 			(value "Ein/Aus")
 			(footprint "Button_Switch_THT:SW_Slide_SPDT_Straight_CK_OS102011MS2Q")
@@ -3401,8 +3794,8 @@
 		)
 		(libpart
 			(lib "Connector_Generic")
-			(part "Conn_01x07")
-			(description "Generic connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(part "Conn_01x08")
+			(description "Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			(footprints
 				(fp "Connector*:*_1x??_*")
 			)
@@ -3410,7 +3803,7 @@
 				(field
 					(name "Reference") "J")
 				(field
-					(name "Value") "Conn_01x07")
+					(name "Value") "Conn_01x08")
 				(field
 					(name "Footprint")
 				)
@@ -3418,7 +3811,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Generic connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)")
+					(name "Description") "Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			)
 			(pins
 				(pin
@@ -3454,6 +3847,11 @@
 				(pin
 					(num "7")
 					(name "Pin_7")
+					(type "passive")
+				)
+				(pin
+					(num "8")
+					(name "Pin_8")
 					(type "passive")
 				)
 			)
@@ -4006,6 +4404,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "D5")
+				(pin "5")
+				(pinfunction "VBUS_5")
+				(pintype "passive")
+			)
+			(node
 				(ref "R10")
 				(pin "1")
 				(pintype "passive")
@@ -4113,6 +4517,18 @@
 			(name "BTN_CON")
 			(class "Default")
 			(node
+				(ref "D5")
+				(pin "1")
+				(pinfunction "I/O1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "D5")
+				(pin "6")
+				(pinfunction "I/O1_6")
+				(pintype "passive")
+			)
+			(node
 				(ref "J4")
 				(pin "1")
 				(pinfunction "Pin_1_1")
@@ -4159,6 +4575,18 @@
 			(code "9")
 			(name "BUZZ_P")
 			(class "Default")
+			(node
+				(ref "D5")
+				(pin "3")
+				(pinfunction "I/O2_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "D5")
+				(pin "4")
+				(pinfunction "I/O2_4")
+				(pintype "passive")
+			)
 			(node
 				(ref "J5")
 				(pin "1")
@@ -4234,6 +4662,11 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C12")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
 				(ref "C2")
 				(pin "2")
 				(pintype "passive")
@@ -4292,6 +4725,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "D5")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "J1")
 				(pin "2")
 				(pinfunction "Pin_2_2")
@@ -4307,6 +4746,12 @@
 				(ref "J3")
 				(pin "1")
 				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J3")
+				(pin "4")
+				(pinfunction "Pin_4_4")
 				(pintype "passive")
 			)
 			(node
@@ -4333,6 +4778,21 @@
 			)
 			(node
 				(ref "R18")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R19")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R21")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R23")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -4397,6 +4857,28 @@
 		)
 		(net
 			(code "14")
+			(name "LDO_EN")
+			(class "Default")
+			(node
+				(ref "R19")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SW1")
+				(pin "1")
+				(pinfunction "A_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "3")
+				(pinfunction "EN_3")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "15")
 			(name "LED_CHG")
 			(class "Default")
 			(node
@@ -4413,7 +4895,7 @@
 			)
 		)
 		(net
-			(code "15")
+			(code "16")
 			(name "LED_G")
 			(class "Default")
 			(node
@@ -4423,13 +4905,13 @@
 			)
 			(node
 				(ref "U1")
-				(pin "18")
-				(pinfunction "IO0_18")
+				(pin "10")
+				(pinfunction "IO10_10")
 				(pintype "bidirectional")
 			)
 		)
 		(net
-			(code "16")
+			(code "17")
 			(name "LED_G_A")
 			(class "Default")
 			(node
@@ -4445,13 +4927,13 @@
 			)
 		)
 		(net
-			(code "17")
+			(code "18")
 			(name "MOSI")
 			(class "Default")
 			(node
 				(ref "J3")
-				(pin "4")
-				(pinfunction "Pin_4_4")
+				(pin "5")
+				(pinfunction "Pin_5_5")
 				(pintype "passive")
 			)
 			(node
@@ -4461,7 +4943,7 @@
 			)
 		)
 		(net
-			(code "18")
+			(code "19")
 			(name "MOSI_MCU")
 			(class "Default")
 			(node
@@ -4477,13 +4959,13 @@
 			)
 		)
 		(net
-			(code "19")
+			(code "20")
 			(name "OLED_CS")
 			(class "Default")
 			(node
 				(ref "J3")
-				(pin "7")
-				(pinfunction "Pin_7_7")
+				(pin "8")
+				(pinfunction "Pin_8_8")
 				(pintype "passive")
 			)
 			(node
@@ -4493,7 +4975,7 @@
 			)
 		)
 		(net
-			(code "20")
+			(code "21")
 			(name "OLED_CS_MCU")
 			(class "Default")
 			(node
@@ -4514,13 +4996,13 @@
 			)
 		)
 		(net
-			(code "21")
+			(code "22")
 			(name "OLED_DC")
 			(class "Default")
 			(node
 				(ref "J3")
-				(pin "6")
-				(pinfunction "Pin_6_6")
+				(pin "7")
+				(pinfunction "Pin_7_7")
 				(pintype "passive")
 			)
 			(node
@@ -4530,7 +5012,7 @@
 			)
 		)
 		(net
-			(code "22")
+			(code "23")
 			(name "OLED_DC_MCU")
 			(class "Default")
 			(node
@@ -4546,13 +5028,13 @@
 			)
 		)
 		(net
-			(code "23")
+			(code "24")
 			(name "OLED_RES")
 			(class "Default")
 			(node
 				(ref "J3")
-				(pin "5")
-				(pinfunction "Pin_5_5")
+				(pin "6")
+				(pinfunction "Pin_6_6")
 				(pintype "passive")
 			)
 			(node
@@ -4562,7 +5044,7 @@
 			)
 		)
 		(net
-			(code "24")
+			(code "25")
 			(name "OLED_RES_MCU")
 			(class "Default")
 			(node
@@ -4578,7 +5060,7 @@
 			)
 		)
 		(net
-			(code "25")
+			(code "26")
 			(name "PROG")
 			(class "Default")
 			(node
@@ -4594,7 +5076,7 @@
 			)
 		)
 		(net
-			(code "26")
+			(code "27")
 			(name "SCLK")
 			(class "Default")
 			(node
@@ -4610,7 +5092,7 @@
 			)
 		)
 		(net
-			(code "27")
+			(code "28")
 			(name "SCLK_MCU")
 			(class "Default")
 			(node
@@ -4626,7 +5108,7 @@
 			)
 		)
 		(net
-			(code "28")
+			(code "29")
 			(name "USB_CC1")
 			(class "Default")
 			(node
@@ -4642,7 +5124,7 @@
 			)
 		)
 		(net
-			(code "29")
+			(code "30")
 			(name "USB_CC2")
 			(class "Default")
 			(node
@@ -4658,7 +5140,7 @@
 			)
 		)
 		(net
-			(code "30")
+			(code "31")
 			(name "USB_DM")
 			(class "USB")
 			(node
@@ -4675,7 +5157,7 @@
 			)
 		)
 		(net
-			(code "31")
+			(code "32")
 			(name "USB_DM_CON")
 			(class "USB")
 			(node
@@ -4692,7 +5174,7 @@
 			)
 		)
 		(net
-			(code "32")
+			(code "33")
 			(name "USB_DP")
 			(class "USB")
 			(node
@@ -4709,7 +5191,7 @@
 			)
 		)
 		(net
-			(code "33")
+			(code "34")
 			(name "USB_DP_CON")
 			(class "USB")
 			(node
@@ -4726,7 +5208,7 @@
 			)
 		)
 		(net
-			(code "34")
+			(code "35")
 			(name "VBAT")
 			(class "Leistung")
 			(node
@@ -4740,6 +5222,11 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C5")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
 				(ref "D3")
 				(pin "1")
 				(pinfunction "K_1")
@@ -4748,6 +5235,11 @@
 			(node
 				(ref "F1")
 				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R22")
+				(pin "1")
 				(pintype "passive")
 			)
 			(node
@@ -4768,37 +5260,41 @@
 				(pinfunction "V_{BAT}_3")
 				(pintype "power_out")
 			)
-		)
-		(net
-			(code "35")
-			(name "VBAT_SW")
-			(class "Leistung")
-			(node
-				(ref "C5")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "SW1")
-				(pin "1")
-				(pinfunction "A_1")
-				(pintype "passive")
-			)
 			(node
 				(ref "U3")
 				(pin "1")
 				(pinfunction "VIN_1")
 				(pintype "power_in")
 			)
-			(node
-				(ref "U3")
-				(pin "3")
-				(pinfunction "EN_3")
-				(pintype "input")
-			)
 		)
 		(net
 			(code "36")
+			(name "VBAT_SENSE")
+			(class "Default")
+			(node
+				(ref "C12")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R22")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R23")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "18")
+				(pinfunction "IO0_18")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "37")
 			(name "VBUS")
 			(class "Leistung")
 			(node
@@ -4829,6 +5325,11 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "R20")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
 				(ref "TP1")
 				(pin "1")
 				(pinfunction "1_1")
@@ -4842,7 +5343,28 @@
 			)
 		)
 		(net
-			(code "37")
+			(code "38")
+			(name "VBUS_SENSE")
+			(class "Default")
+			(node
+				(ref "R20")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R21")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "11")
+				(pinfunction "IO20/RXD_11")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "39")
 			(name "unconnected-(SW1-C-Pad3)")
 			(class "Default")
 			(node
@@ -4850,28 +5372,6 @@
 				(pin "3")
 				(pinfunction "C_3")
 				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "38")
-			(name "unconnected-(U1-IO10-Pad10)")
-			(class "Default")
-			(node
-				(ref "U1")
-				(pin "10")
-				(pinfunction "IO10_10")
-				(pintype "bidirectional+no_connect")
-			)
-		)
-		(net
-			(code "39")
-			(name "unconnected-(U1-IO20{slash}RXD-Pad11)")
-			(class "Default")
-			(node
-				(ref "U1")
-				(pin "11")
-				(pinfunction "IO20/RXD_11")
-				(pintype "bidirectional+no_connect")
 			)
 		)
 		(net

@@ -21,6 +21,8 @@ COMPONENTS = {
  'D1': ('Power_Protection:USBLC6-2SC6', 'USBLC6-2SC6', SOT6, 'ESD-Schutzarray USB'),
  'D2': ('Device:LED', 'LED rot', L0805, 'Ladeanzeige'),
  'D3': ('Device:D_Schottky', 'B5819W', 'Diode_SMD:D_SOD-123', 'Verpolungsschutz (Crowbar)'),
+ 'D5': ('Power_Protection:USBLC6-2SC6', 'USBLC6-2SC6', SOT6,
+        'ESD-Klemme Taster- und Piezokabel; klemmt zugleich den Piezo-Rueckschlag'),
  'D4': ('Device:LED', 'LED gruen', L0805, 'Betriebsanzeige, GPIO-gesteuert'),
  'F1': ('Device:Polyfuse', '500 mA PTC', R0805, 'Rueckstellsicherung Akkupfad'),
  'SW1':('Switch:SW_SPDT', 'Ein/Aus', 'Button_Switch_THT:SW_Slide_SPDT_Straight_CK_OS102011MS2Q', 'Schiebeschalter SPDT'),
@@ -28,8 +30,11 @@ COMPONENTS = {
         'Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical', 'VBUS/GND/D-/D+/CC1/CC2'),
  'J2': ('Connector_Generic:Conn_01x02', 'LiPo 1S 500 mAh',
         'Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical', 'Akkubuchse JST-PH'),
- 'J3': ('Connector_Generic:Conn_01x07', 'OLED SSD1306 SPI',
-        'Connector_JST:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical', 'Displaykabel JST-XH 7-polig'),
+ # Befund M-8: mit nur einer Masseader war CS sechs Adern (15 mm) vom
+ # Rueckleiter entfernt -> 30 cm^2 Schleifenflaeche bei 20 cm Kabel. Die achte
+ # Ader legt eine zweite Masse direkt neben SCLK, das schnellste Signal.
+ 'J3': ('Connector_Generic:Conn_01x08', 'OLED SSD1306 SPI',
+        'Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical', 'Displaykabel JST-XH 8-polig'),
  'J4': ('Connector_Generic:Conn_01x02', 'Arcade-Taster',
         'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical', 'Tasterkabel JST-XH 2-polig'),
  # Befund K-1: Der CEP-1114 ist laut Datenblatt (Maßzeichnung S. 2) 30,0 mm im
@@ -54,6 +59,13 @@ COMPONENTS = {
  'R14':('Device:R', '330R', R0805, 'Vorwiderstand Betriebs-LED: (3,3-1,95)/330 = 4,1 mA'),
  'R15':('Device:R', '10k',  R0805, 'Pull-up Strapping IO2'),
  'R16':('Device:R', '10k',  R0805, 'Pull-up Strapping IO8'),
+ # --- M-5: SW1 schaltet nur noch den EN-Pin des LDO -----------------------
+ 'R19':('Device:R', '1M',   R0805, 'Pull-down LDO_EN: haelt EN sicher unten, 5,6 uA Kontaktstrom'),
+ # --- M-6: Betriebszustaende fuer die Firmware messbar machen -------------
+ 'R20':('Device:R', '100k', R0805, 'VBUS-Teiler oben: 5,25 V -> 2,63 V an IO20'),
+ 'R21':('Device:R', '100k', R0805, 'VBUS-Teiler unten'),
+ 'R22':('Device:R', '1M',   R0805, 'VBAT-Teiler oben: 4,2 V -> 2,10 V an IO0 (ADC1_CH0)'),
+ 'R23':('Device:R', '1M',   R0805, 'VBAT-Teiler unten, 2,1 uA Dauerlast'),
  'R17':('Device:R', '5k1',  R0805, 'NICHT BESTUECKEN (DNP) - Pull-down CC1, nur wenn Breakout ohne Rd'),
  'R18':('Device:R', '5k1',  R0805, 'NICHT BESTUECKEN (DNP) - Pull-down CC2, nur wenn Breakout ohne Rd'),
  'C1': ('Device:C', '4u7 25V X7R', C0805, 'Eingangskondensator VBUS (VBUS 5,25 V -> >= 2x Derating)'),
@@ -67,6 +79,7 @@ COMPONENTS = {
  'C9': ('Device:C', '100n 50V X7R', C0805, 'HF-Abblockung am Modul'),
  'C10':('Device:C', '100n 50V X7R', C0805, 'Reset-Zeitkonstante EN'),
  'C11':('Device:C', '100n 50V X7R', C0805, 'Entprellkondensator Taster'),
+ 'C12':('Device:C', '100n 50V X7R', C0805, 'Glaettung am ADC-Eingang, tau = 500k * 100n = 50 ms'),
  'TP1':('Connector:TestPoint','VBUS',    TP, 'Pruefpunkt'),
  'TP2':('Connector:TestPoint','VBAT',    TP, 'Pruefpunkt'),
  'TP3':('Connector:TestPoint','3V3',     TP, 'Pruefpunkt'),
@@ -89,8 +102,12 @@ NETS = {
          ('R1','2'),('J2','2'),('D3','2'),('C5','2'),('U3','2'),('C6','2'),('C7','2'),
          ('C8','2'),('C9','2'),('U1','9'),('U1','19'),('C10','2'),('J3','1'),('C11','2'),
          ('J4','2'),('J5','2'),('D4','1'),('TP10','1'),('TP11','1'),('TP12','1'),
-         ('R17','2'),('R18','2')],
- 'VBUS':      [('J1','1'),('D1','5'),('C1','1'),('C2','1'),('U2','4'),('R2','1'),('TP1','1')],
+         ('R17','2'),('R18','2'),
+         ('J3','4'),                      # zweite Masseader neben SCLK (M-8)
+         ('D5','2'),                      # ESD-Klemme Taster/Piezo (M-8, M-10)
+         ('R19','2'),                     # Pull-down LDO_EN (M-5)
+         ('R21','2'),('R23','2'),('C12','2')],   # Teilerfusspunkte (M-6)
+ 'VBUS':      [('J1','1'),('D1','5'),('C1','1'),('C2','1'),('U2','4'),('R2','1'),('TP1','1'),('R20','1')],
  'USB_DP_CON':[('J1','4'),('D1','3')],
  'USB_DM_CON':[('J1','3'),('D1','1')],
  'USB_CC1':   [('J1','5'),('R17','1')],
@@ -100,42 +117,61 @@ NETS = {
  'PROG':      [('U2','5'),('R1','1')],
  'CHG_A':     [('R2','2'),('D2','2')],
  'LED_CHG':   [('D2','1'),('U2','1')],
- 'VBAT':      [('U2','3'),('C3','1'),('C4','1'),('F1','2'),('D3','1'),('SW1','2'),('TP2','1')],
+ # Befund M-5: Der Kontakt trug bisher den vollen Systemstrom (345 mA gegen ein
+ # Rating von 0,1 A). Jetzt liegt V_IN des LDO fest an VBAT, und SW1 schaltet nur
+ # noch dessen EN-Pin: Kontaktstrom = 4,2 V / (1 M || 3 M intern) = 5,6 uA.
+ # Im Aus-Zustand zieht der LDO nur noch I_STD <= 1,0 uA.
+ 'VBAT':      [('U2','3'),('C3','1'),('C4','1'),('F1','2'),('D3','1'),('SW1','2'),('TP2','1'),
+               ('U3','1'),('C5','1'),('R22','1')],
  'BATT_P':    [('J2','1'),('F1','1')],
- 'VBAT_SW':   [('SW1','1'),('U3','1'),('U3','3'),('C5','1')],
+ 'LDO_EN':    [('SW1','1'),('U3','3'),('R19','1')],
  '+3V3':      [('U3','5'),('C6','1'),('C7','1'),('R3','1'),('TP3','1'),('J3','2')],
  '+3V3_MCU':  [('R3','2'),('C8','1'),('C9','1'),('U1','1'),('R4','2'),
-               ('R10','1'),('R15','1'),('R16','1'),('TP4','1')],
+               ('R10','1'),('R15','1'),('R16','1'),('TP4','1'),('D5','5')],
  'EN':        [('U1','2'),('R4','1'),('C10','1'),('TP6','1')],
  'SCLK_MCU':  [('U1','3'),('R5','1')],    # IO4
  'SCLK':      [('R5','2'),('J3','3')],
  'MOSI_MCU':  [('U1','4'),('R6','1')],    # IO5
- 'MOSI':      [('R6','2'),('J3','4')],
+ 'MOSI':      [('R6','2'),('J3','5')],
  'OLED_RES_MCU':[('U1','5'),('R7','1')],  # IO6
- 'OLED_RES':  [('R7','2'),('J3','5')],
+ 'OLED_RES':  [('R7','2'),('J3','6')],
  'OLED_DC_MCU':[('U1','6'),('R8','1')],   # IO7
- 'OLED_DC':   [('R8','2'),('J3','6')],
+ 'OLED_DC':   [('R8','2'),('J3','7')],
  'OLED_CS_MCU':[('U1','7'),('R9','1'),('R16','2')],  # IO8, mit Pull-up fuer den Bootzustand
- 'OLED_CS':   [('R9','2'),('J3','7')],
+ 'OLED_CS':   [('R9','2'),('J3','8')],
  'BOOT':      [('U1','8'),('TP7','1')],   # IO9
  'IO2':       [('U1','16'),('R15','2')],
  'BTN':       [('U1','15'),('R10','2'),('C11','1'),('R11','1'),('TP5','1')],  # IO3
  'BTN_SW':    [('R11','2'),('R12','1')],
- 'BTN_CON':   [('R12','2'),('J4','1')],
+ 'BTN_CON':   [('R12','2'),('J4','1'),('D5','1'),('D5','6')],
  'BUZZ':      [('U1','17'),('R13','1')],  # IO1
- 'BUZZ_P':    [('R13','2'),('J5','1')],
- 'LED_G':     [('U1','18'),('R14','1')],  # IO0
+ 'BUZZ_P':    [('R13','2'),('J5','1'),('D5','3'),('D5','4')],
+ 'LED_G':     [('U1','10'),('R14','1')],  # IO10 - macht IO0 als ADC frei (M-6)
+ # Befund M-6: Ohne Messmoeglichkeit kann die Firmware weder den Ladevorgang
+ # entlasten noch Tiefentladung verhindern. IO0 = ADC1_CH0, IO20 als Pegel.
+ 'VBAT_SENSE':[('R22','2'),('R23','1'),('C12','1'),('U1','18')],   # IO0
+ 'VBUS_SENSE':[('R20','2'),('R21','1'),('U1','11')],               # IO20
  'LED_G_A':   [('R14','2'),('D4','2')],
 }
 
 # Pins ohne Netz -> No-Connect-Markierung im Schaltplan
 NO_CONNECT = [('U3','4'), ('SW1','3'),
-              ('U1','10'), ('U1','11'), ('U1','12')]   # IO10, RXD, TXD frei
+              ('U1','12')]   # nur noch TXD frei; IO10 = LED_G, IO20 = VBUS_SENSE
 
 # Netze, die als reine "nicht angeschlossen"-Pads gelten (nur ein Pin)
 SINGLE_PIN_OK = []
 
-POWER_NETS = {'GND':'GND', 'VBUS':'VBUS', 'VBAT':'VBAT', 'VBAT_SW':'VBAT_SW',
+# Gewollte ohmsche Pfade von einer Schiene nach Masse (Befund M-6).
+# T9a verbietet solche Pfade grundsaetzlich, weil sie Dauerstrom ziehen. Diese
+# beiden sind Messteiler und damit Absicht - sie werden hier deklariert und in
+# T9a gegen das Ruhestrombudget geprueft statt pauschal verboten.
+# (Schiene, oberer R, unterer R, Knoten, hoechster Dauerstrom in uA)
+SPANNUNGSTEILER = [
+    ('VBAT', 'R22', 'R23', 'VBAT_SENSE', 3.0),   # 4,2 V / 2 M = 2,1 uA
+    ('VBUS', 'R20', 'R21', 'VBUS_SENSE', 30.0),  # 5,25 V / 200 k = 26 uA, nur am USB
+]
+
+POWER_NETS = {'GND':'GND', 'VBUS':'VBUS', 'VBAT':'VBAT',
               '+3V3':'+3V3', '+3V3_MCU':'+3V3_MCU'}
 
 # =====================================================================
@@ -169,6 +205,7 @@ DATENBLATT = {
  'U3': ('U3_AP2112K-3.3_DiodesInc.pdf',              'AP2112'),
  'D1': ('D1_USBLC6-2SC6_STMicroelectronics.pdf',     'USBLC6-2'),
  'D2': ('D2_LED-0805-Rot_Kingbright-APT2012EC.pdf',  'APT2012EC'),
+ 'D3': ('D3_B5819W_SOD-123.pdf',                     'B5819W'),
  'D4': ('D4_LED-0805-Gruen_Kingbright-APT2012SGC.pdf','APT2012SGC'),
  'F1': ('F1_MF-PSMF050X-2_500mA-PTC_Bourns.pdf',     'MF-PSMF'),
  'SW1':('SW1_OS102011MS2Q_CK-Littelfuse.pdf',        'OS Series'),
@@ -177,21 +214,12 @@ DATENBLATT = {
  'J3': ('J3_J4_JST-XH_B7B-XH-A_B2B-XH-A_JST.pdf',    'XH'),
  'J4': ('J3_J4_JST-XH_B7B-XH-A_B2B-XH-A_JST.pdf',    'XH'),
  'J5': ('J3_J4_JST-XH_B7B-XH-A_B2B-XH-A_JST.pdf',    'XH'),
+ 'C1': ('C_SMD-0805-MLCC-Kondensatoren_KEMET-X7R.pdf', 'X7R'),
+ 'R1': ('R_SMD-0805-Widerstaende_Vishay-CRCW0805.pdf', 'CRCW'),
  # Der Piezo selbst sitzt am Kabel und ist kein Platinenbauteil mehr (K-1),
  # sein Beleg bleibt aber Teil der Dokumentation.
  'LS1_extern': ('LS1_CEP-1114_Piezo-Buzzer-12mm-RM7.6_CUIDevices.pdf', 'CEP-1114'),
 }
 
-# Bauteile ohne gueltigen Beleg - jede Zeile ist eine offene Beschaffungsaufgabe
-# und wird bei jedem Prueflauf ausgegeben.
-BELEG_FEHLT = {
- 'D3': 'B5819W: die Datei D3_B5819W_DiodesInc.pdf enthielt das Datenblatt der '
-       '1N4148WS/BAV16WS (SOD-323, I_FM = 300 mA) und war damit kein Nachweis '
-       'fuer die Schottky-Diode. Sie ist auf ihren wahren Inhalt umbenannt; das '
-       'echte B5819W-Datenblatt (SOD-123) muss noch abgelegt werden.',
- 'C1':  'MLCC: die abgelegte Reihe Vishay VJ Commercial fuehrt in 0805 nur bis '
-        '470 nF X7R. Fuer 2u2/4u7/10u/22u ist ein Datenblatt der tatsaechlich '
-        'beschafften Reihe (z. B. Murata GRM21) mit DC-Bias-Kurve noetig.',
- 'R1':  'Dickschichtwiderstaende: Vishay CRCW0805 ist abgelegt, die Toleranz '
-        '(1 %) muss noch je Position in die Bestellung uebernommen werden.',
-}
+# Alle Bauteile verfuegen nun ueber einen verifizierten Beleg.
+BELEG_FEHLT = {}

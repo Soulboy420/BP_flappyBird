@@ -1,8 +1,287 @@
 ** Drc report for flappy-esp32c3.kicad_pcb **
-** Created on 2026-09-03T17:38:48 **
-** Report includes: Errors **
+** Created on 2026-09-03T20:20:08 **
+** Report includes: Errors, Warnings, Exclusions **
 
-** Found 0 DRC violations **
+** Found 89 DRC violations **
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche F.Cu' [GND] on F.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche B.Cu' [GND] on B.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche B.Cu' [GND] on B.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche B.Cu' [GND] on B.Cu, priority 0
+[isolated_copper]: Isolated copper fill
+    Local override; warning
+    @(30.4000 mm, 30.4000 mm): Zone 'Masseflaeche B.Cu' [GND] on B.Cu, priority 0
+[lib_footprint_mismatch]: Footprint 'C_0805_2012Metric_Pad1.18x1.45mm_HandSolder' does not match copy in library 'Capacitor_SMD'
+    Local override; warning
+    @(62.0000 mm, 38.0000 mm): Footprint C1
+[lib_footprint_mismatch]: Footprint 'C_0805_2012Metric_Pad1.18x1.45mm_HandSolder' does not match copy in library 'Capacitor_SMD'
+    Local override; warning
+    @(58.0000 mm, 73.0000 mm): Footprint C11
+[lib_footprint_mismatch]: Footprint 'C_0805_2012Metric_Pad1.18x1.45mm_HandSolder' does not match copy in library 'Capacitor_SMD'
+    Local override; warning
+    @(66.0000 mm, 38.0000 mm): Footprint C2
+[lib_footprint_mismatch]: Footprint 'C_0805_2012Metric_Pad1.18x1.45mm_HandSolder' does not match copy in library 'Capacitor_SMD'
+    Local override; warning
+    @(82.0000 mm, 44.0000 mm): Footprint C3
+[lib_footprint_mismatch]: Footprint 'C_0805_2012Metric_Pad1.18x1.45mm_HandSolder' does not match copy in library 'Capacitor_SMD'
+    Local override; warning
+    @(86.0000 mm, 44.0000 mm): Footprint C4
+[lib_footprint_mismatch]: Footprint 'C_0805_2012Metric_Pad1.18x1.45mm_HandSolder' does not match copy in library 'Capacitor_SMD'
+    Local override; warning
+    @(109.5000 mm, 80.5000 mm): Footprint C6
+[lib_footprint_mismatch]: Footprint 'C_0805_2012Metric_Pad1.18x1.45mm_HandSolder' does not match copy in library 'Capacitor_SMD'
+    Local override; warning
+    @(109.5000 mm, 85.0000 mm): Footprint C7
+[lib_footprint_mismatch]: Footprint 'C_0805_2012Metric_Pad1.18x1.45mm_HandSolder' does not match copy in library 'Capacitor_SMD'
+    Local override; warning
+    @(91.0000 mm, 81.6000 mm): Footprint C8
+[lib_footprint_mismatch]: Footprint 'C_0805_2012Metric_Pad1.18x1.45mm_HandSolder' does not match copy in library 'Capacitor_SMD'
+    Local override; warning
+    @(83.0000 mm, 81.6000 mm): Footprint C9
+[lib_footprint_mismatch]: Footprint 'JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical' does not match copy in library 'Connector_JST'
+    Local override; warning
+    @(114.0000 mm, 86.0000 mm): Footprint J3
+[lib_footprint_mismatch]: Footprint 'R_0805_2012Metric_Pad1.20x1.40mm_HandSolder' does not match copy in library 'Resistor_SMD'
+    Local override; warning
+    @(96.0000 mm, 82.6000 mm): Footprint R3
+[lib_footprint_mismatch]: Footprint 'ESP32-C3-WROOM-02_HandSolder' does not match copy in library 'flappy'
+    Local override; warning
+    @(71.0000 mm, 76.9000 mm): Footprint U1
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(54.7729 mm, 53.2650 mm): Segment of R21 on F.Silkscreen
+    @(51.5000 mm, 53.4000 mm): PCB text 'R17/R18 nur bestuecken, wenn Breakout ohne 5k1-Rd' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(107.7729 mm, 56.2650 mm): Segment of R19 on F.Silkscreen
+    @(58.0000 mm, 57.0000 mm): PCB text 'J3 Display: 1 GND 2 VCC 3 SCLK 4 GND 5 MOSI 6 RES 7 DC 8 CS' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(75.7387 mm, 63.7350 mm): Segment of C12 on F.Silkscreen
+    @(58.0000 mm, 63.5000 mm): PCB text 'J5 Piezo:  1 = +,  2 = -   (CEP-1114 sitzt am Kabel)' on F.Silkscreen
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(51.5000 mm, 53.4000 mm): PCB text 'R17/R18 nur bestuecken, wenn Breakout ohne 5k1-Rd' on F.Silkscreen
+    @(54.0000 mm, 54.0000 mm): Pad 1 [VBUS_SENSE] of R21 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(51.5000 mm, 53.4000 mm): PCB text 'R17/R18 nur bestuecken, wenn Breakout ohne 5k1-Rd' on F.Silkscreen
+    @(56.0000 mm, 54.0000 mm): Pad 2 [GND] of R21 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(58.0000 mm, 57.0000 mm): PCB text 'J3 Display: 1 GND 2 VCC 3 SCLK 4 GND 5 MOSI 6 RES 7 DC 8 CS' on F.Silkscreen
+    @(107.0000 mm, 57.0000 mm): Pad 1 [LDO_EN] of R19 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(58.0000 mm, 57.0000 mm): PCB text 'J3 Display: 1 GND 2 VCC 3 SCLK 4 GND 5 MOSI 6 RES 7 DC 8 CS' on F.Silkscreen
+    @(109.0000 mm, 57.0000 mm): Pad 2 [GND] of R19 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(58.0000 mm, 63.5000 mm): PCB text 'J5 Piezo:  1 = +,  2 = -   (CEP-1114 sitzt am Kabel)' on F.Silkscreen
+    @(65.0000 mm, 63.0000 mm): Pad 1 [VBAT] of R22 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(58.0000 mm, 63.5000 mm): PCB text 'J5 Piezo:  1 = +,  2 = -   (CEP-1114 sitzt am Kabel)' on F.Silkscreen
+    @(70.0000 mm, 63.0000 mm): Pad 1 [VBAT_SENSE] of R23 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(58.0000 mm, 63.5000 mm): PCB text 'J5 Piezo:  1 = +,  2 = -   (CEP-1114 sitzt am Kabel)' on F.Silkscreen
+    @(72.0000 mm, 63.0000 mm): Pad 2 [GND] of R23 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(58.0000 mm, 63.5000 mm): PCB text 'J5 Piezo:  1 = +,  2 = -   (CEP-1114 sitzt am Kabel)' on F.Silkscreen
+    @(74.9625 mm, 63.0000 mm): Pad 1 [VBAT_SENSE] of C12 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(58.0000 mm, 63.5000 mm): PCB text 'J5 Piezo:  1 = +,  2 = -   (CEP-1114 sitzt am Kabel)' on F.Silkscreen
+    @(77.0375 mm, 63.0000 mm): Pad 2 [GND] of C12 on F.Cu
 
 ** Found 0 unconnected pads **
 

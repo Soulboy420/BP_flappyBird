@@ -36,7 +36,6 @@ def clone(name, descr):
 out = ['kicad_symbol_lib', ['version', '20241209'], ['generator', Str('flappy-gen')],
        ['generator_version', Str('9.0')]]
 out.append(clone('VBAT', 'Versorgungssymbol: Akkuspannung (unmittelbar an der Zelle)'))
-out.append(clone('VBAT_SW', 'Versorgungssymbol: Akkuspannung hinter dem Ein/Aus-Schalter'))
 out.append(clone('+3V3_MCU', 'Versorgungssymbol: 3,3 V hinter der 0-Ohm-Trennstelle (Modulversorgung)'))
 
 p = os.path.join(os.path.dirname(__file__), '..', 'lib', 'flappy.kicad_sym')

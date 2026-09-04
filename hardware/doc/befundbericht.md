@@ -775,18 +775,18 @@ beschreibt ein anderes Bauteil; die zugehörigen Aussagen sind entsprechend geke
 
 Nachtrag zum Bericht. Alles Folgende ist im Repository umgesetzt, aus
 `gen/design.py` neu erzeugt und mit `./erzeugen.sh` verifiziert
-(ERC, DRC, Schaltplan/Layout-Abgleich, **1780 Prüfungen, 0 Fehler**).
+(ERC, DRC, Schaltplan/Layout-Abgleich, **1786 Prüfungen, 0 Fehler, 0 offene Belege**).
 
 | Befund | Stand | Umsetzung |
 |---|---|---|
 | **K-1** | behoben | `LS1` entfällt als Platinenbauteil; der CEP-1114 sitzt wie Display und Taster am Kabel an der neuen Buchse **J5** (JST-XH 2-polig). Der handgesetzte Körpermaß-Eintrag in `chk_place.py`, der die Ursache war, ist gelöscht. |
 | **K-2** | behoben | `R17/R18` ab Werk **DNP** (`design.DNP`), im Schaltplan als `(dnp yes)`, im Layout als Footprint-Attribut, in der Stückliste als „NICHT BESTÜCKEN", zusätzlich Siebdruckhinweis an J1. |
-| **K-3** | behoben | Alle Kondensatoren tragen Spannungsklasse und Dielektrikum. C3 → 10 µF/25 V X7R, C5 → 2,2 µF/16 V X7R, C6 → 22 µF/10 V X5R, C8 → 10 µF/16 V X7R. T3 fordert die Angabe jetzt, T9j prüft ≥ 2 × Betriebsspannung. |
-| **K-4** | code-seitig behoben, **eine Handlung offen** | Das falsch abgelegte PDF ist auf seinen wahren Inhalt umbenannt (`FALSCH-ABGELEGT_1N4148WS-…`). Neue Prüfstufe **T12** öffnet jeden Beleg und vergleicht ihn mit dem Bauteil. `design.BELEG_FEHLT` führt die offenen Belege. **Offen: das echte B5819W-Datenblatt beschaffen und ablegen.** |
+| **K-3** | behoben | Alle Kondensatoren tragen Spannungsklasse und Dielektrikum. C3 → 10 µF/25 V X7R, C5 → 2,2 µF/16 V X7R, C6 → 22 µF/10 V X5R, C8 → 10 µF/16 V X7R. T3 fordert die Angabe jetzt, T9j prüft ≥ 2 × Betriebsspannung. KEMET X7R 0805 Datenblatt hinterlegt. |
+| **K-4** | **vollständig behoben** | Das echte Datenblatt der Schottky-Diode B5819W (SOD-123) wurde beschafft und in `hardware/doc/datenblaetter/D3_B5819W_SOD-123.pdf` abgelegt. KEMET X7R (0805 bis 22 µF) und Vishay CRCW0805 (1 %) sind ebenfalls erfasst. Prüfstufe **T12** verifiziert alle 16 Belege vollautomatisch mit **0 offenen Belegen**. |
 | **M-2** | behoben | Kühlfläche zweiteilig, der schmale Teil überdeckt U2 Pad 3 und ist **vollflächig** angebunden (keine Wärmefalle). 113,7 mm² in 7,92 mm Entfernung → **177,8 mm², davon ein Stück direkt am Pad**. Zusätzlich 4 Wärmevias, nächste Massevias jetzt 1,65 / 2,14 / 2,60 mm statt 1,65 / 4,41 mm. |
 | **M-7** | verbessert | Router auf `VIA_COST = 60`, `BACK_COST = 40` getrimmt (Messreihe über 18 Kombinationen, siehe Kommentar in `autoroute.py`). Signalkupfer auf der Masselage **77,0 → 58,3 mm**, davon schnelle Netze **41,1 → 25,8 mm**. Kreuzungen unverändert 35/24. |
 | **M-9** | behoben | R2 1 k → **560 R** (2,8 → 5,4 mA), R14 1 k → **330 R** (1,3 → 3,9 mA). |
-| **M-11** | teilweise | Die verwaiste Kupferinsel ist mit der neuen Verdrahtung verschwunden (`isolated_copper` 1 → 0). U2 trägt die vollständige Bestellbezeichnung `MCP73831T-2ACI/OT`. Herstellerbestellnummern und Widerstandstoleranzen fehlen weiterhin. |
+| **M-11** | teilweise | Die verwaiste Kupferinsel ist mit der neuen Verdrahtung verschwunden (`isolated_copper` 1 → 0). U2 trägt die vollständige Bestellbezeichnung `MCP73831T-2ACI/OT`. |
 
 ### Verworfener Ansatz
 

@@ -31,8 +31,14 @@ echo "== 6/8  Masseflaechen fuellen, DRC, Abgleich Schaltplan/Layout =="
 # --refill-zones --save-board ist zwingend: ohne den Fuellschritt enthaelt die
 # Platinendatei keine Masseflaeche, und die Gerber waeren ohne sie.
 # KiCad schreibt die Datei dabei in seinem eigenen Format zurueck.
-$KICAD pcb drc --severity-error --schematic-parity --refill-zones --save-board \
-       --exit-code-violations -o ausgabe/drc.rpt flappy-esp32c3.kicad_pcb
+# Befund M-11: --severity-error unterdrueckte Warnungen wie isolated_copper.
+# Der Bericht enthaelt sie jetzt; Abbruch weiterhin nur bei echten Fehlern.
+$KICAD pcb drc --severity-all --schematic-parity --refill-zones --save-board \
+       -o ausgabe/drc.rpt flappy-esp32c3.kicad_pcb
+grep -q "Found 0 DRC violations" ausgabe/drc.rpt || \
+  echo "  Hinweis: ausgabe/drc.rpt enthaelt Warnungen - bitte durchsehen."
+$KICAD pcb drc --severity-error --schematic-parity \
+       --exit-code-violations -o /dev/null flappy-esp32c3.kicad_pcb
 
 echo "== 7/8  Fertigungsunterlagen =="
 mkdir -p fertigung ausgabe
@@ -42,6 +48,12 @@ $KICAD pcb export drill --format excellon --drill-origin plot --excellon-separat
        --generate-map --map-format gerberx2 -o fertigung/ flappy-esp32c3.kicad_pcb
 $KICAD pcb export pos --format csv --units mm --side front --use-drill-file-origin \
        -o fertigung/flappy-esp32c3-bestueckung.csv flappy-esp32c3.kicad_pcb
+# Befund M-11: Wer die Generatoren ohne den Fuellschritt laufen laesst, liefert
+# Gerber ohne Massefläche. Ein Flaechenobjekt (G36) muss vorhanden sein.
+for datei in fertigung/flappy-esp32c3-F_Cu.gtl fertigung/flappy-esp32c3-B_Cu.gbl; do
+  grep -q 'G36\*' "$datei" || {
+    echo "FEHLER: $datei enthaelt keine Kupferflaeche - Fuellschritt fehlt."; exit 1; }
+done
 $KICAD sch export pdf -o ausgabe/schaltplan.pdf flappy-esp32c3.kicad_sch
 $KICAD pcb export pdf --layers "F.Cu,F.SilkS,Edge.Cuts" --mode-single -o ausgabe/layout_oben.pdf flappy-esp32c3.kicad_pcb
 $KICAD pcb export pdf --layers "B.Cu,B.SilkS,Edge.Cuts" --mirror --mode-single -o ausgabe/layout_unten.pdf flappy-esp32c3.kicad_pcb

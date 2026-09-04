@@ -32,7 +32,7 @@ for net, pins in design.NETS.items():
 PADNET.update({k: v for k, v in UNCONNECTED.items()})
 
 def netclass(n):
-    if n in ('VBUS', 'VBAT', 'VBAT_SW', 'BATT_P', '+3V3', '+3V3_MCU'):
+    if n in ('VBUS', 'VBAT', 'BATT_P', '+3V3', '+3V3_MCU'):
         return 'Leistung'
     return 'USB' if n.startswith('USB_D') else 'Default'
 
@@ -257,10 +257,15 @@ def zone(layer, uid, prio, poly, net='GND', voll=False):
             ['min_thickness', '0.25'], ['filled_areas_thickness', 'no'],
             ['fill', 'yes', ['thermal_gap', '0.4'], ['thermal_bridge_width', '0.6'],
              ['smoothing', 'fillet'], ['radius', '0.5'],
+             # KiCad: 0 = ALWAYS (Inseln ohne Anbindung entfernen),
+             # 1 = NEVER, 2 = AREA. 0 ist hier richtig - ein Wechsel auf 1
+             # erzeugte 65 isolated_copper-Warnungen statt keiner.
              ['island_removal_mode', '0']],
             ['polygon', pts]]
 
-margin = 0.3
+# Befund M-11: 0,3 mm ist fuer gefraeste Aussenkanten mit +-0,2 mm Toleranz
+# knapp; 0,4 mm ist der ueblich empfohlene Wert.
+margin = 0.4
 poly = [A(margin, margin), A(W - margin, margin), A(W - margin, H - margin), A(margin, H - margin)]
 pcb.append(zone('F.Cu', U('zoneF'), 0, poly))
 pcb.append(zone('B.Cu', U('zoneB'), 0, poly))

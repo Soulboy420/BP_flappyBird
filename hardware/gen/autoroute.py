@@ -39,10 +39,10 @@ WIDTH = {'Leistung': 0.6, 'USB': 0.3, 'Default': 0.25}
 VIA_COST = 60.0
 BACK_COST = 40.0
 
-WIDTH_NET = {'VBUS': 0.4, 'VBAT': 0.5, 'VBAT_SW': 0.5, '+3V3': 0.5, '+3V3_MCU': 0.5}
+WIDTH_NET = {'VBUS': 0.4, 'VBAT': 0.5, '+3V3': 0.5, '+3V3_MCU': 0.5}
 
 def cls(net):
-    if net in ('VBUS', 'VBAT', 'VBAT_SW', 'BATT_P', '+3V3', '+3V3_MCU'):
+    if net in ('VBUS', 'VBAT', 'BATT_P', '+3V3', '+3V3_MCU'):
         return 'Leistung'
     return 'USB' if net.startswith('USB_D') else 'Default'
 
@@ -111,12 +111,13 @@ def pad_stummel(pad, ziel, breite=0.4):
 
 ORDER = ['VBAT', 'BATT_P', 'VBUS', 'USB_DP', 'USB_DM', 'USB_DP_CON', 'USB_DM_CON',
          'USB_CC1', 'USB_CC2',
-         'VBAT_SW', '+3V3',
+         '+3V3',
          'SCLK_MCU', 'MOSI_MCU', 'OLED_RES_MCU', 'OLED_DC_MCU', 'OLED_CS_MCU',
          'SCLK', 'MOSI', 'OLED_RES', 'OLED_DC', 'OLED_CS',
          'EN', 'BOOT', 'IO2', 'BTN', 'BTN_SW', 'BTN_CON',
          'BUZZ', 'BUZZ_P', 'LED_G', 'LED_G_A',
-         'PROG', 'CHG_A', 'LED_CHG', '+3V3_MCU']
+         'PROG', 'CHG_A', 'LED_CHG', '+3V3_MCU',
+         'LDO_EN', 'VBAT_SENSE', 'VBUS_SENSE']
 assert set(ORDER) == set(design.NETS) - {'GND'}, set(design.NETS) - set(ORDER) - {'GND'}
 
 def verlege(reihenfolge):

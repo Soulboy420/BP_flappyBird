@@ -27,7 +27,14 @@ PLACE = {
     'J2':   ( 76.00,   8.00,   0),
     'D3':   ( 68.00,  14.00,   0),
     'SW1':  ( 72.00,  22.00,   0),
+    'R19':  ( 78.00,  27.00,   0),
     'J5':   ( 12.00,  30.00,   0),
+    'D5':   ( 22.00,  36.00,   0),
+    'R20':  ( 40.00,   2.00,   0),
+    'R21':  ( 45.00,   2.00,   0),
+    'R22':  ( 36.00,  33.00,   0),
+    'R23':  ( 41.00,  33.00,   0),
+    'C12':  ( 46.00,  33.00,   0),
     'R13':  ( 26.00,  30.00,   0),
     'D4':   ( 10.00,  40.00,   0),
     'R14':  ( 16.00,  40.00,   0),
@@ -106,15 +113,15 @@ TEXTS = [
     (15.3, 18.16, 'CC1',  0.8, 'F.SilkS', 0),
     (15.3, 20.70, 'CC2',  0.8, 'F.SilkS', 0),
     # Vorderseite: Legende im bauteilfreien Mittelfeld
-    (28.0, 27.0, 'J3 Display:  1 GND  2 VCC  3 SCLK  4 MOSI  5 RES  6 DC  7 CS', 1.1, 'F.SilkS', 0),
-    (28.0, 33.5, 'J5 Piezo:  1 = +,  2 = -   (CEP-1114 sitzt am Kabel)', 1.1, 'F.SilkS', 0),
+    (28.0, 25.0, 'J3: 1 GND  2 VCC  3 SCLK  4 GND  5 MOSI  6 RES  7 DC  8 CS', 1.0, 'F.SilkS', 0),
+    (28.0, 27.5, 'J5 Piezo:  1 = +   2 = -   (CEP-1114 am Kabel)', 1.0, 'F.SilkS', 0),
     (28.0, 30.5, 'Laden nur im ausgeschalteten Zustand (kein Lastpfad)', 1.1, 'F.SilkS', 0),
     (74.6,  4.6, '+',    0.9, 'F.SilkS', 0),
     (79.0,  4.6, '-',    0.9, 'F.SilkS', 0),
     (1.5,  48.6, 'TASTER', 0.8, 'F.SilkS', 0),
     (1.5,  25.6, 'PIEZO', 0.8, 'F.SilkS', 0),
     # Befund K-2: die Bestueckungsvariante muss am Stecker ablesbar sein.
-    (21.5,  23.4, 'R17/R18 nur bestuecken, wenn Breakout ohne 5k1-Rd', 0.9, 'F.SilkS', 0),
+    (8.0,   1.8, 'R17/R18 = DNP: nur bestuecken, wenn Breakout ohne 5k1-Rd', 0.9, 'F.SilkS', 0),
 ]
 
 try:

@@ -221,7 +221,7 @@ def t3_entwurfsdaten():
 # =====================================================================
 def t4_bibliotheken():
     print('T4  erzeugte Bibliotheken')
-    for name in ('VBAT', 'VBAT_SW', '+3V3_MCU'):
+    for name in ('VBAT', '+3V3_MCU'):
         try:
             pins = libs.symbol_pins('flappy:' + name)
         except Exception as e:
@@ -380,7 +380,7 @@ def _seg_abstand(a1, a2, b1, b2):
 def t6_abstaende():
     print('T6  Abstaende auf der Platine (unabhaengig von KiCad)')
     import routes, layout_pcb as P
-    KLASSE = {n: (0.6 if n in ('VBUS','VBAT','VBAT_SW','BATT_P','+3V3','+3V3_MCU') else 0.3)
+    KLASSE = {n: (0.6 if n in ('VBUS','VBAT','BATT_P','+3V3','+3V3_MCU') else 0.3)
               for n in design.NETS}
     MIN = 0.2                                   # kleinster Abstand laut Entwurfsregeln
     # Kupfer einsammeln: (netz, lage, art, geometrie, halbe_breite)
@@ -736,10 +736,26 @@ def t9_topologie():
 
     # 9a  kein rein ohmscher Pfad von einer Versorgung nach Masse
     #     (der waere ein Dauerstrom und wuerde NF-04 sprengen)
-    for rail in ('VBUS', 'VBAT', 'VBAT_SW', '+3V3', '+3V3_MCU'):
-        gefunden = list(pfade(rail, 'GND'))
-        pruefe(not gefunden, 'kein Dauerstrompfad %s -> GND' % rail,
+    teiler = {(t[1], t[2]) for t in getattr(design, 'SPANNUNGSTEILER', [])}
+    def ist_teiler(weg):
+        return frozenset(r for r, _ in weg) in {frozenset(t) for t in teiler}
+    for rail in ('VBUS', 'VBAT', '+3V3', '+3V3_MCU'):
+        gefunden = [w for w in pfade(rail, 'GND') if not ist_teiler(w)]
+        pruefe(not gefunden, 'kein unbeabsichtigter Dauerstrompfad %s -> GND' % rail,
                str([[r for r, _ in p] for p in gefunden]))
+
+    # 9a2  Messteiler: Strom gegen die deklarierte Obergrenze (Befund M-6)
+    U_SCHIENE = {'VBAT': 4.2, 'VBUS': 5.25}
+    for schiene, ro, ru, knoten, max_ua in getattr(design, 'SPANNUNGSTEILER', []):
+        w_o = _wert(design.COMPONENTS[ro][1])
+        w_u = _wert(design.COMPONENTS[ru][1])
+        i_ua = U_SCHIENE[schiene] / (w_o + w_u) * 1e6
+        pruefe(i_ua <= max_ua, 'Teilerstrom %s unter %.0f uA' % (knoten, max_ua),
+               '%.1f uA ueber %s+%s' % (i_ua, ro, ru))
+        u_knoten = U_SCHIENE[schiene] * w_u / (w_o + w_u)
+        pruefe(u_knoten <= 3.3, 'Teilerknoten %s bleibt unter 3,3 V' % knoten,
+               '%.2f V' % u_knoten)
+        print('     %-12s %.2f V am ADC, %.1f uA Dauerlast' % (knoten, u_knoten, i_ua))
 
     # 9b  +3V3 und +3V3_MCU haengen ausschliesslich ueber R3 zusammen
     wege = list(pfade('+3V3', '+3V3_MCU'))
@@ -801,7 +817,7 @@ def t9_topologie():
     #     Klasse-II-Keramik verliert unter DC-Bias erheblich an Kapazitaet. Die
     #     Faustregel >= 2 x Betriebsspannung haelt den Verlust im Rahmen und ist
     #     hier maschinell nachpruefbar, weil die Spannungsklasse im Wert steht.
-    RAIL = {'VBUS': 5.25, 'VBAT': 4.2, 'VBAT_SW': 4.2,
+    RAIL = {'VBUS': 5.25, 'VBAT': 4.2,
             '+3V3': 3.3, '+3V3_MCU': 3.3, 'EN': 3.3, 'BTN': 3.3}
     import re as _re
     for ref, (symbol, wert, *_r) in sorted(design.COMPONENTS.items()):
@@ -855,7 +871,7 @@ def t9_topologie():
 
     # 9l  Abblockung: jeder Versorgungspin eines ICs hat einen Kondensator im Netz
     for ref, pin, netz in (('U1', '1', '+3V3_MCU'), ('U2', '4', 'VBUS'),
-                           ('U3', '1', 'VBAT_SW'), ('U3', '5', '+3V3'),
+                           ('U3', '1', 'VBAT'), ('U3', '5', '+3V3'),
                            ('D1', '5', 'VBUS')):
         kond = [r for r, p in design.NETS[netz]
                 if design.COMPONENTS[r][0] == 'Device:C']
@@ -906,7 +922,7 @@ def t10_kritische_abstaende():
         return 0.048 * dT ** 0.44 * A_mil2 ** 0.725
 
     import routes
-    strom = {'VBUS': 0.25, 'VBAT': 0.35, 'BATT_P': 0.35, 'VBAT_SW': 0.35,
+    strom = {'VBUS': 0.25, 'VBAT': 0.35, 'BATT_P': 0.35,
              '+3V3': 0.35, '+3V3_MCU': 0.35}
     for netz, i_max in sorted(strom.items()):
         b = min(t[2] for t in routes.TRACKS if t[0] == netz)

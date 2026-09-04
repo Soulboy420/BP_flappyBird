@@ -19,7 +19,7 @@ def U(seed):
 ROOT_UUID = U('sheet/root' + SUFFIX)
 
 POWERSYM = {'GND': 'power:GND', 'VBUS': 'power:VBUS', '+3V3': 'power:+3V3',
-            'VBAT': 'flappy:VBAT', 'VBAT_SW': 'flappy:VBAT_SW',
+            'VBAT': 'flappy:VBAT',
             '+3V3_MCU': 'flappy:+3V3_MCU'}
 DIRVEC = {'up': (0, -1), 'down': (0, 1), 'left': (-1, 0), 'right': (1, 0)}
 # Symbolgrafik zeigt in Richtung X  ->  noetige Drehung
@@ -275,8 +275,8 @@ LBL_PIN = {
     'BATT_P': ('J2', '1'), 'EN': ('C10', '1'), 'BOOT': ('TP7', '1'),
     'IO2': ('R15', '2'), 'BTN_SW': ('R12', '1'), 'BTN_CON': ('J4', '1'),
     'BUZZ_P': ('J5', '1'), 'LED_G_A': ('D4', '2'),
-    'SCLK': ('J3', '3'), 'MOSI': ('J3', '4'), 'OLED_RES': ('J3', '5'),
-    'OLED_DC': ('J3', '6'), 'OLED_CS': ('J3', '7'),
+    'SCLK': ('J3', '3'), 'MOSI': ('J3', '5'), 'OLED_RES': ('J3', '6'),
+    'OLED_DC': ('J3', '7'), 'OLED_CS': ('J3', '8'),
 }
 LBL_AT = getattr(L, 'LBL_AT', {})
 auto = set() if getattr(L, 'NO_AUTO_LABELS', False) else set(design.NETS) - labeled
