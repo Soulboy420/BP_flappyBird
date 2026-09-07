@@ -1,0 +1,68 @@
+{
+  "schaltplan.pdf": {
+    "pages": 7,
+    "bytes": 373104,
+    "page_mm": [
+      [
+        420.0,
+        297.0
+      ],
+      [
+        420.0,
+        297.0
+      ],
+      [
+        420.0,
+        297.0
+      ],
+      [
+        420.0,
+        297.0
+      ],
+      [
+        420.0,
+        297.0
+      ],
+      [
+        420.0,
+        297.0
+      ],
+      [
+        420.0,
+        297.0
+      ]
+    ]
+  },
+  "pcb-oberseite.pdf": {
+    "pages": 1,
+    "bytes": 273826,
+    "page_mm": [
+      [
+        297.0,
+        210.0
+      ]
+    ]
+  },
+  "pcb-unterseite.pdf": {
+    "pages": 1,
+    "bytes": 201590,
+    "page_mm": [
+      [
+        297.0,
+        210.0
+      ]
+    ]
+  },
+  "bestueckungsplan.pdf": {
+    "pages": 1,
+    "bytes": 198326,
+    "page_mm": [
+      [
+        297.0,
+        210.0
+      ]
+    ]
+  },
+  "visual_review": "All seven schematic pages and all three PCB plots rendered and inspected; final assembly plot checked after removing duplicate references. All four PDFs are vector KiCad exports.",
+  "3d_review": "Native top perspective checked; all fitted package bodies shown, generic U2 and simplified U3 noted in documentation. STEP includes U3."
+}

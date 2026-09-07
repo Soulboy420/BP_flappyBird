@@ -1,0 +1,112 @@
+Referenz;Wert;Hersteller;Herstellerteilenummer;Gehaeuse;Footprint;DNP;Anmerkung
+U1;ESP32-C3-WROOM-02-N4;Espressif;ESP32-C3-WROOM-02-N4;18x20mm module;RevB:RF_Module__ESP32-C3-WROOM-02;NO;
+U2;BQ24074RGTR;Texas Instruments;BQ24074RGTR;VQFN-16 3x3mm EP1.6;RevB:Package_DFN_QFN__VQFN-16-1EP_3x3mm_P0.5mm_EP1.6x1.6mm;NO;"Local reflow mandatory; solder exposed pad; NTC required"
+U3;XC6220B331PR-G;Torex;XC6220B331PR-G;SOT-89-5;RevB:Package_TO_SOT_SMD__SOT-89-5;NO;
+U4;TPS22919DCKR;Texas Instruments;TPS22919DCKR;SC70-6;RevB:Package_TO_SOT_SMD__SOT-363_SC-70-6;NO;
+J1;USB4105-GF-A;GCT;USB4105-GF-A;USB-C 16 SMT + shell THT;RevB:Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal;NO;
+J2;BAT 1S protected;JST;B2B-PH-K-S(LF)(SN);PH 2mm THT;RevB:Connector_JST__JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical;NO;"Pin 1 POSITIVE; independently verify cable, protected 4.2V Li-ion pack only"
+J3;OLED 8 pin;JST;B8B-XH-A(LF)(SN);XH 2.5mm THT;RevB:Connector_JST__JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical;NO;"Board pin sequence is fixed; real OLED cable is a release gate"
+J4;BUTTON dry contact;JST;B2B-XH-A(LF)(SN);XH 2.5mm THT;RevB:Connector_JST__JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical;NO;
+J5;PASSIVE PIEZO;JST;B2B-XH-A(LF)(SN);XH 2.5mm THT;RevB:Connector_JST__JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical;NO;"Floating passive piezo only; no magnetic buzzer; two-wire isolated from chassis"
+J6;PACK NTC 10k;JST;B2B-PH-K-S(LF)(SN);PH 2mm THT;RevB:Connector_JST__JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical;NO;"External Semitec 103AT-2 attached to pack; open cable inhibits charging"
+SW1;RUN / OFF;C&K (Littelfuse);OS102011MS2QN1;SPDT 2mm THT;RevB:Button_Switch_THT__SW_Slide_SPDT_Straight_CK_OS102011MS2Q;NO;"Only enable current; verify exact switch drawing and cable-free mechanical fit"
+R1;5.1k;Panasonic;ERJ-6ENF5101V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R2;5.1k;Panasonic;ERJ-6ENF5101V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+F1;1A fast;Littelfuse;0466001.NRHF;1206;RevB:Fuse__Fuse_1206_3216Metric;NO;
+D1;SMBJ6.0A;Littelfuse;SMBJ6.0A;SMB;RevB:Diode_SMD__D_SMB;NO;
+C1;1u 25V X7R;TDK;C2012X7R1E105K125AB;0805;RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder;NO;
+C2;100n 50V X7R;TDK;C2012X7R1H104K085AA;0805;RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder;NO;
+D2;TPD2E2U06DCKR;Texas Instruments;TPD2E2U06DCKR;SC70-3;RevB:Package_TO_SOT_SMD__SOT-323_SC-70;NO;
+D3;TPD2E2U06DCKR;Texas Instruments;TPD2E2U06DCKR;SC70-3;RevB:Package_TO_SOT_SMD__SOT-323_SC-70;NO;
+D4;TPD2E2U06DCKR;Texas Instruments;TPD2E2U06DCKR;SC70-3;RevB:Package_TO_SOT_SMD__SOT-323_SC-70;NO;
+D5;TPD2E2U06DCKR;Texas Instruments;TPD2E2U06DCKR;SC70-3;RevB:Package_TO_SOT_SMD__SOT-323_SC-70;NO;
+D6;TPD2E2U06DCKR;Texas Instruments;TPD2E2U06DCKR;SC70-3;RevB:Package_TO_SOT_SMD__SOT-323_SC-70;NO;
+D7;TPD2E2U06DCKR;Texas Instruments;TPD2E2U06DCKR;SC70-3;RevB:Package_TO_SOT_SMD__SOT-323_SC-70;NO;
+D8;TPD2E2U06DCKR;Texas Instruments;TPD2E2U06DCKR;SC70-3;RevB:Package_TO_SOT_SMD__SOT-323_SC-70;NO;
+D9;TPD2E2U06DCKR;Texas Instruments;TPD2E2U06DCKR;SC70-3;RevB:Package_TO_SOT_SMD__SOT-323_SC-70;NO;
+R3;22;Panasonic;ERJ-6ENF22R0V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R4;22;Panasonic;ERJ-6ENF22R0V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+C17;18p 50V C0G;KEMET (Yageo);C0805C180J5GACTU;0805;RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder;YES;
+C18;18p 50V C0G;KEMET (Yageo);C0805C180J5GACTU;0805;RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder;YES;
+F2;1A fast;Littelfuse;0466001.NRHF;1206;RevB:Fuse__Fuse_1206_3216Metric;NO;
+Q1;DMP2035U-7;Diodes Incorporated;DMP2035U-7;SOT-23;RevB:Package_TO_SOT_SMD__SOT-23;NO;
+Q2;BSS84-7-F;Diodes Incorporated;BSS84-7-F;SOT-23;RevB:Package_TO_SOT_SMD__SOT-23;NO;
+R5;100k;Panasonic;ERJ-6ENF1003V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R6;1M;Panasonic;ERJ-6ENF1004V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;YES;"DNP: eliminates DC injection on reverse battery; connect battery before USB, then cycle USB if charge path stays off"
+C3;22u 16V X5R;TDK;C3216X5R1C226M160AB;1206;RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder;NO;"22u: effective capacitance qualification required; no substitution by nominal value only"
+C4;22u 16V X5R;TDK;C3216X5R1C226M160AB;1206;RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder;NO;"22u: effective capacitance qualification required; no substitution by nominal value only"
+C5;22u 16V X5R;TDK;C3216X5R1C226M160AB;1206;RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder;NO;"22u: effective capacitance qualification required; no substitution by nominal value only"
+C6;22u 16V X5R;TDK;C3216X5R1C226M160AB;1206;RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder;NO;"22u: effective capacitance qualification required; no substitution by nominal value only"
+C7;22u 16V X5R;TDK;C3216X5R1C226M160AB;1206;RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder;NO;"22u: effective capacitance qualification required; no substitution by nominal value only"
+C8;22u 16V X5R;TDK;C3216X5R1C226M160AB;1206;RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder;NO;"22u: effective capacitance qualification required; no substitution by nominal value only"
+C9;22u 16V X5R;TDK;C3216X5R1C226M160AB;1206;RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder;NO;"22u: effective capacitance qualification required; no substitution by nominal value only"
+C10;22u 16V X5R;TDK;C3216X5R1C226M160AB;1206;RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder;NO;"22u: effective capacitance qualification required; no substitution by nominal value only"
+R7;6.19k;Panasonic;ERJ-6ENF6191V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;"143.8mA nominal; 127.5..159.1mA with 1% resistor and KISET limits"
+R8;3.24k;Panasonic;ERJ-6ENF3241V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;"Required even in USB mode; programmable mode unused"
+R9;46.4k;Panasonic;ERJ-6ENF4642V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;6.19h nominal fast-charge safety timer
+R10;100k;Panasonic;ERJ-6ENF1003V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;Default charging DISABLED. Populate R39 only after battery/temperature release
+R11;100;Panasonic;ERJ-6ENF1000V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R12;10k;Panasonic;ERJ-6ENF1002V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;YES;BENCH ONLY / NO BATTERY: defeats pack temperature sensing
+R13;1M;Panasonic;ERJ-6ENF1004V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R14;0;Panasonic;ERJ-6GEY0R00V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;"Remove for total switched-system current measurement; pads accessible"
+R15;3.3k;Panasonic;ERJ-6ENF3301V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+D10;CHARGE red;Kingbright;APT2012EC;0805;RevB:LED_SMD__LED_0805_2012Metric;NO;
+C11;22u 16V X5R;TDK;C3216X5R1C226M160AB;1206;RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder;NO;"22u: effective capacitance qualification required; no substitution by nominal value only"
+C12;100n 50V X7R;TDK;C2012X7R1H104K085AA;0805;RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder;NO;
+R16;10k;Panasonic;ERJ-6ENF1002V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+C13;1u 25V X7R;TDK;C2012X7R1E105K125AB;0805;RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder;NO;
+R17;10k;Panasonic;ERJ-6ENF1002V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R18;10k;Panasonic;ERJ-6ENF1002V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R19;10k;Panasonic;ERJ-6ENF1002V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R20;3.3k;Panasonic;ERJ-6ENF3301V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+D11;RUN green active low;Kingbright;APT2012SGC;0805;RevB:LED_SMD__LED_0805_2012Metric;NO;
+R21;100k;Panasonic;ERJ-6ENF1003V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R22;100k;Panasonic;ERJ-6ENF1003V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;YES;"Omit: EN2 has internal pulldown; R38 high level checked against 10uA input current"
+R23;220;Panasonic;ERJ-6ENF2200V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R24;220;Panasonic;ERJ-6ENF2200V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R25;220;Panasonic;ERJ-6ENF2200V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R26;220;Panasonic;ERJ-6ENF2200V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+Q3;2N7002-7-F;Diodes Incorporated;2N7002-7-F;SOT-23;RevB:Package_TO_SOT_SMD__SOT-23;NO;
+R27;10k;Panasonic;ERJ-6ENF1002V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;"CS physical low when IO8 is high; firmware must invert CS"
+R28;100k;Panasonic;ERJ-6ENF1003V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R29;100;Panasonic;ERJ-6ENF1000V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+C14;1u 25V X7R;TDK;C2012X7R1E105K125AB;0805;RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder;NO;
+Q4;BSS84-7-F;Diodes Incorporated;BSS84-7-F;SOT-23;RevB:Package_TO_SOT_SMD__SOT-23;NO;
+Q5;2N7002-7-F;Diodes Incorporated;2N7002-7-F;SOT-23;RevB:Package_TO_SOT_SMD__SOT-23;NO;
+R30;1M;Panasonic;ERJ-6ENF1004V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R31;1M;Panasonic;ERJ-6ENF1004V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R32;330k;Panasonic;ERJ-6ENF3303V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+C16;100n 50V X7R;TDK;C2012X7R1H104K085AA;0805;RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder;NO;
+R33;100k;Panasonic;ERJ-6ENF1003V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R34;1k;Panasonic;ERJ-6ENF1001V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+C15;100n 50V X7R;TDK;C2012X7R1H104K085AA;0805;RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder;NO;
+Q6;DMN2056U-7;Diodes Incorporated;DMN2056U-7;SOT-23;RevB:Package_TO_SOT_SMD__SOT-23;NO;
+R35;100k;Panasonic;ERJ-6ENF1003V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R36;100;Panasonic;ERJ-6ENF1000V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+R37;1k;Panasonic;ERJ-6ENF1001V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;
+D12;BAV19W-7-F;Diodes Incorporated;BAV19W-7-F;SOD-123;RevB:Diode_SMD__D_SOD-123;NO;
+TP1;VBUS;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP2;VBAT;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP3;VSYS;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP4;3V3_REG;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP5;3V3;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP6;GND;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP7;RESET_N;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP8;BOOT_N;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP9;BAT_ADC;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP10;USB_GOOD_N;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP11;CHG_DISABLE;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP12;NTC;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP13;GND;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP14;GND;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP15;BUTTON;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+TP16;ISET;PCB fabrication;N/A - bare copper pad;PCB pad;RevB:TestPoint__TestPoint_Pad_D1.5mm;YES;"Bare copper test point; no assembly item"
+H1;M2;PCB fabrication;N/A - mounting hole;NPTH 2.2mm;RevB:MountingHole__MountingHole_2.2mm_M2;YES;"Do not populate; 5mm screw head keepout"
+H2;M2;PCB fabrication;N/A - mounting hole;NPTH 2.2mm;RevB:MountingHole__MountingHole_2.2mm_M2;YES;"Do not populate; 5mm screw head keepout"
+H3;M2;PCB fabrication;N/A - mounting hole;NPTH 2.2mm;RevB:MountingHole__MountingHole_2.2mm_M2;YES;"Do not populate; 5mm screw head keepout"
+H4;M2;PCB fabrication;N/A - mounting hole;NPTH 2.2mm;RevB:MountingHole__MountingHole_2.2mm_M2;YES;"Do not populate; 5mm screw head keepout"
+Q7;2N7002-7-F;Diodes Incorporated;2N7002-7-F;SOT-23;RevB:Package_TO_SOT_SMD__SOT-23;NO;
+R38;100k;Panasonic;ERJ-6ENF1003V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;NO;Q7 inversion: IO2 high=active, IO2 low=USB suspend after EN1 high
+R39;0;Panasonic;ERJ-6GEY0R00V;0805;RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder;YES;CHARGE ENABLE option: fit only with independently temperature-protected pack after release checklist
+U5;74LVC125AD,118;Nexperia;74LVC125AD,118;SOIC-14;RevB:Package_SO__SOIC-14_3.9x8.7mm_P1.27mm;NO;"Ioff isolation with OLED rail OFF; no boot backfeed through SPI inputs"
+C19;100n 50V X7R;TDK;C2012X7R1H104K085AA;0805;RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder;NO;

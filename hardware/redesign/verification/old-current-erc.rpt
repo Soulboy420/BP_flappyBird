@@ -1,0 +1,65 @@
+ERC report (2026-09-05T09:08:24, Encoding UTF8)
+Report includes: Errors, Warnings
+
+***** Sheet /
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(63.50 mm, 134.62 mm): Symbol #PWR57 [+3V3_MCU]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(110.49 mm, 200.66 mm): Symbol #PWR60 [+3V3_MCU]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(199.39 mm, 133.35 mm): Symbol #PWR59 [+3V3_MCU]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(219.71 mm, 99.06 mm): Symbol #PWR58 [+3V3_MCU]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(223.52 mm, 77.47 mm): Symbol #PWR56 [+3V3_MCU]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(236.22 mm, 60.96 mm): Symbol #PWR61 [+3V3_MCU]
+[footprint_link_issues]: The current configuration does not include the footprint library 'flappy'
+    ; warning
+    @(245.11 mm, 106.68 mm): Symbol U1 [ESP32-C3-WROOM-02]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(273.05 mm, 257.81 mm): Symbol #PWR67 [+3V3_MCU]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(303.53 mm, 180.34 mm): Symbol #PWR51 [VBAT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(322.58 mm, 228.60 mm): Symbol #PWR50 [VBAT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(342.90 mm, 228.60 mm): Symbol #PWR49 [VBAT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(346.71 mm, 173.99 mm): Symbol #PWR46 [VBAT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(355.60 mm, 176.53 mm): Symbol #PWR47 [VBAT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(378.46 mm, 110.49 mm): Symbol #PWR43 [VBAT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(387.35 mm, 173.99 mm): Symbol #PWR48 [VBAT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(392.43 mm, 95.25 mm): Symbol #PWR63 [VBAT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(392.43 mm, 114.30 mm): Symbol #PWR44 [VBAT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'flappy'
+    ; warning
+    @(403.86 mm, 114.30 mm): Symbol #PWR45 [VBAT]
+
+ ** ERC messages: 18  Errors 0  Warnings 18
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - Assigned footprint doesn't match footprint filters

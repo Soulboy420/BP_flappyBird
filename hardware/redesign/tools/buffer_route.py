@@ -1,0 +1,19 @@
+"""Complete residual nets on the saved board using 0.15mm pin escapes."""
+from pathlib import Path
+src=Path(__file__).with_name('route.py').read_text()
+exec(src.split('# Deliberately planned')[0].replace('+.18','+.1501').replace('(.3 if via','(.25 if via').replace('p.FromMM(.6)','p.FromMM(.5)').replace('p.FromMM(.3)','p.FromMM(.25)'))
+# Import only the path search definitions, not the main generation routine.
+search=src[src.index('moves=[(1,0,1)'):src.index("power={'VBUS'")]
+search=search.replace('pts=list(dict.fromkeys(targets));nodes=[]', '''for v0 in b.GetTracks():
+  if isinstance(v0,p.PCB_VIA) and v0.GetNetname()==net:
+   vi,vj=idx(*xy(v0.GetPosition()));vblock[vj,vi]=False
+ pts=list(dict.fromkeys(targets));nodes=[]''')
+exec(search)
+for t in b.GetTracks():
+ if isinstance(t,p.PCB_VIA):obsitems.append((t.GetNetname(),(0,1),'circle',(*xy(t.GetPosition()),mm(t.GetWidth(F))/2)))
+ else:obsitems.append((t.GetNetname(),(0 if t.GetLayer()==F else 1,),'seg',(*xy(t.GetStart()),*xy(t.GetEnd()),mm(t.GetWidth()))))
+
+for net in ['SCK_M','MOSI_M','RES_M','DC_M','SCK_BUF','MOSI_BUF','RES_BUF','DC_BUF','SCK','MOSI','OLED_RESET_N','OLED_DC','OLED_3V3']:
+ try:route_one(net,pads[net],.15);print('repaired',net,flush=True)
+ except Exception as e:print('FAILED',e,flush=True)
+ p.SaveBoard(str(PTH),b)

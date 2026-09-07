@@ -1,0 +1,6 @@
+./src/common/stdpbase.cpp(59): assert ""traits"" failed in Get(): create wxApp before calling this
+Traceback (most recent call last):
+  File "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/tools/local_reroute.py", line 17, in <module>
+    route_one('USB_GOOD_N',pads['USB_GOOD_N'],.15)
+  File "<string>", line 38, in route_one
+RuntimeError: no route USB_GOOD_N: (18.0, 15.0, (0,))

@@ -1,0 +1,6 @@
+./src/common/stdpbase.cpp(59): assert ""traits"" failed in Get(): create wxApp before calling this
+FAILED no route USB_500: (65.0, 19.0, (0,))
+FAILED no route CHG_N: (36.0625, 35.0, (0,))
+repaired LED_N
+repaired USB_SUSPEND
+repaired SUSPEND_N

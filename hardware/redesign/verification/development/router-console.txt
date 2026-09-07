@@ -1,0 +1,66 @@
+./src/common/stdpbase.cpp(59): assert ""traits"" failed in Get(): create wxApp before calling this
+1 52 USB_GOOD_N done 0.08
+2 52 USB_D+ done 0.01
+3 52 USB_D- done 0.02
+4 52 CC2 done 0.04
+5 52 CC1 done 0.15
+blocked pad USB_500: (22.75, 25.3375, (0,))
+6 52 USB_500 FAILED 0.01
+blocked pad USB_SUSPEND: (22.25, 25.3375, (0,))
+7 52 USB_SUSPEND FAILED 0.01
+blocked pad USB_CONN_D-: (81.62, 11.75, (0,))
+8 52 USB_CONN_D- FAILED 0.01
+blocked pad USB_CONN_D+: (81.62, 12.25, (0,))
+9 52 USB_CONN_D+ FAILED 0.01
+10 52 PACK_POS done 0.02
+11 52 PACK_FUSED done 0.04
+12 52 3V3_REG done 0.03
+13 52 VBUS_RAW done 0.67
+14 52 OLED_3V3 done 0.05
+15 52 VBUS done 0.45
+blocked pad VBAT: (20.6625, 22.75, (0,))
+16 52 VBAT FAILED 0.02
+17 52 VSYS done 0.96
+18 52 3V3 done 4.12
+19 52 RUN_LED_A done 0.03
+20 52 CHG_LED_A done 0.03
+blocked pad OLED_DISCHARGE: (62.4375, 32.0, (0,))
+21 52 OLED_DISCHARGE FAILED 0.02
+22 52 BAT_SAMPLED done 0.03
+23 52 SCK_M done 0.19
+blocked pad ILIM: (25.3375, 22.25, (0,))
+24 52 ILIM FAILED 0.02
+25 52 MOSI_M done 0.32
+26 52 TMR done 0.77
+27 52 RES_M done 0.35
+blocked pad CHG_N: (25.3375, 23.75, (0,))
+28 52 CHG_N FAILED 0.03
+29 52 DC_M done 0.73
+30 52 SENSE_GATE done 0.12
+31 52 BAT_GATE done 0.13
+32 52 NTC_EXT done 0.03
+33 52 ISET done 0.2
+34 52 BOOT_N done 0.12
+35 52 BUTTON_EXT done 0.04
+36 52 LED_N done 0.04
+blocked pad CHG_DISABLE: (20.6625, 23.75, (0,))
+37 52 CHG_DISABLE FAILED 0.03
+38 52 OLED_EN done 1.19
+39 52 RUN_EN done 1.26
+40 52 CS_INVERT done 1.33
+41 52 OLED_RESET_N done 12.19
+42 52 SCK done 14.08
+43 52 BUZZ_GATE done 15.03
+44 52 OLED_DC done 5.67
+45 52 MOSI done 11.79
+46 52 OLED_CS_N done 0.24
+47 52 RESET_N done 1.06
+blocked pad NTC: (20.6625, 22.25, (0,))
+48 52 NTC FAILED 0.05
+49 52 PIEZO_N done 0.32
+50 52 PIEZO_P done 0.45
+51 52 BAT_ADC done 16.89
+52 52 BUTTON done 1.32
+Ground relies on fill 23.75 24.4375
+Ground relies on fill 60.1625 32.0
+ROUTING FINISHED 10 failed nets; not a DRC result

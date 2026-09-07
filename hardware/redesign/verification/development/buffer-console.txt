@@ -1,0 +1,26 @@
+./src/common/stdpbase.cpp(59): assert ""traits"" failed in Get(): create wxApp before calling this
+07:17:41 PM: Debug: Adding duplicate image handler for 'PNG file'
+07:17:41 PM: Debug: Adding duplicate image handler for 'JPEG file'
+07:17:41 PM: Debug: Adding duplicate image handler for 'TIFF file'
+07:17:41 PM: Debug: Adding duplicate image handler for 'GIF file'
+07:17:41 PM: Debug: Adding duplicate image handler for 'PNM file'
+07:17:41 PM: Debug: Adding duplicate image handler for 'PCX file'
+07:17:41 PM: Debug: Adding duplicate image handler for 'IFF file'
+07:17:41 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+07:17:41 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+07:17:41 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+07:17:41 PM: Debug: Adding duplicate image handler for 'TGA file'
+07:17:41 PM: Debug: Adding duplicate image handler for 'XPM file'
+repaired RES_M
+repaired SCK_BUF
+repaired SCK
+repaired MOSI_BUF
+repaired MOSI
+repaired RES_BUF
+repaired OLED_RESET_N
+repaired OLED_3V3
+repaired USB_500
+repaired VBUS
+repaired 3V3
+repaired BAT_ADC
+repaired BUZZ_GATE

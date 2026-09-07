@@ -1,0 +1,26 @@
+REV B – KEINE BESTELLFREIGABE (NO-GO)
+
+Diese Dateien wurden aus dem nativen, DRC-geprüften Entwurf exportiert.
+Offene Freigabepunkte: ../../doc/freigabe-checkliste.md.
+Gerber/Bohrdateien sind vollständig, aber kein Auftrag an einen Fertiger.
+
+Zwei Lagen; angenommener Gesamtaufbau 1,60 mm mit 35 um Kupfer je Seite,
+1,51 mm FR4-Kern und 10 um Lötstopp je Seite. ENIG/Grün/Weiß als Vorgabe
+für die Prüfung. Tatsächlichen Aufbau und USB-Impedanz vor Bestellung
+bestätigen. Kleinste Leiter/Abstände 0,15 mm, Vias 0,50/0,25 mm.
+
+Edge.Cuts beschreibt die 90 x 60 mm große Mittellinienkontur. Die 0,05-mm-
+Linienbreite bewirkt im KiCad-Gerberjob 90,05 x 60,05 mm Begrenzungsbox;
+nicht als abweichendes mechanisches Sollmaß interpretieren.
+
+Gerber X2 in mm, absolute Koordinaten. PTH und NPTH getrennt in Excellon,
+Schlitze enthalten. Unterseite-Gerber nicht spiegeln; nur die Unterseiten-
+PDF ist für die Betrachtung gespiegelt. Leere B.Paste ist beabsichtigt:
+alle Bauteile sitzen auf der Oberseite.
+
+F.Paste enthält auch die optionalen Bauteilpads. Bei einer Bestückung mit
+Schablone die Öffnungen für C17, C18, R6, R12, R22 und R39 sperren oder bei
+der konkreten Schablonenbestellung gemäß DNP-BOM entfernen lassen.
+R39 nicht bestücken: Laden gesperrt. Keine automatische Ladefreigabe.
+Bestückungspositionen/BOM liegen eine Ordnerebene höher. Rotationen sind
+KiCad-Konvention; Nullrotation und Pin1 am Bestücker prüfen.

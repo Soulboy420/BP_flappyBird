@@ -1,0 +1,67 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-06T03:13:25",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.5",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/295b6106-bf02-5ab7-b555-1bba838eb13f",
+            "violations": []
+        },
+        {
+            "path": "/USB-C / ESD / Eingang/",
+            "uuid_path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4",
+            "violations": []
+        },
+        {
+            "path": "/PowerPath / Akku / Regler/",
+            "uuid_path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc",
+            "violations": []
+        },
+        {
+            "path": "/ESP32 / Reset / Straps / ADC/",
+            "uuid_path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704",
+            "violations": []
+        },
+        {
+            "path": "/OLED / schaltbare Versorgung/",
+            "uuid_path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67",
+            "violations": []
+        },
+        {
+            "path": "/Taster / Piezo/",
+            "uuid_path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f",
+            "violations": []
+        },
+        {
+            "path": "/Testpunkte / Mechanik/",
+            "uuid_path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e",
+            "violations": []
+        }
+    ],
+    "source": "flappy-esp32c3-revb.kicad_sch"
+}

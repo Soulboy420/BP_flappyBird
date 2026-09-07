@@ -1,0 +1,2726 @@
+{
+  "U1": {
+    "sym": "RF_Module:ESP32-C3-WROOM-02",
+    "value": "ESP32-C3-WROOM-02-N4",
+    "fp": "RF_Module:ESP32-C3-WROOM-02",
+    "pins": {
+      "1": "3V3",
+      "2": "RESET_N",
+      "3": "SCK_M",
+      "4": "MOSI_M",
+      "5": "RES_M",
+      "6": "DC_M",
+      "7": "CS_INVERT",
+      "8": "BOOT_N",
+      "9": "GND",
+      "10": "OLED_EN",
+      "11": "USB_500",
+      "12": "LED_N",
+      "13": "USB_D-",
+      "14": "USB_D+",
+      "15": "BUTTON",
+      "16": "SUSPEND_N",
+      "17": "BUZZ_GATE",
+      "18": "BAT_ADC",
+      "19": "GND"
+    },
+    "xy": [
+      50,
+      7,
+      0
+    ],
+    "group": 2,
+    "mfr": "Espressif",
+    "mpn": "ESP32-C3-WROOM-02-N4",
+    "package": "18x20mm module",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:ESP32-C3-WROOM-02",
+    "footprint": "RevB:RF_Module__ESP32-C3-WROOM-02",
+    "uuid": "8b6c1755-8a1d-5210-b413-e51f6b0fdb88",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/8b6c1755-8a1d-5210-b413-e51f6b0fdb88"
+  },
+  "U2": {
+    "sym": "Battery_Management:BQ24074RGT",
+    "value": "BQ24074RGTR",
+    "fp": "Package_DFN_QFN:VQFN-16-1EP_3x3mm_P0.5mm_EP1.6x1.6mm",
+    "pins": {
+      "1": "NTC",
+      "2": "VBAT",
+      "3": "VBAT",
+      "4": "CHG_DISABLE",
+      "5": "USB_SUSPEND",
+      "6": "USB_500",
+      "7": "USB_GOOD_N",
+      "8": "GND",
+      "9": "CHG_N",
+      "10": "VSYS",
+      "11": "VSYS",
+      "12": "ILIM",
+      "13": "VBUS",
+      "14": "TMR",
+      "15": null,
+      "16": "ISET",
+      "17": "GND"
+    },
+    "xy": [
+      23,
+      23,
+      0
+    ],
+    "group": 1,
+    "mfr": "Texas Instruments",
+    "mpn": "BQ24074RGTR",
+    "package": "VQFN-16 3x3mm EP1.6",
+    "dnp": false,
+    "note": "Local reflow mandatory; solder exposed pad; NTC required",
+    "libid": "RevB:BQ24074RGT",
+    "footprint": "RevB:Package_DFN_QFN__VQFN-16-1EP_3x3mm_P0.5mm_EP1.6x1.6mm",
+    "uuid": "dab5650a-ae1c-594d-ba9a-b1983f374682",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/dab5650a-ae1c-594d-ba9a-b1983f374682"
+  },
+  "U3": {
+    "sym": "custom:XC6220B331PR",
+    "value": "XC6220B331PR-G",
+    "fp": "Package_TO_SOT_SMD:SOT-89-5",
+    "pins": {
+      "1": "RUN_EN",
+      "2": "GND",
+      "3": null,
+      "4": "VSYS",
+      "5": "3V3_REG"
+    },
+    "xy": [
+      36,
+      23,
+      0
+    ],
+    "group": 1,
+    "mfr": "Torex",
+    "mpn": "XC6220B331PR-G",
+    "package": "SOT-89-5",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:XC6220B331PR",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-89-5",
+    "uuid": "bf681c4a-5463-54e6-a0dc-56eac8435377",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/bf681c4a-5463-54e6-a0dc-56eac8435377"
+  },
+  "U4": {
+    "sym": "Power_Management:TPS22919DCK",
+    "value": "TPS22919DCKR",
+    "fp": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+    "pins": {
+      "1": "3V3",
+      "2": "GND",
+      "3": "OLED_EN",
+      "4": null,
+      "5": "OLED_DISCHARGE",
+      "6": "OLED_3V3"
+    },
+    "xy": [
+      61,
+      32,
+      0
+    ],
+    "group": 3,
+    "mfr": "Texas Instruments",
+    "mpn": "TPS22919DCKR",
+    "package": "SC70-6",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:TPS22919DCK",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-363_SC-70-6",
+    "uuid": "4d7e4b01-ee44-58b9-bba1-51d66d3927c9",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/4d7e4b01-ee44-58b9-bba1-51d66d3927c9"
+  },
+  "J1": {
+    "sym": "Connector:USB_C_Receptacle_USB2.0_16P",
+    "value": "USB4105-GF-A",
+    "fp": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+    "pins": {
+      "A1": "GND",
+      "A4": "VBUS_RAW",
+      "A5": "CC1",
+      "A6": "USB_CONN_D+",
+      "A7": "USB_CONN_D-",
+      "A8": null,
+      "A9": "VBUS_RAW",
+      "A12": "GND",
+      "B1": "GND",
+      "B4": "VBUS_RAW",
+      "B5": "CC2",
+      "B6": "USB_CONN_D+",
+      "B7": "USB_CONN_D-",
+      "B8": null,
+      "B9": "VBUS_RAW",
+      "B12": "GND",
+      "SH": "GND"
+    },
+    "xy": [
+      86.3,
+      12,
+      90
+    ],
+    "group": 0,
+    "mfr": "GCT",
+    "mpn": "USB4105-GF-A",
+    "package": "USB-C 16 SMT + shell THT",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:USB_C_Receptacle_USB2.0_16P",
+    "footprint": "RevB:Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+    "uuid": "5759a846-ea78-5287-80d5-f16644ce87e2",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4/5759a846-ea78-5287-80d5-f16644ce87e2"
+  },
+  "J2": {
+    "sym": "Connector_Generic:Conn_01x02",
+    "value": "BAT 1S protected",
+    "fp": "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+    "pins": {
+      "1": "PACK_POS",
+      "2": "GND"
+    },
+    "xy": [
+      6,
+      31,
+      270
+    ],
+    "group": 1,
+    "mfr": "JST",
+    "mpn": "B2B-PH-K-S(LF)(SN)",
+    "package": "PH 2mm THT",
+    "dnp": false,
+    "note": "Pin 1 POSITIVE; independently verify cable, protected 4.2V Li-ion pack only",
+    "libid": "RevB:Conn_01x02",
+    "footprint": "RevB:Connector_JST__JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+    "uuid": "c66b173b-6d92-5ece-9274-7340b89280b9",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/c66b173b-6d92-5ece-9274-7340b89280b9"
+  },
+  "J3": {
+    "sym": "Connector_Generic:Conn_01x08",
+    "value": "OLED 8 pin",
+    "fp": "Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical",
+    "pins": {
+      "1": "GND",
+      "2": "OLED_3V3",
+      "3": "SCK",
+      "4": "GND",
+      "5": "MOSI",
+      "6": "OLED_RESET_N",
+      "7": "OLED_DC",
+      "8": "OLED_CS_N"
+    },
+    "xy": [
+      63,
+      54,
+      180
+    ],
+    "group": 3,
+    "mfr": "JST",
+    "mpn": "B8B-XH-A(LF)(SN)",
+    "package": "XH 2.5mm THT",
+    "dnp": false,
+    "note": "Board pin sequence is fixed; real OLED cable is a release gate",
+    "libid": "RevB:Conn_01x08",
+    "footprint": "RevB:Connector_JST__JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical",
+    "uuid": "8d792611-5ff0-5c88-b908-a097200c35e2",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/8d792611-5ff0-5c88-b908-a097200c35e2"
+  },
+  "J4": {
+    "sym": "Connector_Generic:Conn_01x02",
+    "value": "BUTTON dry contact",
+    "fp": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+    "pins": {
+      "1": "BUTTON_EXT",
+      "2": "GND"
+    },
+    "xy": [
+      77,
+      53,
+      0
+    ],
+    "group": 4,
+    "mfr": "JST",
+    "mpn": "B2B-XH-A(LF)(SN)",
+    "package": "XH 2.5mm THT",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:Conn_01x02",
+    "footprint": "RevB:Connector_JST__JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+    "uuid": "357f3649-f3ae-5c7c-9ff2-de32e202b0c6",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/357f3649-f3ae-5c7c-9ff2-de32e202b0c6"
+  },
+  "J5": {
+    "sym": "Connector_Generic:Conn_01x02",
+    "value": "PASSIVE PIEZO",
+    "fp": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+    "pins": {
+      "1": "PIEZO_P",
+      "2": "PIEZO_N"
+    },
+    "xy": [
+      26,
+      54,
+      0
+    ],
+    "group": 4,
+    "mfr": "JST",
+    "mpn": "B2B-XH-A(LF)(SN)",
+    "package": "XH 2.5mm THT",
+    "dnp": false,
+    "note": "Floating passive piezo only; no magnetic buzzer; two-wire isolated from chassis",
+    "libid": "RevB:Conn_01x02",
+    "footprint": "RevB:Connector_JST__JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+    "uuid": "5b1d0020-6b62-5955-b948-4733211eccf7",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/5b1d0020-6b62-5955-b948-4733211eccf7"
+  },
+  "J6": {
+    "sym": "Connector_Generic:Conn_01x02",
+    "value": "PACK NTC 10k",
+    "fp": "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+    "pins": {
+      "1": "NTC_EXT",
+      "2": "GND"
+    },
+    "xy": [
+      6,
+      40,
+      270
+    ],
+    "group": 1,
+    "mfr": "JST",
+    "mpn": "B2B-PH-K-S(LF)(SN)",
+    "package": "PH 2mm THT",
+    "dnp": false,
+    "note": "External Semitec 103AT-2 attached to pack; open cable inhibits charging",
+    "libid": "RevB:Conn_01x02",
+    "footprint": "RevB:Connector_JST__JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+    "uuid": "53c3c696-0641-5523-90cb-5eae6b3c7885",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/53c3c696-0641-5523-90cb-5eae6b3c7885"
+  },
+  "SW1": {
+    "sym": "Switch:SW_SPDT",
+    "value": "RUN / OFF",
+    "fp": "Button_Switch_THT:SW_Slide_SPDT_Straight_CK_OS102011MS2Q",
+    "pins": {
+      "1": "VSYS",
+      "2": "RUN_EN",
+      "3": "GND"
+    },
+    "xy": [
+      5,
+      18,
+      270
+    ],
+    "group": 1,
+    "mfr": "C&K (Littelfuse)",
+    "mpn": "OS102011MS2QN1",
+    "package": "SPDT 2mm THT",
+    "dnp": false,
+    "note": "Only enable current; verify exact switch drawing and cable-free mechanical fit",
+    "libid": "RevB:SW_SPDT",
+    "footprint": "RevB:Button_Switch_THT__SW_Slide_SPDT_Straight_CK_OS102011MS2Q",
+    "uuid": "8a7f8aea-4696-50a2-b06e-7c4448c1e2fa",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/8a7f8aea-4696-50a2-b06e-7c4448c1e2fa"
+  },
+  "R1": {
+    "sym": "Device:R",
+    "value": "5.1k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "CC1",
+      "2": "GND"
+    },
+    "xy": [
+      78,
+      5,
+      90
+    ],
+    "group": 0,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF5101V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "825f8ab4-d6b4-54bb-ae76-c8aeb392d44e",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4/825f8ab4-d6b4-54bb-ae76-c8aeb392d44e"
+  },
+  "R2": {
+    "sym": "Device:R",
+    "value": "5.1k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "CC2",
+      "2": "GND"
+    },
+    "xy": [
+      78,
+      19,
+      90
+    ],
+    "group": 0,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF5101V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "0c61fc7a-2b3f-54dc-8311-d2bec2867353",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4/0c61fc7a-2b3f-54dc-8311-d2bec2867353"
+  },
+  "F1": {
+    "sym": "Device:Fuse",
+    "value": "1A fast",
+    "fp": "Fuse:Fuse_1206_3216Metric",
+    "pins": {
+      "1": "VBUS_RAW",
+      "2": "VBUS"
+    },
+    "xy": [
+      76,
+      25,
+      0
+    ],
+    "group": 0,
+    "mfr": "Littelfuse",
+    "mpn": "0466001.NRHF",
+    "package": "1206",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:Fuse",
+    "footprint": "RevB:Fuse__Fuse_1206_3216Metric",
+    "uuid": "0e8ff2e4-bf63-5887-a750-fee1b7711b66",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4/0e8ff2e4-bf63-5887-a750-fee1b7711b66"
+  },
+  "D1": {
+    "sym": "Device:D_TVS",
+    "value": "SMBJ6.0A",
+    "fp": "Diode_SMD:D_SMB",
+    "pins": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "xy": [
+      81,
+      32,
+      90
+    ],
+    "group": 0,
+    "mfr": "Littelfuse",
+    "mpn": "SMBJ6.0A",
+    "package": "SMB",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:D_TVS",
+    "footprint": "RevB:Diode_SMD__D_SMB",
+    "uuid": "29e7428f-d2a8-5387-bfa2-67a0f46e64a1",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4/29e7428f-d2a8-5387-bfa2-67a0f46e64a1"
+  },
+  "C1": {
+    "sym": "Device:C",
+    "value": "1u 25V X7R",
+    "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "pins": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "xy": [
+      25,
+      16,
+      0
+    ],
+    "group": 1,
+    "mfr": "TDK",
+    "mpn": "C2012X7R1E105K125AB",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "uuid": "80ed0900-7af6-53a6-b2d8-d98157080b25",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/80ed0900-7af6-53a6-b2d8-d98157080b25"
+  },
+  "C2": {
+    "sym": "Device:C",
+    "value": "100n 50V X7R",
+    "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "pins": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "xy": [
+      21,
+      18,
+      0
+    ],
+    "group": 1,
+    "mfr": "TDK",
+    "mpn": "C2012X7R1H104K085AA",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "uuid": "072c2e04-a3c8-5c37-a202-54e588db976c",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/072c2e04-a3c8-5c37-a202-54e588db976c"
+  },
+  "D2": {
+    "sym": "custom:TPD2E2U06DCK",
+    "value": "TPD2E2U06DCKR",
+    "fp": "Package_TO_SOT_SMD:SOT-323_SC-70",
+    "pins": {
+      "1": "USB_CONN_D+",
+      "2": "USB_CONN_D-",
+      "3": "GND"
+    },
+    "xy": [
+      79,
+      14.3,
+      0
+    ],
+    "group": 0,
+    "mfr": "Texas Instruments",
+    "mpn": "TPD2E2U06DCKR",
+    "package": "SC70-3",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:TPD2E2U06DCK",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-323_SC-70",
+    "uuid": "62c63ebd-156c-59d3-8f9f-0301e0e6483d",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4/62c63ebd-156c-59d3-8f9f-0301e0e6483d"
+  },
+  "D3": {
+    "sym": "custom:TPD2E2U06DCK",
+    "value": "TPD2E2U06DCKR",
+    "fp": "Package_TO_SOT_SMD:SOT-323_SC-70",
+    "pins": {
+      "1": "CC1",
+      "2": "CC2",
+      "3": "GND"
+    },
+    "xy": [
+      81,
+      19,
+      0
+    ],
+    "group": 0,
+    "mfr": "Texas Instruments",
+    "mpn": "TPD2E2U06DCKR",
+    "package": "SC70-3",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:TPD2E2U06DCK",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-323_SC-70",
+    "uuid": "c30665aa-c78d-5372-8081-a241278d2177",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4/c30665aa-c78d-5372-8081-a241278d2177"
+  },
+  "D4": {
+    "sym": "custom:TPD2E2U06DCK",
+    "value": "TPD2E2U06DCKR",
+    "fp": "Package_TO_SOT_SMD:SOT-323_SC-70",
+    "pins": {
+      "1": "SCK",
+      "2": "MOSI",
+      "3": "GND"
+    },
+    "xy": [
+      54,
+      47,
+      0
+    ],
+    "group": 3,
+    "mfr": "Texas Instruments",
+    "mpn": "TPD2E2U06DCKR",
+    "package": "SC70-3",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:TPD2E2U06DCK",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-323_SC-70",
+    "uuid": "74f79adf-35e8-58e9-8b48-a749250fbeec",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/74f79adf-35e8-58e9-8b48-a749250fbeec"
+  },
+  "D5": {
+    "sym": "custom:TPD2E2U06DCK",
+    "value": "TPD2E2U06DCKR",
+    "fp": "Package_TO_SOT_SMD:SOT-323_SC-70",
+    "pins": {
+      "1": "OLED_RESET_N",
+      "2": "OLED_DC",
+      "3": "GND"
+    },
+    "xy": [
+      45,
+      47,
+      0
+    ],
+    "group": 3,
+    "mfr": "Texas Instruments",
+    "mpn": "TPD2E2U06DCKR",
+    "package": "SC70-3",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:TPD2E2U06DCK",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-323_SC-70",
+    "uuid": "f17f9582-ea81-561c-8690-7b861b2922f9",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/f17f9582-ea81-561c-8690-7b861b2922f9"
+  },
+  "D6": {
+    "sym": "custom:TPD2E2U06DCK",
+    "value": "TPD2E2U06DCKR",
+    "fp": "Package_TO_SOT_SMD:SOT-323_SC-70",
+    "pins": {
+      "1": "OLED_CS_N",
+      "2": "OLED_3V3",
+      "3": "GND"
+    },
+    "xy": [
+      38,
+      47,
+      0
+    ],
+    "group": 3,
+    "mfr": "Texas Instruments",
+    "mpn": "TPD2E2U06DCKR",
+    "package": "SC70-3",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:TPD2E2U06DCK",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-323_SC-70",
+    "uuid": "9db92233-b7ab-56b1-ab75-f31cc8397f9d",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/9db92233-b7ab-56b1-ab75-f31cc8397f9d"
+  },
+  "D7": {
+    "sym": "custom:TPD2E2U06DCK",
+    "value": "TPD2E2U06DCKR",
+    "fp": "Package_TO_SOT_SMD:SOT-323_SC-70",
+    "pins": {
+      "1": "BUTTON_EXT",
+      "2": "GND",
+      "3": "GND"
+    },
+    "xy": [
+      80,
+      47,
+      0
+    ],
+    "group": 4,
+    "mfr": "Texas Instruments",
+    "mpn": "TPD2E2U06DCKR",
+    "package": "SC70-3",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:TPD2E2U06DCK",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-323_SC-70",
+    "uuid": "9d309bd5-b589-5aec-88cd-e0625b1e40e7",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/9d309bd5-b589-5aec-88cd-e0625b1e40e7"
+  },
+  "D8": {
+    "sym": "custom:TPD2E2U06DCK",
+    "value": "TPD2E2U06DCKR",
+    "fp": "Package_TO_SOT_SMD:SOT-323_SC-70",
+    "pins": {
+      "1": "PIEZO_P",
+      "2": "PIEZO_N",
+      "3": "GND"
+    },
+    "xy": [
+      27,
+      47,
+      0
+    ],
+    "group": 4,
+    "mfr": "Texas Instruments",
+    "mpn": "TPD2E2U06DCKR",
+    "package": "SC70-3",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:TPD2E2U06DCK",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-323_SC-70",
+    "uuid": "06939337-1afd-552c-ae78-3924f010f0cc",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/06939337-1afd-552c-ae78-3924f010f0cc"
+  },
+  "D9": {
+    "sym": "custom:TPD2E2U06DCK",
+    "value": "TPD2E2U06DCKR",
+    "fp": "Package_TO_SOT_SMD:SOT-323_SC-70",
+    "pins": {
+      "1": "NTC_EXT",
+      "2": "GND",
+      "3": "GND"
+    },
+    "xy": [
+      10,
+      40,
+      0
+    ],
+    "group": 1,
+    "mfr": "Texas Instruments",
+    "mpn": "TPD2E2U06DCKR",
+    "package": "SC70-3",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:TPD2E2U06DCK",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-323_SC-70",
+    "uuid": "1580d1c3-37b9-5126-8147-9fed1ed58bac",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/1580d1c3-37b9-5126-8147-9fed1ed58bac"
+  },
+  "R3": {
+    "sym": "Device:R",
+    "value": "22",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "USB_D+",
+      "2": "USB_CONN_D+"
+    },
+    "xy": [
+      62,
+      6.5,
+      0
+    ],
+    "group": 0,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF22R0V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "2b1fe898-7719-5dda-9d4b-50d6407cd9db",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4/2b1fe898-7719-5dda-9d4b-50d6407cd9db"
+  },
+  "R4": {
+    "sym": "Device:R",
+    "value": "22",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "USB_D-",
+      "2": "USB_CONN_D-"
+    },
+    "xy": [
+      62,
+      8.75,
+      0
+    ],
+    "group": 0,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF22R0V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "6f7f0271-5ccb-59b4-8c15-4fdded59cd57",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4/6f7f0271-5ccb-59b4-8c15-4fdded59cd57"
+  },
+  "C17": {
+    "sym": "Device:C",
+    "value": "18p 50V C0G",
+    "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "pins": {
+      "1": "USB_D+",
+      "2": "GND"
+    },
+    "xy": [
+      64.5,
+      4.25,
+      0
+    ],
+    "group": 0,
+    "mfr": "KEMET (Yageo)",
+    "mpn": "C0805C180J5GACTU",
+    "package": "0805",
+    "dnp": true,
+    "note": "",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "uuid": "a88782c0-ceed-5fe7-a9a8-9917946731f5",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4/a88782c0-ceed-5fe7-a9a8-9917946731f5"
+  },
+  "C18": {
+    "sym": "Device:C",
+    "value": "18p 50V C0G",
+    "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "pins": {
+      "1": "USB_D-",
+      "2": "GND"
+    },
+    "xy": [
+      64,
+      13,
+      0
+    ],
+    "group": 0,
+    "mfr": "KEMET (Yageo)",
+    "mpn": "C0805C180J5GACTU",
+    "package": "0805",
+    "dnp": true,
+    "note": "",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "uuid": "a5093c2a-4979-5d90-ad85-4c52de9cfe29",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81d1e7a6-eb8d-5176-8207-1bcedd6a01e4/a5093c2a-4979-5d90-ad85-4c52de9cfe29"
+  },
+  "F2": {
+    "sym": "Device:Fuse",
+    "value": "1A fast",
+    "fp": "Fuse:Fuse_1206_3216Metric",
+    "pins": {
+      "1": "PACK_POS",
+      "2": "PACK_FUSED"
+    },
+    "xy": [
+      11,
+      29,
+      0
+    ],
+    "group": 1,
+    "mfr": "Littelfuse",
+    "mpn": "0466001.NRHF",
+    "package": "1206",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:Fuse",
+    "footprint": "RevB:Fuse__Fuse_1206_3216Metric",
+    "uuid": "27f69b12-46d9-5bd1-8d06-044bd38d8dcf",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/27f69b12-46d9-5bd1-8d06-044bd38d8dcf"
+  },
+  "Q1": {
+    "sym": "Transistor_FET:AO3401A",
+    "value": "DMP2035U-7",
+    "fp": "Package_TO_SOT_SMD:SOT-23",
+    "pins": {
+      "1": "BAT_GATE",
+      "2": "VBAT",
+      "3": "PACK_FUSED"
+    },
+    "xy": [
+      16,
+      29,
+      90
+    ],
+    "group": 1,
+    "mfr": "Diodes Incorporated",
+    "mpn": "DMP2035U-7",
+    "package": "SOT-23",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:AO3401A",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-23",
+    "uuid": "87d6d4f3-cfd8-53a4-8333-184c6fc80e53",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/87d6d4f3-cfd8-53a4-8333-184c6fc80e53"
+  },
+  "Q2": {
+    "sym": "Transistor_FET:AO3401A",
+    "value": "BSS84-7-F",
+    "fp": "Package_TO_SOT_SMD:SOT-23",
+    "pins": {
+      "1": "PACK_FUSED",
+      "2": "VBAT",
+      "3": "BAT_GATE"
+    },
+    "xy": [
+      16,
+      35,
+      90
+    ],
+    "group": 1,
+    "mfr": "Diodes Incorporated",
+    "mpn": "BSS84-7-F",
+    "package": "SOT-23",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:AO3401A",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-23",
+    "uuid": "46dcb44a-acfc-542d-9da0-1333c67dcfd4",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/46dcb44a-acfc-542d-9da0-1333c67dcfd4"
+  },
+  "R5": {
+    "sym": "Device:R",
+    "value": "100k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "BAT_GATE",
+      "2": "GND"
+    },
+    "xy": [
+      12,
+      35,
+      90
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1003V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "7776f2d9-1215-5efa-8519-b60f0f76eee4",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/7776f2d9-1215-5efa-8519-b60f0f76eee4"
+  },
+  "R6": {
+    "sym": "Device:R",
+    "value": "1M",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "PACK_FUSED",
+      "2": "VBAT"
+    },
+    "xy": [
+      21,
+      34,
+      90
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1004V",
+    "package": "0805",
+    "dnp": true,
+    "note": "DNP: eliminates DC injection on reverse battery; connect battery before USB, then cycle USB if charge path stays off",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "0bd50198-0cbf-5b20-8389-23bcb9e3beaf",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/0bd50198-0cbf-5b20-8389-23bcb9e3beaf"
+  },
+  "C3": {
+    "sym": "Device:C",
+    "value": "22u 16V X5R",
+    "fp": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "pins": {
+      "1": "VBAT",
+      "2": "GND"
+    },
+    "xy": [
+      18,
+      23,
+      90
+    ],
+    "group": 1,
+    "mfr": "TDK",
+    "mpn": "C3216X5R1C226M160AB",
+    "package": "1206",
+    "dnp": false,
+    "note": "22u: effective capacitance qualification required; no substitution by nominal value only",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "uuid": "a8458582-4e9d-5ec6-b07f-522be4f4b69f",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/a8458582-4e9d-5ec6-b07f-522be4f4b69f"
+  },
+  "C4": {
+    "sym": "Device:C",
+    "value": "22u 16V X5R",
+    "fp": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "pins": {
+      "1": "VBAT",
+      "2": "GND"
+    },
+    "xy": [
+      15,
+      23,
+      90
+    ],
+    "group": 1,
+    "mfr": "TDK",
+    "mpn": "C3216X5R1C226M160AB",
+    "package": "1206",
+    "dnp": false,
+    "note": "22u: effective capacitance qualification required; no substitution by nominal value only",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "uuid": "561385e8-2546-5384-bb74-5dae5da9f855",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/561385e8-2546-5384-bb74-5dae5da9f855"
+  },
+  "C5": {
+    "sym": "Device:C",
+    "value": "22u 16V X5R",
+    "fp": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "pins": {
+      "1": "VSYS",
+      "2": "GND"
+    },
+    "xy": [
+      27,
+      26,
+      90
+    ],
+    "group": 1,
+    "mfr": "TDK",
+    "mpn": "C3216X5R1C226M160AB",
+    "package": "1206",
+    "dnp": false,
+    "note": "22u: effective capacitance qualification required; no substitution by nominal value only",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "uuid": "b19996b1-0146-58a7-8c35-06bfeb24f90f",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/b19996b1-0146-58a7-8c35-06bfeb24f90f"
+  },
+  "C6": {
+    "sym": "Device:C",
+    "value": "22u 16V X5R",
+    "fp": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "pins": {
+      "1": "VSYS",
+      "2": "GND"
+    },
+    "xy": [
+      30,
+      26,
+      90
+    ],
+    "group": 1,
+    "mfr": "TDK",
+    "mpn": "C3216X5R1C226M160AB",
+    "package": "1206",
+    "dnp": false,
+    "note": "22u: effective capacitance qualification required; no substitution by nominal value only",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "uuid": "54be01c2-13ee-59ea-8524-2366ea9a174b",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/54be01c2-13ee-59ea-8524-2366ea9a174b"
+  },
+  "C7": {
+    "sym": "Device:C",
+    "value": "22u 16V X5R",
+    "fp": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "pins": {
+      "1": "VSYS",
+      "2": "GND"
+    },
+    "xy": [
+      41,
+      26,
+      270
+    ],
+    "group": 1,
+    "mfr": "TDK",
+    "mpn": "C3216X5R1C226M160AB",
+    "package": "1206",
+    "dnp": false,
+    "note": "22u: effective capacitance qualification required; no substitution by nominal value only",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "uuid": "110a84c5-8cd1-5463-988e-a1e65a5dd489",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/110a84c5-8cd1-5463-988e-a1e65a5dd489"
+  },
+  "C8": {
+    "sym": "Device:C",
+    "value": "22u 16V X5R",
+    "fp": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "pins": {
+      "1": "VSYS",
+      "2": "GND"
+    },
+    "xy": [
+      44,
+      26,
+      90
+    ],
+    "group": 1,
+    "mfr": "TDK",
+    "mpn": "C3216X5R1C226M160AB",
+    "package": "1206",
+    "dnp": false,
+    "note": "22u: effective capacitance qualification required; no substitution by nominal value only",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "uuid": "e9b78464-938a-5e03-aa71-81a26d940e58",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/e9b78464-938a-5e03-aa71-81a26d940e58"
+  },
+  "C9": {
+    "sym": "Device:C",
+    "value": "22u 16V X5R",
+    "fp": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "pins": {
+      "1": "3V3_REG",
+      "2": "GND"
+    },
+    "xy": [
+      40,
+      19,
+      90
+    ],
+    "group": 1,
+    "mfr": "TDK",
+    "mpn": "C3216X5R1C226M160AB",
+    "package": "1206",
+    "dnp": false,
+    "note": "22u: effective capacitance qualification required; no substitution by nominal value only",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "uuid": "6e6d06f4-bffd-510c-a0b0-7d0dbfcea65c",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/6e6d06f4-bffd-510c-a0b0-7d0dbfcea65c"
+  },
+  "C10": {
+    "sym": "Device:C",
+    "value": "22u 16V X5R",
+    "fp": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "pins": {
+      "1": "3V3_REG",
+      "2": "GND"
+    },
+    "xy": [
+      43,
+      19,
+      90
+    ],
+    "group": 1,
+    "mfr": "TDK",
+    "mpn": "C3216X5R1C226M160AB",
+    "package": "1206",
+    "dnp": false,
+    "note": "22u: effective capacitance qualification required; no substitution by nominal value only",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "uuid": "497b8f8f-310b-5a5f-b74b-c2f0b1466a16",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/497b8f8f-310b-5a5f-b74b-c2f0b1466a16"
+  },
+  "R7": {
+    "sym": "Device:R",
+    "value": "6.19k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "ISET",
+      "2": "GND"
+    },
+    "xy": [
+      27,
+      20,
+      90
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF6191V",
+    "package": "0805",
+    "dnp": false,
+    "note": "143.8mA nominal; 127.5..159.1mA with 1% resistor and KISET limits",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "6bf7bbb2-53d5-5dfb-8e2f-2cc466e74a91",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/6bf7bbb2-53d5-5dfb-8e2f-2cc466e74a91"
+  },
+  "R8": {
+    "sym": "Device:R",
+    "value": "3.24k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "ILIM",
+      "2": "GND"
+    },
+    "xy": [
+      28,
+      31,
+      90
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF3241V",
+    "package": "0805",
+    "dnp": false,
+    "note": "Required even in USB mode; programmable mode unused",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "31ac6766-26db-591c-98f4-66a90c9c27d6",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/31ac6766-26db-591c-98f4-66a90c9c27d6"
+  },
+  "R9": {
+    "sym": "Device:R",
+    "value": "46.4k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "TMR",
+      "2": "GND"
+    },
+    "xy": [
+      24,
+      31,
+      90
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF4642V",
+    "package": "0805",
+    "dnp": false,
+    "note": "6.19h nominal fast-charge safety timer",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "d6e70676-4507-514b-8645-ed9b6f652c26",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/d6e70676-4507-514b-8645-ed9b6f652c26"
+  },
+  "R10": {
+    "sym": "Device:R",
+    "value": "100k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "CHG_DISABLE",
+      "2": "VSYS"
+    },
+    "xy": [
+      20,
+      29,
+      90
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1003V",
+    "package": "0805",
+    "dnp": false,
+    "note": "Default charging DISABLED. Populate R39 only after battery/temperature release",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "f315ae60-e2a4-52d8-9a00-a54713bd4708",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/f315ae60-e2a4-52d8-9a00-a54713bd4708"
+  },
+  "R11": {
+    "sym": "Device:R",
+    "value": "100",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "NTC_EXT",
+      "2": "NTC"
+    },
+    "xy": [
+      10,
+      44,
+      90
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1000V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "8f80980a-5690-5bc3-9019-bb9739f79c3d",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/8f80980a-5690-5bc3-9019-bb9739f79c3d"
+  },
+  "R12": {
+    "sym": "Device:R",
+    "value": "10k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "NTC",
+      "2": "GND"
+    },
+    "xy": [
+      15,
+      43,
+      90
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1002V",
+    "package": "0805",
+    "dnp": true,
+    "note": "BENCH ONLY / NO BATTERY: defeats pack temperature sensing",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "6d56a4fb-2f51-51a7-a6d3-e09954d7cc57",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/6d56a4fb-2f51-51a7-a6d3-e09954d7cc57"
+  },
+  "R13": {
+    "sym": "Device:R",
+    "value": "1M",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "RUN_EN",
+      "2": "GND"
+    },
+    "xy": [
+      9.5,
+      23,
+      90
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1004V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "bbe48136-607d-5284-931b-4940460e0caf",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/bbe48136-607d-5284-931b-4940460e0caf"
+  },
+  "R14": {
+    "sym": "Device:R",
+    "value": "0",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "3V3_REG",
+      "2": "3V3"
+    },
+    "xy": [
+      46,
+      17,
+      0
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6GEY0R00V",
+    "package": "0805",
+    "dnp": false,
+    "note": "Remove for total switched-system current measurement; pads accessible",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "3ef003cc-a693-52b7-8b16-aec7037001a4",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/3ef003cc-a693-52b7-8b16-aec7037001a4"
+  },
+  "R15": {
+    "sym": "Device:R",
+    "value": "3.3k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "VSYS",
+      "2": "CHG_LED_A"
+    },
+    "xy": [
+      32,
+      35,
+      0
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF3301V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "e6a76370-7d37-5670-ae2d-71ae60d74936",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/e6a76370-7d37-5670-ae2d-71ae60d74936"
+  },
+  "D10": {
+    "sym": "Device:LED",
+    "value": "CHARGE red",
+    "fp": "LED_SMD:LED_0805_2012Metric",
+    "pins": {
+      "1": "CHG_N",
+      "2": "CHG_LED_A"
+    },
+    "xy": [
+      37,
+      35,
+      0
+    ],
+    "group": 1,
+    "mfr": "Kingbright",
+    "mpn": "APT2012EC",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:LED",
+    "footprint": "RevB:LED_SMD__LED_0805_2012Metric",
+    "uuid": "093c7a51-a309-556f-ae3d-5f7d234d30ac",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/093c7a51-a309-556f-ae3d-5f7d234d30ac"
+  },
+  "C11": {
+    "sym": "Device:C",
+    "value": "22u 16V X5R",
+    "fp": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "pins": {
+      "1": "3V3",
+      "2": "GND"
+    },
+    "xy": [
+      37,
+      3,
+      90
+    ],
+    "group": 2,
+    "mfr": "TDK",
+    "mpn": "C3216X5R1C226M160AB",
+    "package": "1206",
+    "dnp": false,
+    "note": "22u: effective capacitance qualification required; no substitution by nominal value only",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+    "uuid": "b6d738c5-332d-55f9-8b06-35a873b96d79",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/b6d738c5-332d-55f9-8b06-35a873b96d79"
+  },
+  "C12": {
+    "sym": "Device:C",
+    "value": "100n 50V X7R",
+    "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "pins": {
+      "1": "3V3",
+      "2": "GND"
+    },
+    "xy": [
+      36,
+      6.5,
+      0
+    ],
+    "group": 2,
+    "mfr": "TDK",
+    "mpn": "C2012X7R1H104K085AA",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "uuid": "857f19bd-b7d7-5e0d-9bbe-bbba13de4ef1",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/857f19bd-b7d7-5e0d-9bbe-bbba13de4ef1"
+  },
+  "R16": {
+    "sym": "Device:R",
+    "value": "10k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "3V3",
+      "2": "RESET_N"
+    },
+    "xy": [
+      36,
+      10,
+      90
+    ],
+    "group": 2,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1002V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "2143cc08-9a00-53e6-b881-5f181ce347d5",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/2143cc08-9a00-53e6-b881-5f181ce347d5"
+  },
+  "C13": {
+    "sym": "Device:C",
+    "value": "1u 25V X7R",
+    "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "pins": {
+      "1": "RESET_N",
+      "2": "GND"
+    },
+    "xy": [
+      32,
+      10,
+      90
+    ],
+    "group": 2,
+    "mfr": "TDK",
+    "mpn": "C2012X7R1E105K125AB",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "uuid": "10af3b9b-7125-53fc-a4b3-95d25003ea62",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/10af3b9b-7125-53fc-a4b3-95d25003ea62"
+  },
+  "R17": {
+    "sym": "Device:R",
+    "value": "10k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "3V3",
+      "2": "BOOT_N"
+    },
+    "xy": [
+      36,
+      15,
+      0
+    ],
+    "group": 2,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1002V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "e1e0420a-21d1-5066-b1e8-fb258ebd4574",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/e1e0420a-21d1-5066-b1e8-fb258ebd4574"
+  },
+  "R18": {
+    "sym": "Device:R",
+    "value": "10k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "3V3",
+      "2": "CS_INVERT"
+    },
+    "xy": [
+      31,
+      15,
+      0
+    ],
+    "group": 2,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1002V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "374da2cf-d05c-5c90-8330-2198eac4c08e",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/374da2cf-d05c-5c90-8330-2198eac4c08e"
+  },
+  "R19": {
+    "sym": "Device:R",
+    "value": "10k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "3V3",
+      "2": "SUSPEND_N"
+    },
+    "xy": [
+      63,
+      2,
+      0
+    ],
+    "group": 2,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1002V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "751e80da-0a2d-57e0-93d7-c7010df5b31d",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/751e80da-0a2d-57e0-93d7-c7010df5b31d"
+  },
+  "R20": {
+    "sym": "Device:R",
+    "value": "3.3k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "3V3",
+      "2": "RUN_LED_A"
+    },
+    "xy": [
+      68,
+      2,
+      0
+    ],
+    "group": 2,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF3301V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "01a52903-43d7-529a-a1dc-a4d8a1dd025e",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/01a52903-43d7-529a-a1dc-a4d8a1dd025e"
+  },
+  "D11": {
+    "sym": "Device:LED",
+    "value": "RUN green active low",
+    "fp": "LED_SMD:LED_0805_2012Metric",
+    "pins": {
+      "1": "LED_N",
+      "2": "RUN_LED_A"
+    },
+    "xy": [
+      72,
+      2,
+      0
+    ],
+    "group": 2,
+    "mfr": "Kingbright",
+    "mpn": "APT2012SGC",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:LED",
+    "footprint": "RevB:LED_SMD__LED_0805_2012Metric",
+    "uuid": "e79de68c-b598-54f4-a93d-e20051a8468d",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/e79de68c-b598-54f4-a93d-e20051a8468d"
+  },
+  "R21": {
+    "sym": "Device:R",
+    "value": "100k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "USB_500",
+      "2": "GND"
+    },
+    "xy": [
+      65,
+      18,
+      90
+    ],
+    "group": 2,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1003V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "d6881e86-e0f6-53f4-9de7-438cbaf402a3",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/d6881e86-e0f6-53f4-9de7-438cbaf402a3"
+  },
+  "R22": {
+    "sym": "Device:R",
+    "value": "100k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "USB_SUSPEND",
+      "2": "GND"
+    },
+    "xy": [
+      69,
+      18,
+      90
+    ],
+    "group": 2,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1003V",
+    "package": "0805",
+    "dnp": true,
+    "note": "Omit: EN2 has internal pulldown; R38 high level checked against 10uA input current",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "1c5c093b-1cff-53c5-afb7-559481cef0b9",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/1c5c093b-1cff-53c5-afb7-559481cef0b9"
+  },
+  "R23": {
+    "sym": "Device:R",
+    "value": "220",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "SCK_BUF",
+      "2": "SCK"
+    },
+    "xy": [
+      42.8,
+      30.5,
+      0
+    ],
+    "group": 3,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF2200V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "3a6a6fff-6c76-5e19-9911-92b73e094a6d",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/3a6a6fff-6c76-5e19-9911-92b73e094a6d"
+  },
+  "R24": {
+    "sym": "Device:R",
+    "value": "220",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "MOSI_BUF",
+      "2": "MOSI"
+    },
+    "xy": [
+      44,
+      35.5,
+      0
+    ],
+    "group": 3,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF2200V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "8d273b17-ad41-5ef1-874c-540548cf66c8",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/8d273b17-ad41-5ef1-874c-540548cf66c8"
+  },
+  "R25": {
+    "sym": "Device:R",
+    "value": "220",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "RES_BUF",
+      "2": "OLED_RESET_N"
+    },
+    "xy": [
+      55.5,
+      26,
+      0
+    ],
+    "group": 3,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF2200V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "2edce47f-a33c-5d4d-8bc1-7c9829eec0c3",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/2edce47f-a33c-5d4d-8bc1-7c9829eec0c3"
+  },
+  "R26": {
+    "sym": "Device:R",
+    "value": "220",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "DC_BUF",
+      "2": "OLED_DC"
+    },
+    "xy": [
+      55.5,
+      30,
+      0
+    ],
+    "group": 3,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF2200V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "56b436d5-077c-5c62-b2ed-fe4efd2aa8ea",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/56b436d5-077c-5c62-b2ed-fe4efd2aa8ea"
+  },
+  "Q3": {
+    "sym": "Transistor_FET:2N7002",
+    "value": "2N7002-7-F",
+    "fp": "Package_TO_SOT_SMD:SOT-23",
+    "pins": {
+      "1": "CS_INVERT",
+      "2": "GND",
+      "3": "OLED_CS_N"
+    },
+    "xy": [
+      39,
+      41,
+      0
+    ],
+    "group": 3,
+    "mfr": "Diodes Incorporated",
+    "mpn": "2N7002-7-F",
+    "package": "SOT-23",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:2N7002",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-23",
+    "uuid": "da08e501-a5d5-5d9d-96ce-89e616a0871c",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/da08e501-a5d5-5d9d-96ce-89e616a0871c"
+  },
+  "R27": {
+    "sym": "Device:R",
+    "value": "10k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "OLED_3V3",
+      "2": "OLED_CS_N"
+    },
+    "xy": [
+      43,
+      41,
+      90
+    ],
+    "group": 3,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1002V",
+    "package": "0805",
+    "dnp": false,
+    "note": "CS physical low when IO8 is high; firmware must invert CS",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "9d84e66c-7bd9-59b3-adbf-d173c9152b9e",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/9d84e66c-7bd9-59b3-adbf-d173c9152b9e"
+  },
+  "R28": {
+    "sym": "Device:R",
+    "value": "100k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "OLED_EN",
+      "2": "GND"
+    },
+    "xy": [
+      65,
+      31,
+      90
+    ],
+    "group": 3,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1003V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "5538f9da-398a-5ce3-870e-9f875bed7e1e",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/5538f9da-398a-5ce3-870e-9f875bed7e1e"
+  },
+  "R29": {
+    "sym": "Device:R",
+    "value": "100",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "OLED_3V3",
+      "2": "OLED_DISCHARGE"
+    },
+    "xy": [
+      62,
+      37,
+      0
+    ],
+    "group": 3,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1000V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "19bcfb50-6662-5a67-9bd4-12e58967ca34",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/19bcfb50-6662-5a67-9bd4-12e58967ca34"
+  },
+  "C14": {
+    "sym": "Device:C",
+    "value": "1u 25V X7R",
+    "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "pins": {
+      "1": "OLED_3V3",
+      "2": "GND"
+    },
+    "xy": [
+      58,
+      36,
+      0
+    ],
+    "group": 3,
+    "mfr": "TDK",
+    "mpn": "C2012X7R1E105K125AB",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "uuid": "afc236d9-2561-5eb0-89aa-3f6a8ef0e019",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/afc236d9-2561-5eb0-89aa-3f6a8ef0e019"
+  },
+  "Q4": {
+    "sym": "Transistor_FET:AO3401A",
+    "value": "BSS84-7-F",
+    "fp": "Package_TO_SOT_SMD:SOT-23",
+    "pins": {
+      "1": "SENSE_GATE",
+      "2": "VBAT",
+      "3": "BAT_SAMPLED"
+    },
+    "xy": [
+      23,
+      39,
+      0
+    ],
+    "group": 2,
+    "mfr": "Diodes Incorporated",
+    "mpn": "BSS84-7-F",
+    "package": "SOT-23",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:AO3401A",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-23",
+    "uuid": "0939cd57-e62e-5b3e-9a60-f83eb4ad4e4a",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/0939cd57-e62e-5b3e-9a60-f83eb4ad4e4a"
+  },
+  "Q5": {
+    "sym": "Transistor_FET:2N7002",
+    "value": "2N7002-7-F",
+    "fp": "Package_TO_SOT_SMD:SOT-23",
+    "pins": {
+      "1": "3V3",
+      "2": "GND",
+      "3": "SENSE_GATE"
+    },
+    "xy": [
+      18,
+      40,
+      0
+    ],
+    "group": 2,
+    "mfr": "Diodes Incorporated",
+    "mpn": "2N7002-7-F",
+    "package": "SOT-23",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:2N7002",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-23",
+    "uuid": "2d7bc3c6-1b82-5d60-9d2b-159a787a54f1",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/2d7bc3c6-1b82-5d60-9d2b-159a787a54f1"
+  },
+  "R30": {
+    "sym": "Device:R",
+    "value": "1M",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "VBAT",
+      "2": "SENSE_GATE"
+    },
+    "xy": [
+      27,
+      39,
+      90
+    ],
+    "group": 2,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1004V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "2aed0a02-0726-5a26-a674-151b90d46a41",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/2aed0a02-0726-5a26-a674-151b90d46a41"
+  },
+  "R31": {
+    "sym": "Device:R",
+    "value": "1M",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "BAT_SAMPLED",
+      "2": "BAT_ADC"
+    },
+    "xy": [
+      30,
+      42,
+      90
+    ],
+    "group": 2,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1004V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "bf445635-879e-51b3-8582-3e9bde75f64e",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/bf445635-879e-51b3-8582-3e9bde75f64e"
+  },
+  "R32": {
+    "sym": "Device:R",
+    "value": "330k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "BAT_ADC",
+      "2": "GND"
+    },
+    "xy": [
+      34,
+      42,
+      90
+    ],
+    "group": 2,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF3303V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "f9bdcdac-ebe3-5cd4-90d4-197a44f5db7f",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/f9bdcdac-ebe3-5cd4-90d4-197a44f5db7f"
+  },
+  "C16": {
+    "sym": "Device:C",
+    "value": "100n 50V X7R",
+    "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "pins": {
+      "1": "BAT_ADC",
+      "2": "GND"
+    },
+    "xy": [
+      34,
+      46,
+      90
+    ],
+    "group": 2,
+    "mfr": "TDK",
+    "mpn": "C2012X7R1H104K085AA",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "uuid": "652cc320-1538-5673-892a-e46f8ca78534",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/652cc320-1538-5673-892a-e46f8ca78534"
+  },
+  "R33": {
+    "sym": "Device:R",
+    "value": "100k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "3V3",
+      "2": "BUTTON"
+    },
+    "xy": [
+      72,
+      29,
+      90
+    ],
+    "group": 4,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1003V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "31c24caf-c772-59a8-aec7-0de651598a9b",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/31c24caf-c772-59a8-aec7-0de651598a9b"
+  },
+  "R34": {
+    "sym": "Device:R",
+    "value": "1k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "BUTTON_EXT",
+      "2": "BUTTON"
+    },
+    "xy": [
+      76,
+      41,
+      90
+    ],
+    "group": 4,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1001V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "a6d78c70-0004-56af-be96-3e1edd9b927e",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/a6d78c70-0004-56af-be96-3e1edd9b927e"
+  },
+  "C15": {
+    "sym": "Device:C",
+    "value": "100n 50V X7R",
+    "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "pins": {
+      "1": "BUTTON",
+      "2": "GND"
+    },
+    "xy": [
+      72,
+      36,
+      90
+    ],
+    "group": 4,
+    "mfr": "TDK",
+    "mpn": "C2012X7R1H104K085AA",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "uuid": "1ba487cb-06dc-5848-8c12-de7a904be9f9",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/1ba487cb-06dc-5848-8c12-de7a904be9f9"
+  },
+  "Q6": {
+    "sym": "Transistor_FET:2N7002",
+    "value": "DMN2056U-7",
+    "fp": "Package_TO_SOT_SMD:SOT-23",
+    "pins": {
+      "1": "BUZZ_GATE",
+      "2": "GND",
+      "3": "PIEZO_N"
+    },
+    "xy": [
+      19,
+      50,
+      0
+    ],
+    "group": 4,
+    "mfr": "Diodes Incorporated",
+    "mpn": "DMN2056U-7",
+    "package": "SOT-23",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:2N7002",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-23",
+    "uuid": "a7e7eb01-bbd8-5ae4-9cf1-5d9c87f8ccd9",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/a7e7eb01-bbd8-5ae4-9cf1-5d9c87f8ccd9"
+  },
+  "R35": {
+    "sym": "Device:R",
+    "value": "100k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "BUZZ_GATE",
+      "2": "GND"
+    },
+    "xy": [
+      14,
+      49,
+      90
+    ],
+    "group": 4,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1003V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "52e8a98b-b398-51fc-92ed-7f2f0c8baaa4",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/52e8a98b-b398-51fc-92ed-7f2f0c8baaa4"
+  },
+  "R36": {
+    "sym": "Device:R",
+    "value": "100",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "3V3",
+      "2": "PIEZO_P"
+    },
+    "xy": [
+      30,
+      50,
+      0
+    ],
+    "group": 4,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1000V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "93073167-452f-5c56-8ffa-bb019c320f13",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/93073167-452f-5c56-8ffa-bb019c320f13"
+  },
+  "R37": {
+    "sym": "Device:R",
+    "value": "1k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "PIEZO_P",
+      "2": "PIEZO_N"
+    },
+    "xy": [
+      33,
+      53,
+      90
+    ],
+    "group": 4,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1001V",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "47933989-bb7d-55a6-b8a3-40d43f9024be",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/47933989-bb7d-55a6-b8a3-40d43f9024be"
+  },
+  "D12": {
+    "sym": "Device:D",
+    "value": "BAV19W-7-F",
+    "fp": "Diode_SMD:D_SOD-123",
+    "pins": {
+      "1": "PIEZO_P",
+      "2": "PIEZO_N"
+    },
+    "xy": [
+      21,
+      45,
+      0
+    ],
+    "group": 4,
+    "mfr": "Diodes Incorporated",
+    "mpn": "BAV19W-7-F",
+    "package": "SOD-123",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:D",
+    "footprint": "RevB:Diode_SMD__D_SOD-123",
+    "uuid": "80ba673c-9b41-5215-bfc8-c9a5a89ca41b",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/f0ed5fe7-abe5-54f7-bdf0-f50e4c9e231f/80ba673c-9b41-5215-bfc8-c9a5a89ca41b"
+  },
+  "TP1": {
+    "sym": "Connector:TestPoint",
+    "value": "VBUS",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "VBUS"
+    },
+    "xy": [
+      72,
+      24,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "43ba3560-ba2b-5904-a6fe-eb9b750e8bf8",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/43ba3560-ba2b-5904-a6fe-eb9b750e8bf8"
+  },
+  "TP2": {
+    "sym": "Connector:TestPoint",
+    "value": "VBAT",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "VBAT"
+    },
+    "xy": [
+      10,
+      32,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "6a80484a-3903-5896-a041-940e87987bf3",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/6a80484a-3903-5896-a041-940e87987bf3"
+  },
+  "TP3": {
+    "sym": "Connector:TestPoint",
+    "value": "VSYS",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "VSYS"
+    },
+    "xy": [
+      33,
+      29,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "ce0a67e6-6b54-50a1-8f3b-47acb0ce4f74",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/ce0a67e6-6b54-50a1-8f3b-47acb0ce4f74"
+  },
+  "TP4": {
+    "sym": "Connector:TestPoint",
+    "value": "3V3_REG",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "3V3_REG"
+    },
+    "xy": [
+      48,
+      23,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "06d605ef-de9b-5c3d-85da-81907580098b",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/06d605ef-de9b-5c3d-85da-81907580098b"
+  },
+  "TP5": {
+    "sym": "Connector:TestPoint",
+    "value": "3V3",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "3V3"
+    },
+    "xy": [
+      52,
+      18,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "99c247dd-fd33-5958-964e-cac1805e7e77",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/99c247dd-fd33-5958-964e-cac1805e7e77"
+  },
+  "TP6": {
+    "sym": "Connector:TestPoint",
+    "value": "GND",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "GND"
+    },
+    "xy": [
+      52,
+      23,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "1a693958-f544-56a2-82cc-e03133c9b983",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/1a693958-f544-56a2-82cc-e03133c9b983"
+  },
+  "TP7": {
+    "sym": "Connector:TestPoint",
+    "value": "RESET_N",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "RESET_N"
+    },
+    "xy": [
+      31,
+      1.7,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "4b7460b3-a057-5b32-868f-8471edceba5e",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/4b7460b3-a057-5b32-868f-8471edceba5e"
+  },
+  "TP8": {
+    "sym": "Connector:TestPoint",
+    "value": "BOOT_N",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "BOOT_N"
+    },
+    "xy": [
+      34,
+      18,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "affcb5ce-02a6-5f8f-84cb-f7dd41170bcb",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/affcb5ce-02a6-5f8f-84cb-f7dd41170bcb"
+  },
+  "TP9": {
+    "sym": "Connector:TestPoint",
+    "value": "BAT_ADC",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "BAT_ADC"
+    },
+    "xy": [
+      36,
+      50,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "0a8749ba-1b69-5dba-ba06-1156077c1515",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/0a8749ba-1b69-5dba-ba06-1156077c1515"
+  },
+  "TP10": {
+    "sym": "Connector:TestPoint",
+    "value": "USB_GOOD_N",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "USB_GOOD_N"
+    },
+    "xy": [
+      18,
+      15,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "9af22af4-53b4-5ace-9b07-b64316f3083e",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/9af22af4-53b4-5ace-9b07-b64316f3083e"
+  },
+  "TP11": {
+    "sym": "Connector:TestPoint",
+    "value": "CHG_DISABLE",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "CHG_DISABLE"
+    },
+    "xy": [
+      19,
+      37,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "8bd7e6d7-0453-5885-8e70-bdc08d164c79",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/8bd7e6d7-0453-5885-8e70-bdc08d164c79"
+  },
+  "TP12": {
+    "sym": "Connector:TestPoint",
+    "value": "NTC",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "NTC"
+    },
+    "xy": [
+      7,
+      46,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "3b2c1450-4465-59a5-9bb8-bab73e52bd4a",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/3b2c1450-4465-59a5-9bb8-bab73e52bd4a"
+  },
+  "TP13": {
+    "sym": "Connector:TestPoint",
+    "value": "GND",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "GND"
+    },
+    "xy": [
+      75,
+      22,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "09fc4d5e-1d3a-5819-9825-dda493b53ad7",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/09fc4d5e-1d3a-5819-9825-dda493b53ad7"
+  },
+  "TP14": {
+    "sym": "Connector:TestPoint",
+    "value": "GND",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "GND"
+    },
+    "xy": [
+      69,
+      47,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "bce5d416-7f13-5492-8655-984a30daa691",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/bce5d416-7f13-5492-8655-984a30daa691"
+  },
+  "TP15": {
+    "sym": "Connector:TestPoint",
+    "value": "BUTTON",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "BUTTON"
+    },
+    "xy": [
+      70,
+      42,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "3abe8e01-b803-5f8d-bbbe-333e0b8362b9",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/3abe8e01-b803-5f8d-bbbe-333e0b8362b9"
+  },
+  "TP16": {
+    "sym": "Connector:TestPoint",
+    "value": "ISET",
+    "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+    "pins": {
+      "1": "ISET"
+    },
+    "xy": [
+      29.5,
+      18.5,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - bare copper pad",
+    "package": "PCB pad",
+    "dnp": true,
+    "note": "Bare copper test point; no assembly item",
+    "libid": "RevB:TestPoint",
+    "footprint": "RevB:TestPoint__TestPoint_Pad_D1.5mm",
+    "uuid": "1346a79a-54fb-576e-a8ed-060117abdd64",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/1346a79a-54fb-576e-a8ed-060117abdd64"
+  },
+  "H1": {
+    "sym": "Mechanical:MountingHole",
+    "value": "M2",
+    "fp": "MountingHole:MountingHole_2.2mm_M2",
+    "pins": {},
+    "xy": [
+      3,
+      3,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - mounting hole",
+    "package": "NPTH 2.2mm",
+    "dnp": true,
+    "note": "Do not populate; 5mm screw head keepout",
+    "libid": "RevB:MountingHole",
+    "footprint": "RevB:MountingHole__MountingHole_2.2mm_M2",
+    "uuid": "00fabb59-a80c-591c-9cd2-e38e19f695d9",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/00fabb59-a80c-591c-9cd2-e38e19f695d9"
+  },
+  "H2": {
+    "sym": "Mechanical:MountingHole",
+    "value": "M2",
+    "fp": "MountingHole:MountingHole_2.2mm_M2",
+    "pins": {},
+    "xy": [
+      87,
+      3,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - mounting hole",
+    "package": "NPTH 2.2mm",
+    "dnp": true,
+    "note": "Do not populate; 5mm screw head keepout",
+    "libid": "RevB:MountingHole",
+    "footprint": "RevB:MountingHole__MountingHole_2.2mm_M2",
+    "uuid": "d7584f84-e8bb-5e0f-a9fd-795fd6f47efb",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/d7584f84-e8bb-5e0f-a9fd-795fd6f47efb"
+  },
+  "H3": {
+    "sym": "Mechanical:MountingHole",
+    "value": "M2",
+    "fp": "MountingHole:MountingHole_2.2mm_M2",
+    "pins": {},
+    "xy": [
+      3,
+      57,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - mounting hole",
+    "package": "NPTH 2.2mm",
+    "dnp": true,
+    "note": "Do not populate; 5mm screw head keepout",
+    "libid": "RevB:MountingHole",
+    "footprint": "RevB:MountingHole__MountingHole_2.2mm_M2",
+    "uuid": "e9cfe851-5219-513a-b91e-e52f715bf8be",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/e9cfe851-5219-513a-b91e-e52f715bf8be"
+  },
+  "H4": {
+    "sym": "Mechanical:MountingHole",
+    "value": "M2",
+    "fp": "MountingHole:MountingHole_2.2mm_M2",
+    "pins": {},
+    "xy": [
+      87,
+      57,
+      0
+    ],
+    "group": 5,
+    "mfr": "PCB fabrication",
+    "mpn": "N/A - mounting hole",
+    "package": "NPTH 2.2mm",
+    "dnp": true,
+    "note": "Do not populate; 5mm screw head keepout",
+    "libid": "RevB:MountingHole",
+    "footprint": "RevB:MountingHole__MountingHole_2.2mm_M2",
+    "uuid": "f1a41793-286e-5e2e-b785-1b5de2d4e7e0",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/ec234b70-7166-54d4-b5f1-8595cde2ef2e/f1a41793-286e-5e2e-b785-1b5de2d4e7e0"
+  },
+  "Q7": {
+    "sym": "Transistor_FET:2N7002",
+    "value": "2N7002-7-F",
+    "fp": "Package_TO_SOT_SMD:SOT-23",
+    "pins": {
+      "1": "SUSPEND_N",
+      "2": "GND",
+      "3": "USB_SUSPEND"
+    },
+    "xy": [
+      66,
+      39,
+      0
+    ],
+    "group": 2,
+    "mfr": "Diodes Incorporated",
+    "mpn": "2N7002-7-F",
+    "package": "SOT-23",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:2N7002",
+    "footprint": "RevB:Package_TO_SOT_SMD__SOT-23",
+    "uuid": "6681e01e-1b5c-5af3-bf9b-d4c652766ab8",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/6681e01e-1b5c-5af3-bf9b-d4c652766ab8"
+  },
+  "R38": {
+    "sym": "Device:R",
+    "value": "100k",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "3V3",
+      "2": "USB_SUSPEND"
+    },
+    "xy": [
+      65,
+      44,
+      90
+    ],
+    "group": 2,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6ENF1003V",
+    "package": "0805",
+    "dnp": false,
+    "note": "Q7 inversion: IO2 high=active, IO2 low=USB suspend after EN1 high",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "88cab6cb-5cae-5167-be46-f3f2666a2339",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/81eaed6e-c4d8-50a3-a66d-2b2e8d6fe704/88cab6cb-5cae-5167-be46-f3f2666a2339"
+  },
+  "R39": {
+    "sym": "Device:R",
+    "value": "0",
+    "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "pins": {
+      "1": "CHG_DISABLE",
+      "2": "GND"
+    },
+    "xy": [
+      7,
+      50,
+      0
+    ],
+    "group": 1,
+    "mfr": "Panasonic",
+    "mpn": "ERJ-6GEY0R00V",
+    "package": "0805",
+    "dnp": true,
+    "note": "CHARGE ENABLE option: fit only with independently temperature-protected pack after release checklist",
+    "libid": "RevB:R",
+    "footprint": "RevB:Resistor_SMD__R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+    "uuid": "f85a22b1-aa39-501e-a9ab-9fdfea1ec37b",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/522809d7-0603-591a-b5dd-fe910b2d48dc/f85a22b1-aa39-501e-a9ab-9fdfea1ec37b"
+  },
+  "U5": {
+    "sym": "custom:74LVC125A",
+    "value": "74LVC125AD,118",
+    "fp": "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm",
+    "pins": {
+      "1": "GND",
+      "2": "SCK_M",
+      "3": "SCK_BUF",
+      "4": "GND",
+      "5": "MOSI_M",
+      "6": "MOSI_BUF",
+      "7": "GND",
+      "8": "RES_BUF",
+      "9": "RES_M",
+      "10": "GND",
+      "11": "DC_BUF",
+      "12": "DC_M",
+      "13": "GND",
+      "14": "OLED_3V3"
+    },
+    "xy": [
+      49,
+      29,
+      0
+    ],
+    "group": 3,
+    "mfr": "Nexperia",
+    "mpn": "74LVC125AD,118",
+    "package": "SOIC-14",
+    "dnp": false,
+    "note": "Ioff isolation with OLED rail OFF; no boot backfeed through SPI inputs",
+    "libid": "RevB:74LVC125A",
+    "footprint": "RevB:Package_SO__SOIC-14_3.9x8.7mm_P1.27mm",
+    "uuid": "b0d31cf4-d2be-5ad0-9e36-3d80a2ebb58a",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/b0d31cf4-d2be-5ad0-9e36-3d80a2ebb58a"
+  },
+  "C19": {
+    "sym": "Device:C",
+    "value": "100n 50V X7R",
+    "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "pins": {
+      "1": "OLED_3V3",
+      "2": "GND"
+    },
+    "xy": [
+      55.5,
+      23,
+      0
+    ],
+    "group": 3,
+    "mfr": "TDK",
+    "mpn": "C2012X7R1H104K085AA",
+    "package": "0805",
+    "dnp": false,
+    "note": "",
+    "libid": "RevB:C",
+    "footprint": "RevB:Capacitor_SMD__C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+    "uuid": "f50dd5fa-1297-55f2-9fb5-e8cd7afa5a79",
+    "path": "/295b6106-bf02-5ab7-b555-1bba838eb13f/be99038a-3a8e-5370-82b8-c84516477c67/f50dd5fa-1297-55f2-9fb5-e8cd7afa5a79"
+  }
+}

@@ -1,0 +1,142 @@
+[
+  {
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "sch",
+      "export",
+      "pdf",
+      "-o",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/schaltplan.pdf",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/flappy-esp32c3-revb.kicad_sch"
+    ],
+    "returncode": 0,
+    "stdout": "Plotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/schaltplan.pdf'.\nDone.\n",
+    "stderr": "Fontconfig error: Cannot load default config file: No such file: (null)\n"
+  },
+  {
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "export",
+      "pdf",
+      "--mode-single",
+      "--layers",
+      "F.Cu,F.SilkS,Edge.Cuts",
+      "--scale",
+      "2.5",
+      "--exclude-value",
+      "-o",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/pcb-oberseite.pdf",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/flappy-esp32c3-revb.kicad_pcb"
+    ],
+    "returncode": 0,
+    "stdout": "Plotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/pcb-oberseite.pdf'.\nDone.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "export",
+      "pdf",
+      "--mode-single",
+      "--layers",
+      "B.Cu,B.SilkS,Edge.Cuts",
+      "--scale",
+      "2.5",
+      "--mirror",
+      "--exclude-value",
+      "-o",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/pcb-unterseite.pdf",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/flappy-esp32c3-revb.kicad_pcb"
+    ],
+    "returncode": 0,
+    "stdout": "Plotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/pcb-unterseite.pdf'.\nDone.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "export",
+      "pdf",
+      "--mode-single",
+      "--layers",
+      "F.Fab,F.SilkS,Edge.Cuts",
+      "--black-and-white",
+      "--scale",
+      "2.5",
+      "--exclude-value",
+      "--sketch-pads-on-fab-layers",
+      "--crossout-DNP-footprints-on-fab-layers",
+      "-o",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/bestueckungsplan.pdf",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/flappy-esp32c3-revb.kicad_pcb"
+    ],
+    "returncode": 0,
+    "stdout": "Plotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/bestueckungsplan.pdf'.\nDone.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "export",
+      "gerbers",
+      "--layers",
+      "F.Cu,B.Cu,F.SilkS,B.SilkS,F.Mask,B.Mask,F.Paste,B.Paste,Edge.Cuts",
+      "--exclude-value",
+      "--no-protel-ext",
+      "-o",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/flappy-esp32c3-revb.kicad_pcb"
+    ],
+    "returncode": 0,
+    "stdout": "Plotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-F_Cu.gbr'.\nPlotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-B_Cu.gbr'.\nPlotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-F_Paste.gbr'.\nPlotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-B_Paste.gbr'.\nPlotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-F_Silkscreen.gbr'.\nPlotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-B_Silkscreen.gbr'.\nPlotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-F_Mask.gbr'.\nPlotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-B_Mask.gbr'.\nPlotted to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-Edge_Cuts.gbr'.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "export",
+      "drill",
+      "--format",
+      "excellon",
+      "--excellon-units",
+      "mm",
+      "--excellon-separate-th",
+      "--generate-report",
+      "--report-path",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/bohrbericht.txt",
+      "--generate-map",
+      "--map-format",
+      "svg",
+      "-o",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/flappy-esp32c3-revb.kicad_pcb"
+    ],
+    "returncode": 0,
+    "stdout": "Created file '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-PTH.drl'\nCreated file '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-NPTH.drl'\nCreated file '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-PTH-drl_map.svg'.\nCreated file '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/fertigung/flappy-esp32c3-revb-NPTH-drl_map.svg'.\nDone.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "export",
+      "pos",
+      "--format",
+      "csv",
+      "--units",
+      "mm",
+      "--exclude-dnp",
+      "-o",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/bestueckungspositionen.csv",
+      "/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/flappy-esp32c3-revb.kicad_pcb"
+    ],
+    "returncode": 0,
+    "stdout": "Wrote position data to '/Users/ferdinand/Documents/GitHub/BP_flappyBird/hardware/redesign/output/bestueckungspositionen.csv'.\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,23 @@
+Fontconfig error: Cannot load default config file: No such file: (null)
+./src/common/stdpbase.cpp(59): assert ""traits"" failed in Get(): create wxApp before calling this
+Symbol U1 RF_Module:ESP32-C3-WROOM-02
+Symbol U2 Battery_Management:BQ24074RGT
+Symbol U3 custom:XC6220B331PR
+Symbol U4 Power_Management:TPS22919DCK
+Symbol J1 Connector:USB_C_Receptacle_USB2.0_16P
+Symbol J2 Connector_Generic:Conn_01x02
+Symbol J3 Connector_Generic:Conn_01x08
+Symbol SW1 Switch:SW_SPDT
+Symbol R1 Device:R
+Symbol F1 Device:Fuse
+Symbol D1 Device:D_TVS
+Symbol C1 Device:C
+Symbol D2 custom:TPD2E2U06DCK
+Symbol Q1 Transistor_FET:AO3401A
+Symbol D10 Device:LED
+Symbol Q3 Transistor_FET:2N7002
+Symbol D12 Device:D
+Symbol TP1 Connector:TestPoint
+Symbol H1 Mechanical:MountingHole
+Symbol U5 custom:SN74LVC125A
+Built 111 parts 58 nets

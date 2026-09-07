@@ -1,0 +1,23 @@
+{
+  "result": "PASS",
+  "pcb_sha256": "ae39d273a5bbe81a308bc6fada952d768b70d2816157ae6d02b286882475f229",
+  "position_count": 85,
+  "positions_units": "mm",
+  "positions_origin": "KiCad absolute; X right, Y up (negative for board positive Y)",
+  "copper_gerber_regions": {
+    "F_Cu": {
+      "regions": 53,
+      "largest_region_mm2": 2066.43
+    },
+    "B_Cu": {
+      "regions": 2,
+      "largest_region_mm2": 4964.43
+    }
+  },
+  "plated_holes_including_slots": 403,
+  "unplated_holes": 6,
+  "initial_tracked_status_preserved": true,
+  "additional_untracked_outside_redesign": [
+    "?? hardware/~flappy-esp32c3.kicad_pro.lck"
+  ]
+}
