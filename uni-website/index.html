@@ -5,23 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Universität Nordlicht – Wissen, das leuchtet</title>
   <meta name="description" content="Universität Nordlicht: Studium, Forschung und Campusleben. Demo-Website – KI-generiertes Beispiel einer modernen Hochschulseite.">
+  <meta name="theme-color" content="#0b1020">
+  <meta property="og:title" content="Universität Nordlicht – Wissen, das leuchtet">
+  <meta property="og:description" content="Fiktive Demo-Universität: moderne Hochschulwebsite mit 3D-Design, komplett von KI erstellt.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 3 43 14v20L24 45 5 34V14z' fill='%236366f1'/%3E%3Cpath d='M24 11 35 17.5v13L24 37 13 30.5v-13z' fill='none' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
+  <!-- SVG-Icon-Sprite -->
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2v3.6c0 1.7 3.1 3.2 7 3.2s7-1.5 7-3.2v-3.6l-7 3.8z"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2h8l6 6v14H6zm7 1.5V9h5.5zM9 13h8v1.6H9zm0 3.5h8V18H9z"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.500a2.500 2.500 0 0 1 0 5z"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><path d="M7 2v2H4v18h16V4h-3V2h-2v2H9V2zM6 9h12v11H6z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 0 4.900 14.300l5.400 5.400 1.400-1.400-5.400-5.400A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M12 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM4 21c0-4.400 3.600-7 8-7s8 2.600 8 7z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.900 9h-3.100a15 15 0 0 0-1.400-6A8 8 0 0 1 18.900 11zM12 4c.9 1.200 1.600 3.600 1.800 7h-3.600C10.400 7.600 11.100 5.200 12 4zM4.100 13h3.100a15 15 0 0 0 1.400 6A8 8 0 0 1 4.100 13zm3.100-2H4.100a8 8 0 0 1 4.500-6 15 15 0 0 0-1.400 6zM12 20c-.9-1.200-1.600-3.600-1.800-7h3.600c-.2 3.400-.9 5.800-1.800 7zm3.400-1a15 15 0 0 0 1.400-6h3.100a8 8 0 0 1-4.500 6z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3zm2 2v.5l7 5 7-5V7zm14 3-7 5-7-5V17h14z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.600 10.800a15 15 0 0 0 6.600 6.600l2.200-2.200c.3-.3.700-.4 1-.2 1.100.4 2.300.6 3.600.6.600 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.400-1 1-1h3.500c.6 0 1 .4 1 1 0 1.300.2 2.500.6 3.600.1.300 0 .7-.2 1z"/></symbol>
+  </svg>
+
   <div class="topbar">
     <div class="container topbar__inner">
       <span class="topbar__demo">Demo-Website · Fiktive Universität, erstellt mit KI</span>
-      <nav aria-label="Zielgruppen">
-        <ul class="topbar__list">
-          <li><a href="#studium">Studieninteressierte</a></li>
-          <li><a href="#forschung">Forschende</a></li>
-          <li><a href="#campus">Alumni</a></li>
-          <li><a href="#kontakt">Presse</a></li>
-          <li><button class="lang-switch" type="button" aria-label="Sprache wechseln: Deutsch / English">DE | EN</button></li>
-        </ul>
-      </nav>
+      <div class="topbar__right">
+        <nav aria-label="Zielgruppen">
+          <ul class="topbar__list">
+            <li><a href="#studium">Studieninteressierte</a></li>
+            <li><a href="#forschung">Forschende</a></li>
+            <li><a href="#international">Internationale</a></li>
+            <li><a href="#alumni">Alumni</a></li>
+            <li><a href="#presse">Presse</a></li>
+          </ul>
+        </nav>
+        <div class="lang-switch" role="group" aria-label="Sprache">
+          <a href="#top" lang="de" hreflang="de" aria-current="true">DE</a>
+          <span aria-hidden="true">|</span>
+          <a href="#top" lang="en" hreflang="en">EN</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -30,34 +55,47 @@
       <a class="logo" href="#top" aria-label="Universität Nordlicht – Startseite">
         <svg class="logo__mark" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true">
           <defs>
-            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+            <linearGradient id="logo-gradient" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stop-color="#5eead4"/>
               <stop offset="1" stop-color="#6366f1"/>
             </linearGradient>
           </defs>
-          <path d="M24 3 43 14v20L24 45 5 34V14z" fill="url(#lg)"/>
-          <path d="M24 11 35 17.5v13L24 37 13 30.5v-13z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
-          <path d="M24 17v14M18 20.5l12 7M30 20.5l-12 7" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M24 3 43 14v20L24 45 5 34V14z" fill="url(#logo-gradient)"/>
+          <path d="M24 11 35 17.500v13L24 37 13 30.500v-13z" fill="none" stroke="#fff" stroke-width="2.400" stroke-linejoin="round"/>
+          <path d="M24 17v14M18 20.500l12 7M30 20.500l-12 7" stroke="#fff" stroke-width="1.600" stroke-linecap="round"/>
         </svg>
         <span class="logo__text"><strong>Universität</strong> Nordlicht</span>
       </a>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
-        <span class="nav-toggle__bars" aria-hidden="true"></span>
-        <span class="visually-hidden">Menü öffnen</span>
-      </button>
 
       <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
         <ul class="main-nav__list">
           <li><a href="#studium">Studium</a></li>
           <li><a href="#fakultaeten">Fakultäten</a></li>
           <li><a href="#forschung">Forschung</a></li>
+          <li><a href="#international">International</a></li>
           <li><a href="#campus">Campusleben</a></li>
           <li><a href="#aktuelles">Aktuelles</a></li>
-          <li><a class="btn btn--small" href="#bewerben">Jetzt bewerben</a></li>
         </ul>
       </nav>
+
+      <div class="header__tools">
+        <button class="icon-btn" type="button" id="search-toggle" aria-label="Suche öffnen" aria-expanded="false" aria-controls="site-search">
+          <svg width="20" height="20" aria-hidden="true"><use href="#i-search"/></svg>
+        </button>
+        <a class="icon-btn icon-btn--text" href="#beratung"><svg width="20" height="20" aria-hidden="true"><use href="#i-user"/></svg><span>Portal</span></a>
+        <a class="btn btn--small" href="#bewerben">Jetzt bewerben</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menü öffnen">
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
+    <form class="site-search" id="site-search" role="search" hidden>
+      <div class="container site-search__inner">
+        <label class="visually-hidden" for="q">Suche auf der Website</label>
+        <input id="q" name="q" type="search" placeholder="Studiengang, Person oder Thema suchen …" autocomplete="off">
+        <button class="btn btn--small" type="submit">Suchen</button>
+      </div>
+    </form>
   </header>
 
   <main id="main">
@@ -70,9 +108,9 @@
           <p class="eyebrow">Seit 1612 · Hansestadt Nordhafen</p>
           <h1 id="hero-title">Wissen, das <span class="gradient-text">leuchtet.</span></h1>
           <p class="hero__lead">Über 28.000 Studierende, 140 Studiengänge und Forschung, die Antworten auf die Fragen von morgen gibt – mitten in einer der lebendigsten Städte des Nordens.</p>
-          <div class="hero__actions">
+          <div class="actions">
             <a class="btn" href="#studium">Studiengänge entdecken</a>
-            <a class="btn btn--ghost" href="#campus">Virtueller Rundgang</a>
+            <a class="btn btn--ghost" href="#campus-karte">Campus erkunden</a>
           </div>
         </div>
         <div class="hero__scene" aria-hidden="true">
@@ -93,10 +131,10 @@
     <section class="quick" id="schnellzugriff" aria-label="Schnellzugriff">
       <div class="container">
         <ul class="quick__grid">
-          <li><a class="quick__card tilt" href="#studium"><span class="quick__icon" aria-hidden="true">🎓</span><strong>Studienangebot</strong><span>Bachelor, Master &amp; mehr</span></a></li>
-          <li><a class="quick__card tilt" href="#bewerben"><span class="quick__icon" aria-hidden="true">📝</span><strong>Bewerbung</strong><span>Fristen &amp; Zulassung</span></a></li>
-          <li><a class="quick__card tilt" href="#campus"><span class="quick__icon" aria-hidden="true">🏛️</span><strong>Campus-Karte</strong><span>Gebäude &amp; Wege</span></a></li>
-          <li><a class="quick__card tilt" href="#aktuelles"><span class="quick__icon" aria-hidden="true">📅</span><strong>Veranstaltungen</strong><span>Vorträge &amp; Festivals</span></a></li>
+          <li><a class="quick__card tilt" href="#studium"><span class="tilt__inner"><svg class="quick__icon" width="36" height="36" aria-hidden="true"><use href="#i-cap"/></svg><strong>Studienangebot</strong><span>Bachelor, Master &amp; mehr</span></span></a></li>
+          <li><a class="quick__card tilt" href="#bewerben"><span class="tilt__inner"><svg class="quick__icon" width="36" height="36" aria-hidden="true"><use href="#i-doc"/></svg><strong>Bewerbung</strong><span>Fristen &amp; Zulassung</span></span></a></li>
+          <li><a class="quick__card tilt" href="#campus-karte"><span class="tilt__inner"><svg class="quick__icon" width="36" height="36" aria-hidden="true"><use href="#i-map"/></svg><strong>Campus-Karte</strong><span>Gebäude &amp; Wege</span></span></a></li>
+          <li><a class="quick__card tilt" href="#aktuelles"><span class="tilt__inner"><svg class="quick__icon" width="36" height="36" aria-hidden="true"><use href="#i-cal"/></svg><strong>Veranstaltungen</strong><span>Vorträge &amp; Festivals</span></span></a></li>
         </ul>
       </div>
     </section>
@@ -105,10 +143,10 @@
     <section class="stats" aria-label="Die Universität in Zahlen">
       <div class="container">
         <ul class="stats__grid">
-          <li><span class="stat__num" data-count="28400">28.400</span><span class="stat__label">Studierende</span></li>
-          <li><span class="stat__num" data-count="140">140</span><span class="stat__label">Studiengänge</span></li>
-          <li><span class="stat__num" data-count="112">112</span><span class="stat__label">Partnerhochschulen weltweit</span></li>
-          <li><span class="stat__num" data-count="6" data-suffix=" Mio. €">6 Mio. €</span><span class="stat__label">Forschungsförderung pro Monat</span></li>
+          <li data-reveal><span class="stat__num" data-count="28400" data-locale="de-DE">28.400</span><span class="stat__label">Studierende</span></li>
+          <li data-reveal><span class="stat__num" data-count="140" data-locale="de-DE">140</span><span class="stat__label">Studiengänge</span></li>
+          <li data-reveal><span class="stat__num" data-count="112" data-locale="de-DE">112</span><span class="stat__label">Partnerhochschulen weltweit</span></li>
+          <li data-reveal><span class="stat__num" data-count="72" data-locale="de-DE" data-suffix=" Mio. €">72 Mio. €</span><span class="stat__label">Drittmittel pro Jahr</span></li>
         </ul>
       </div>
     </section>
@@ -116,36 +154,40 @@
     <!-- STUDIUM -->
     <section class="section" id="studium" aria-labelledby="studium-title">
       <div class="container">
-        <header class="section__head">
+        <header class="section__head" data-reveal>
           <p class="eyebrow">Studium</p>
           <h2 id="studium-title">Finde deinen Weg</h2>
           <p class="section__lead">Von klassischen Fächern bis zu interdisziplinären Zukunftsstudiengängen – entdecke, was zu dir passt.</p>
         </header>
         <ul class="cards">
-          <li class="card tilt">
-            <span class="card__tag">Bachelor</span>
+          <li class="card tilt" data-reveal><div class="tilt__inner">
+            <span class="card__tag">Bachelor of Science</span>
             <h3>Künstliche Intelligenz &amp; Data Science</h3>
             <p>Maschinelles Lernen, Statistik und Ethik – praxisnah mit eigenem GPU-Cluster.</p>
-            <a class="card__link" href="#bewerben">Mehr erfahren <span aria-hidden="true">→</span></a>
-          </li>
-          <li class="card tilt">
-            <span class="card__tag">Master</span>
+            <dl class="facts"><div><dt>Dauer</dt><dd>6 Sem. · 180 ECTS</dd></div><div><dt>Start</dt><dd>Wintersemester</dd></div><div><dt>Zulassung</dt><dd>NC (1,9)</dd></div><div><dt>Fakultät</dt><dd>Ingenieur &amp; Informatik</dd></div></dl>
+            <a class="card__link" href="#bewerben">Mehr erfahren <span class="visually-hidden">zu Künstliche Intelligenz &amp; Data Science</span><span aria-hidden="true">→</span></a>
+          </div></li>
+          <li class="card tilt" data-reveal><div class="tilt__inner">
+            <span class="card__tag">Master of Science</span>
             <h3>Nachhaltige Energiesysteme</h3>
             <p>Windkraft, Wasserstoff und Netze der Zukunft – in Kooperation mit der Industrie.</p>
-            <a class="card__link" href="#bewerben">Mehr erfahren <span aria-hidden="true">→</span></a>
-          </li>
-          <li class="card tilt">
-            <span class="card__tag">Bachelor</span>
+            <dl class="facts"><div><dt>Dauer</dt><dd>4 Sem. · 120 ECTS</dd></div><div><dt>Start</dt><dd>Winter &amp; Sommer</dd></div><div><dt>Zulassung</dt><dd>Eignungsverfahren</dd></div><div><dt>Fakultät</dt><dd>Ingenieur &amp; Informatik</dd></div></dl>
+            <a class="card__link" href="#bewerben">Mehr erfahren <span class="visually-hidden">zu Nachhaltige Energiesysteme</span><span aria-hidden="true">→</span></a>
+          </div></li>
+          <li class="card tilt" data-reveal><div class="tilt__inner">
+            <span class="card__tag">Bachelor of Science</span>
             <h3>Medizin &amp; Biotechnologie</h3>
             <p>Von Anfang an im Labor und am Universitätsklinikum – Forschung trifft Patientenwohl.</p>
-            <a class="card__link" href="#bewerben">Mehr erfahren <span aria-hidden="true">→</span></a>
-          </li>
-          <li class="card tilt">
-            <span class="card__tag">Master</span>
+            <dl class="facts"><div><dt>Dauer</dt><dd>6 Sem. · 180 ECTS</dd></div><div><dt>Start</dt><dd>Wintersemester</dd></div><div><dt>Zulassung</dt><dd>NC (1,5)</dd></div><div><dt>Fakultät</dt><dd>Medizin</dd></div></dl>
+            <a class="card__link" href="#bewerben">Mehr erfahren <span class="visually-hidden">zu Medizin &amp; Biotechnologie</span><span aria-hidden="true">→</span></a>
+          </div></li>
+          <li class="card tilt" data-reveal><div class="tilt__inner">
+            <span class="card__tag">Master of Arts</span>
             <h3>Digital Humanities</h3>
             <p>Geschichte, Sprache und Kultur mit den Methoden der Informatik neu erforschen.</p>
-            <a class="card__link" href="#bewerben">Mehr erfahren <span aria-hidden="true">→</span></a>
-          </li>
+            <dl class="facts"><div><dt>Dauer</dt><dd>4 Sem. · 120 ECTS</dd></div><div><dt>Start</dt><dd>Wintersemester</dd></div><div><dt>Zulassung</dt><dd>Zulassungsfrei</dd></div><div><dt>Fakultät</dt><dd>Geisteswissenschaften</dd></div></dl>
+            <a class="card__link" href="#bewerben">Mehr erfahren <span class="visually-hidden">zu Digital Humanities</span><span aria-hidden="true">→</span></a>
+          </div></li>
         </ul>
       </div>
     </section>
@@ -153,17 +195,17 @@
     <!-- FAKULTÄTEN -->
     <section class="section section--alt" id="fakultaeten" aria-labelledby="fak-title">
       <div class="container">
-        <header class="section__head">
+        <header class="section__head" data-reveal>
           <p class="eyebrow">Fakultäten</p>
           <h2 id="fak-title">Sechs Fakultäten, ein Campus</h2>
         </header>
         <ul class="faculties">
-          <li class="faculty tilt" style="--hue:172"><span class="faculty__no">01</span><h3>Naturwissenschaften</h3><p>Physik · Chemie · Biologie · Geowissenschaften</p></li>
-          <li class="faculty tilt" style="--hue:238"><span class="faculty__no">02</span><h3>Ingenieurwissenschaften &amp; Informatik</h3><p>Maschinenbau · Elektrotechnik · Informatik</p></li>
-          <li class="faculty tilt" style="--hue:330"><span class="faculty__no">03</span><h3>Medizin</h3><p>Humanmedizin · Pflege · Public Health</p></li>
-          <li class="faculty tilt" style="--hue:28"><span class="faculty__no">04</span><h3>Wirtschaft &amp; Recht</h3><p>BWL · VWL · Rechtswissenschaft</p></li>
-          <li class="faculty tilt" style="--hue:280"><span class="faculty__no">05</span><h3>Geisteswissenschaften</h3><p>Geschichte · Sprachen · Philosophie</p></li>
-          <li class="faculty tilt" style="--hue:200"><span class="faculty__no">06</span><h3>Gesellschaft &amp; Bildung</h3><p>Soziologie · Psychologie · Lehramt</p></li>
+          <li class="faculty tilt" style="--hue:172" data-reveal><div class="tilt__inner"><span class="faculty__no" aria-hidden="true">01</span><h3><a href="#studium">Naturwissenschaften</a></h3><p>Physik · Chemie · Biologie · Geowissenschaften</p></div></li>
+          <li class="faculty tilt" style="--hue:238" data-reveal><div class="tilt__inner"><span class="faculty__no" aria-hidden="true">02</span><h3><a href="#studium">Ingenieurwissenschaften &amp; Informatik</a></h3><p>Maschinenbau · Energiesysteme · Informatik · KI &amp; Data Science</p></div></li>
+          <li class="faculty tilt" style="--hue:330" data-reveal><div class="tilt__inner"><span class="faculty__no" aria-hidden="true">03</span><h3><a href="#studium">Medizin</a></h3><p>Humanmedizin · Biotechnologie · Pflege · Public Health</p></div></li>
+          <li class="faculty tilt" style="--hue:28" data-reveal><div class="tilt__inner"><span class="faculty__no" aria-hidden="true">04</span><h3><a href="#studium">Wirtschaft &amp; Recht</a></h3><p>BWL · VWL · Rechtswissenschaft</p></div></li>
+          <li class="faculty tilt" style="--hue:280" data-reveal><div class="tilt__inner"><span class="faculty__no" aria-hidden="true">05</span><h3><a href="#studium">Geisteswissenschaften</a></h3><p>Geschichte · Sprachen · Philosophie · Digital Humanities</p></div></li>
+          <li class="faculty tilt" style="--hue:200" data-reveal><div class="tilt__inner"><span class="faculty__no" aria-hidden="true">06</span><h3><a href="#studium">Gesellschaft &amp; Bildung</a></h3><p>Soziologie · Psychologie · Lehramt</p></div></li>
         </ul>
       </div>
     </section>
@@ -171,7 +213,7 @@
     <!-- FORSCHUNG -->
     <section class="section research" id="forschung" aria-labelledby="forschung-title">
       <div class="container research__inner">
-        <div class="research__text">
+        <div class="research__text" data-reveal>
           <p class="eyebrow">Forschung</p>
           <h2 id="forschung-title">Spitzenforschung mit Wirkung</h2>
           <p class="section__lead">In drei Exzellenzclustern arbeiten Forschende aus aller Welt an Lösungen für Klima, Gesundheit und digitale Gesellschaft.</p>
@@ -180,105 +222,204 @@
             <li><strong>Cluster Lebende Systeme</strong> – Zellen, Gene, Therapien.</li>
             <li><strong>Cluster Mensch &amp; Maschine</strong> – vertrauenswürdige KI.</li>
           </ul>
-          <a class="btn" href="#kontakt">Zur Forschungsdatenbank</a>
+          <div class="actions">
+            <a class="btn" href="#forschung">Zur Forschungsdatenbank</a>
+            <a class="btn btn--ghost" href="#promotion">Promovieren</a>
+          </div>
         </div>
         <div class="research__visual" aria-hidden="true">
           <div class="orbit">
             <div class="orbit__core"></div>
-            <div class="orbit__ring orbit__ring--1"><i></i></div>
-            <div class="orbit__ring orbit__ring--2"><i></i></div>
-            <div class="orbit__ring orbit__ring--3"><i></i></div>
+            <div class="orbit__ring orbit__ring--1"><span class="orbit__dot"></span></div>
+            <div class="orbit__ring orbit__ring--2"><span class="orbit__dot"></span></div>
+            <div class="orbit__ring orbit__ring--3"><span class="orbit__dot"></span></div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- INTERNATIONAL -->
+    <section class="section section--alt" id="international" aria-labelledby="int-title">
+      <div class="container international">
+        <div class="international__text" data-reveal>
+          <p class="eyebrow">International</p>
+          <h2 id="int-title">Die Welt als Hörsaal</h2>
+          <p class="section__lead">112 Partnerhochschulen auf allen Kontinenten, Doppelabschlüsse und ein Welcome Center für Studierende aus über 120 Ländern.</p>
+          <ul class="chips">
+            <li>Erasmus+</li><li>Doppelabschlüsse</li><li>Sprachkurse</li><li>Welcome Center</li>
+          </ul>
+          <a class="btn" href="#beratung">Zum International Office</a>
+        </div>
+        <div class="international__visual" aria-hidden="true" data-reveal>
+          <div class="globe"><div class="globe__ring"></div><div class="globe__ring globe__ring--2"></div><div class="globe__core"></div></div>
+        </div>
+      </div>
+    </section>
+
     <!-- CAMPUS -->
-    <section class="section section--alt" id="campus" aria-labelledby="campus-title">
+    <section class="section" id="campus" aria-labelledby="campus-title">
       <div class="container">
-        <header class="section__head">
+        <header class="section__head" data-reveal>
           <p class="eyebrow">Campusleben</p>
           <h2 id="campus-title">Mehr als Hörsaal</h2>
           <p class="section__lead">Über 200 Hochschulgruppen, ein Campus am Wasser und Kultur an jeder Ecke.</p>
         </header>
         <ul class="campus-grid">
-          <li class="campus-tile campus-tile--big tilt"><h3>Bibliothek am Hafen</h3><p>1,2 Mio. Medien, 24/7 geöffnet in der Prüfungszeit.</p></li>
-          <li class="campus-tile tilt"><h3>Mensa &amp; Cafés</h3><p>Regional, vegan, günstig.</p></li>
-          <li class="campus-tile tilt"><h3>Hochschulsport</h3><p>Über 120 Kurse – vom Segeln bis Klettern.</p></li>
-          <li class="campus-tile tilt"><h3>Wohnen</h3><p>3.400 Wohnheimplätze am Campus.</p></li>
-          <li class="campus-tile tilt"><h3>Kultur &amp; Musik</h3><p>Orchester, Theater und Campus-Radio.</p></li>
+          <li class="campus-tile campus-tile--big tilt" style="--hue:238" data-reveal><div class="tilt__inner"><h3>Bibliothek am Hafen</h3><p>1,2 Mio. Medien, in der Prüfungszeit rund um die Uhr geöffnet.</p></div></li>
+          <li class="campus-tile tilt" style="--hue:28" data-reveal><div class="tilt__inner"><h3>Mensa &amp; Cafés</h3><p>Regional, vegan, günstig.</p></div></li>
+          <li class="campus-tile tilt" style="--hue:172" data-reveal><div class="tilt__inner"><h3>Hochschulsport</h3><p>Über 120 Kurse – vom Segeln bis Klettern.</p></div></li>
+          <li class="campus-tile tilt" style="--hue:330" data-reveal><div class="tilt__inner"><h3>Wohnen</h3><p>3.400 Wohnheimplätze am Campus.</p></div></li>
+          <li class="campus-tile tilt" style="--hue:280" data-reveal><div class="tilt__inner"><h3>Kultur &amp; Musik</h3><p>Orchester, Theater und Campus-Radio.</p></div></li>
         </ul>
+
+        <div class="campus-map" id="campus-karte" data-reveal>
+          <div class="campus-map__text">
+            <h3>Campus-Karte</h3>
+            <p>Alle Gebäude, Hörsäle und Wege auf einen Blick – vom Hauptgebäude bis zum Hafen-Pavillon.</p>
+            <ul class="legend">
+              <li><i class="legend__dot legend__dot--a"></i>Lehre</li>
+              <li><i class="legend__dot legend__dot--b"></i>Forschung</li>
+              <li><i class="legend__dot legend__dot--c"></i>Service &amp; Mensa</li>
+            </ul>
+          </div>
+          <figure class="campus-map__figure" role="img" aria-label="Schematische isometrische Karte des Campus mit zwölf Gebäuden rund um einen zentralen Platz">
+            <div class="iso" aria-hidden="true">
+              <span class="iso__b iso__b--1"></span><span class="iso__b iso__b--2"></span><span class="iso__b iso__b--3"></span>
+              <span class="iso__b iso__b--4"></span><span class="iso__b iso__b--5"></span><span class="iso__b iso__b--6"></span>
+            </div>
+          </figure>
+        </div>
       </div>
     </section>
 
     <!-- AKTUELLES -->
-    <section class="section" id="aktuelles" aria-labelledby="news-title">
+    <section class="section section--alt" id="aktuelles" aria-labelledby="news-title">
       <div class="container">
-        <header class="section__head">
+        <header class="section__head" data-reveal>
           <p class="eyebrow">Aktuelles</p>
           <h2 id="news-title">Neuigkeiten &amp; Termine</h2>
         </header>
         <div class="news">
           <ul class="news__list">
-            <li class="news-item tilt">
-              <time datetime="2026-10-06">06. Okt 2026</time>
-              <h3>Neuer Supercomputer „Aurora“ geht in Betrieb</h3>
-              <p>Mit 4 Petaflops beschleunigt er Klimamodelle und KI-Forschung der Universität.</p>
-            </li>
-            <li class="news-item tilt">
-              <time datetime="2026-09-29">29. Sep 2026</time>
-              <h3>Exzellenzstrategie: Cluster „Lebende Systeme“ verlängert</h3>
-              <p>Sieben weitere Jahre Förderung für die Zell- und Genforschung.</p>
-            </li>
-            <li class="news-item tilt">
-              <time datetime="2026-09-18">18. Sep 2026</time>
-              <h3>Erstsemester-Woche: Das Programm steht</h3>
-              <p>Campus-Rallye, Hafenfest und Konzert unter freiem Himmel.</p>
-            </li>
+            <li class="news-item tilt" data-reveal><div class="tilt__inner">
+              <div class="news-item__media" style="--hue:238" aria-hidden="true"></div>
+              <div class="news-item__body">
+                <time datetime="2026-10-06">06. Okt 2026</time>
+                <h3><a href="#aktuelles">Neuer Supercomputer „Aurora“ geht in Betrieb</a></h3>
+                <p>Mit 4 Petaflops beschleunigt er Klimamodelle und KI-Forschung der Universität.</p>
+              </div>
+            </div></li>
+            <li class="news-item tilt" data-reveal><div class="tilt__inner">
+              <div class="news-item__media" style="--hue:172" aria-hidden="true"></div>
+              <div class="news-item__body">
+                <time datetime="2026-09-29">29. Sep 2026</time>
+                <h3><a href="#aktuelles">Exzellenzstrategie: Cluster „Lebende Systeme“ verlängert</a></h3>
+                <p>Sieben weitere Jahre Förderung für die Zell- und Genforschung.</p>
+              </div>
+            </div></li>
+            <li class="news-item tilt" data-reveal><div class="tilt__inner">
+              <div class="news-item__media" style="--hue:330" aria-hidden="true"></div>
+              <div class="news-item__body">
+                <time datetime="2026-09-18">18. Sep 2026</time>
+                <h3><a href="#aktuelles">Erstsemester-Woche: Das Programm steht</a></h3>
+                <p>Campus-Rallye, Hafenfest und Konzert unter freiem Himmel.</p>
+              </div>
+            </div></li>
           </ul>
-          <aside class="events" aria-label="Kommende Veranstaltungen">
-            <h3>Kommende Termine</h3>
+          <section class="events" aria-labelledby="events-title" data-reveal>
+            <h3 id="events-title">Kommende Termine</h3>
             <ul>
               <li><time datetime="2026-10-14"><b>14</b><span>OKT</span></time><div><strong>Tag der offenen Tür</strong><span>Hauptcampus · 10–16 Uhr</span></div></li>
               <li><time datetime="2026-10-21"><b>21</b><span>OKT</span></time><div><strong>Public Lecture: KI &amp; Ethik</strong><span>Audimax · 18 Uhr</span></div></li>
               <li><time datetime="2026-11-04"><b>04</b><span>NOV</span></time><div><strong>Nacht der Wissenschaften</strong><span>Gesamter Campus · ab 17 Uhr</span></div></li>
             </ul>
-          </aside>
+          </section>
         </div>
+      </div>
+    </section>
+
+    <!-- SERVICE: Alumni / Presse / Promotion -->
+    <section class="section" id="service" aria-labelledby="service-title">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow">Service</p>
+          <h2 id="service-title">Für Alumni, Presse und Promovierende</h2>
+        </header>
+        <ul class="cards cards--three">
+          <li class="card tilt" id="alumni" data-reveal><div class="tilt__inner"><span class="card__tag">Alumni</span><h3>Nordlicht-Netzwerk</h3><p>45.000 Ehemalige weltweit: Mentoring, Treffen und Karriereportal.</p><a class="card__link" href="#alumni">Zum Netzwerk <span class="visually-hidden">für Alumni</span><span aria-hidden="true">→</span></a></div></li>
+          <li class="card tilt" id="presse" data-reveal><div class="tilt__inner"><span class="card__tag">Presse</span><h3>Medienservice</h3><p>Pressemitteilungen, Expertenvermittlung und Bildmaterial für Redaktionen.</p><a class="card__link" href="#presse">Zum Pressebereich <span class="visually-hidden">der Universität</span><span aria-hidden="true">→</span></a></div></li>
+          <li class="card tilt" id="promotion" data-reveal><div class="tilt__inner"><span class="card__tag">Promotion</span><h3>Graduiertenakademie</h3><p>Strukturierte Promotion, Weiterbildung und Karriereberatung für Doktorand:innen.</p><a class="card__link" href="#promotion">Zur Akademie <span class="visually-hidden">für Promovierende</span><span aria-hidden="true">→</span></a></div></li>
+        </ul>
       </div>
     </section>
 
     <!-- BEWERBEN -->
     <section class="cta" id="bewerben" aria-labelledby="cta-title">
-      <div class="container cta__inner">
+      <div class="container cta__inner" data-reveal>
         <h2 id="cta-title">Bereit für dein Studium?</h2>
-        <p>Die Bewerbungsphase für das Sommersemester läuft bis zum 15. Januar.</p>
-        <div class="hero__actions">
-          <a class="btn btn--light" href="#kontakt">Online bewerben</a>
-          <a class="btn btn--ghost btn--ghost-light" href="#kontakt">Beratung vereinbaren</a>
+        <p>Die Bewerbungsphase für das Sommersemester 2027 läuft bis zum 15. Januar 2027.</p>
+        <div class="actions actions--center">
+          <a class="btn btn--light" href="#bewerben">Online bewerben</a>
+          <a class="btn btn--ghost btn--ghost-light" href="#beratung">Beratung vereinbaren</a>
         </div>
+      </div>
+    </section>
+
+    <!-- BERATUNG / KONTAKT -->
+    <section class="section" id="beratung" aria-labelledby="kontakt-title">
+      <div class="container contact">
+        <div class="contact__info" data-reveal>
+          <p class="eyebrow">Kontakt &amp; Beratung</p>
+          <h2 id="kontakt-title">Wir sind für dich da</h2>
+          <ul class="contact__list">
+            <li><svg width="22" height="22" aria-hidden="true"><use href="#i-phone"/></svg><div><strong>Studienberatung</strong><a href="tel:+49405550100">+49 40 555-0100</a><span>Mo–Fr 9–16 Uhr</span></div></li>
+            <li><svg width="22" height="22" aria-hidden="true"><use href="#i-mail"/></svg><div><strong>E-Mail</strong><a href="mailto:studium@example.org">studium@example.org</a></div></li>
+            <li id="anfahrt"><svg width="22" height="22" aria-hidden="true"><use href="#i-map"/></svg><div><strong>Anfahrt</strong><span>Universitätsallee 1, 20000 Nordhafen<br>S-Bahn S3 „Campus Hafen“ · Buslinie 24</span></div></li>
+            <li><svg width="22" height="22" aria-hidden="true"><use href="#i-globe"/></svg><div><strong>International Office</strong><a href="mailto:international@example.org">international@example.org</a></div></li>
+          </ul>
+        </div>
+        <form class="newsletter" data-reveal action="#beratung" onsubmit="return false">
+          <h3>Newsletter für Studieninteressierte</h3>
+          <p>Fristen, Infotage und Tipps zur Bewerbung – einmal im Monat.</p>
+          <label for="nl-mail">E-Mail-Adresse</label>
+          <input id="nl-mail" type="email" name="email" placeholder="du@beispiel.de" autocomplete="email" required>
+          <button class="btn" type="submit">Anmelden</button>
+          <p class="newsletter__note" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- RECHTLICHES (Platzhalter) -->
+    <section class="legal" aria-label="Rechtliche Hinweise">
+      <div class="container legal__grid">
+        <article id="impressum"><h2>Impressum</h2><p>Demo-Seite einer fiktiven Universität. Es gibt keinen realen Anbieter; alle Angaben sind frei erfunden.</p></article>
+        <article id="datenschutz"><h2>Datenschutz</h2><p>Diese Demo erhebt, speichert und übermittelt keinerlei personenbezogene Daten. Eingaben im Formular bleiben im Browser.</p></article>
+        <article id="barrierefreiheit"><h2>Barrierefreiheit</h2><p>Die Seite ist mit Tastatur bedienbar und respektiert die Einstellung „Bewegung reduzieren“. Feedback: <a href="mailto:barrierefrei@example.org">barrierefrei@example.org</a></p></article>
       </div>
     </section>
 
   </main>
 
-  <footer class="site-footer" id="kontakt">
+  <footer class="site-footer">
     <div class="container footer__grid">
       <div>
         <p class="footer__brand"><strong>Universität</strong> Nordlicht</p>
-        <address>Universitätsallee 1<br>20000 Nordhafen<br><a href="mailto:info@example.org">info@example.org</a><br>+49 000 000000</address>
+        <address>Universitätsallee 1<br>20000 Nordhafen<br><a href="mailto:info@example.org">info@example.org</a><br><a href="tel:+49405550100">+49 40 555-0100</a></address>
+        <ul class="social" aria-label="Soziale Netzwerke">
+          <li><a href="#top">Instagram</a></li><li><a href="#top">LinkedIn</a></li><li><a href="#top">YouTube</a></li>
+        </ul>
       </div>
-      <nav aria-label="Footer Studium">
-        <h3>Studium</h3>
-        <ul><li><a href="#studium">Studiengänge</a></li><li><a href="#bewerben">Bewerbung</a></li><li><a href="#campus">Beratung</a></li></ul>
+      <nav aria-labelledby="f1">
+        <p class="footer__title" id="f1">Studium</p>
+        <ul><li><a href="#studium">Studiengänge</a></li><li><a href="#bewerben">Bewerbung</a></li><li><a href="#beratung">Beratung</a></li></ul>
       </nav>
-      <nav aria-label="Footer Universität">
-        <h3>Universität</h3>
-        <ul><li><a href="#fakultaeten">Fakultäten</a></li><li><a href="#forschung">Forschung</a></li><li><a href="#aktuelles">Presse</a></li></ul>
+      <nav aria-labelledby="f2">
+        <p class="footer__title" id="f2">Universität</p>
+        <ul><li><a href="#fakultaeten">Fakultäten</a></li><li><a href="#forschung">Forschung</a></li><li><a href="#presse">Presse</a></li></ul>
       </nav>
-      <nav aria-label="Footer Rechtliches">
-        <h3>Rechtliches</h3>
-        <ul><li><a href="#top">Impressum</a></li><li><a href="#top">Datenschutz</a></li><li><a href="#top">Barrierefreiheit</a></li></ul>
+      <nav aria-labelledby="f3">
+        <p class="footer__title" id="f3">Rechtliches</p>
+        <ul><li><a href="#impressum">Impressum</a></li><li><a href="#datenschutz">Datenschutz</a></li><li><a href="#barrierefreiheit">Barrierefreiheit</a></li></ul>
       </nav>
     </div>
     <div class="container footer__bottom">
