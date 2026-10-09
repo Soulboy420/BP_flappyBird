@@ -104,7 +104,7 @@ svg use { fill: currentColor; }
 .site-search { border-top: 1px solid var(--line); background: #fff; padding: 14px 0; }
 .site-search__inner { display: flex; gap: 12px; }
 .site-search__status { margin: 10px auto 0; font-size: .92rem; color: var(--muted); }
-.site-search__status:empty { display: none; }
+.site-search__status:empty { margin: 0; }
 .hero__scene { transform: translate3d(var(--px, 0px), var(--py, 0px), 0); transition: transform .3s ease-out; }
 .site-search input, .newsletter input { flex: 1; width: 100%; padding: .8em 1.1em; border-radius: 14px; border: 1.5px solid var(--line); background: #fff; }
 .site-search input:focus, .newsletter input:focus { outline: none; border-color: var(--indigo); box-shadow: 0 0 0 4px rgba(91, 94, 240, .18); }
@@ -137,8 +137,8 @@ svg use { fill: currentColor; }
 .tilt__inner { transform-style: preserve-3d; transform: rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)); transition: transform .25s ease-out, box-shadow .3s; will-change: transform; }
 .tilt.is-tilting .tilt__inner { transition: transform .05s linear, box-shadow .3s; }
 .tilt__inner > * { transform: translateZ(0); }
-.tilt:hover .tilt__inner > h3, .tilt:hover .tilt__inner > .card__tag, .tilt:hover .quick__icon { transform: translateZ(26px); }
-.tilt__inner > h3, .tilt__inner > .card__tag, .quick__icon { transition: transform .3s; }
+.tilt:hover .quick__icon { transform: translateZ(26px); }
+.quick__icon { transition: transform .3s; }
 
 /* ---------- Schnellzugriff ---------- */
 .quick { margin-top: -86px; position: relative; z-index: 3; }
@@ -307,7 +307,8 @@ svg use { fill: currentColor; }
 .newsletter label { font-weight: 600; font-size: .9rem; margin-top: 6px; }
 .newsletter .btn { margin-top: 6px; }
 .newsletter__note { font-size: .85rem; }
-.newsletter__status { min-height: 1.4em; font-weight: 600; color: #0f766e !important; }
+.newsletter__status { min-height: 1.4em; font-weight: 600; color: #0f766e; }
+.newsletter .newsletter__status.is-error { color: #b91c1c; }
 
 /* ---------- Rechtliches ---------- */
 .legal { background: var(--bg-alt); padding: 56px 0; font-size: .92rem; color: var(--muted); }
@@ -343,13 +344,17 @@ svg use { fill: currentColor; }
   .icon-btn--text span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 }
 @media (max-width: 1170px) {
-  .nav-toggle { display: block; }
-  .header__inner { gap: 12px; }
+  .header__inner { gap: 12px; flex-wrap: wrap; height: auto; min-height: var(--header-h); padding-block: 8px; }
   .header__tools { margin-left: auto; }
-  .main-nav { position: absolute; left: 0; right: 0; top: var(--header-h); margin: 0; background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 30px 40px -20px rgba(11, 16, 32, .4); padding: 12px 16px 20px; display: none; }
-  .main-nav.is-open { display: block; }
-  .main-nav__list { flex-direction: column; }
-  .main-nav a { padding: .8em 1em; }
+  .main-nav { order: 5; flex-basis: 100%; margin: 0; }
+  .main-nav__list { flex-wrap: wrap; }
+  html:not(.js) .nav-toggle, html:not(.js) #search-toggle { display: none; }
+  .js .nav-toggle { display: block; }
+  .js .header__inner { flex-wrap: nowrap; height: var(--header-h); padding-block: 0; }
+  .js .main-nav { position: absolute; left: 0; right: 0; top: var(--header-h); order: 0; background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 30px 40px -20px rgba(11, 16, 32, .4); padding: 12px 16px 20px; display: none; }
+  .js .main-nav.is-open { display: block; }
+  .js .main-nav__list { flex-direction: column; flex-wrap: nowrap; }
+  .js .main-nav a { padding: .8em 1em; }
 }
 @media (max-width: 960px) {
   .hero__inner, .research__inner, .international, .contact, .news, .campus-map { grid-template-columns: minmax(0, 1fr); }

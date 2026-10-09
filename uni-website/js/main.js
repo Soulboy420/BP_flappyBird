@@ -20,7 +20,11 @@
     nav.classList.toggle('is-open', open);
     navToggle.setAttribute('aria-expanded', String(open));
   };
-  navToggle.addEventListener('click', () => setNav(navToggle.getAttribute('aria-expanded') !== 'true'));
+  navToggle.addEventListener('click', () => {
+    const open = navToggle.getAttribute('aria-expanded') !== 'true';
+    setNav(open);
+    if (open) $('a', nav).focus(); // Fokusreihenfolge: Menü steht im DOM vor dem Toggle
+  });
   nav.addEventListener('click', e => { if (e.target.closest('a')) setNav(false); });
 
   /* ---------- Suche ---------- */
@@ -128,81 +132,95 @@
   /* ---------- Hero: Parallax für den Würfel ---------- */
   const hero = $('.hero');
   const scene = $('.hero__scene');
-  if (finePointer.matches && !reduceMotion.matches) {
-    hero.addEventListener('pointermove', e => {
-      const r = hero.getBoundingClientRect();
-      scene.style.setProperty('--px', `${((e.clientX - r.left) / r.width - 0.5) * -36}px`);
-      scene.style.setProperty('--py', `${((e.clientY - r.top) / r.height - 0.5) * -26}px`);
-    });
-  }
+  const parallax = !reduceMotion.matches;
 
   /* ---------- Hero-Canvas: 3D-Partikelnetz ---------- */
   const canvas = $('#hero-canvas');
   const ctx = canvas.getContext('2d');
-  const N = window.innerWidth < 700 ? 70 : 130;
-  const pts = Array.from({ length: N }, () => ({
+  const MAX_PTS = 130;
+  const pts = Array.from({ length: MAX_PTS }, () => ({
     x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2, z: (Math.random() - 0.5) * 2,
     hue: Math.random() < 0.6 ? 172 : 250 // Teal oder Indigo
   }));
-  let W = 0, H = 0, dpr = 1, rotY = 0, rotX = 0.25, tY = 0, tX = 0, running = false, visible = true;
+  const LINK = 150, BUCKETS = 6;
+  let W = 0, H = 0, dpr = 1, n = MAX_PTS, rotY = 0, rotX = 0.25, tY = 0, tX = 0;
+  let rafId = 0, visible = true, resizeTimer = 0;
 
   const resize = () => {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     W = canvas.clientWidth; H = canvas.clientHeight;
     canvas.width = W * dpr; canvas.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    n = W < 700 ? 70 : MAX_PTS;
   };
 
   const project = p => {
     const cy = Math.cos(rotY), sy = Math.sin(rotY), cx = Math.cos(rotX), sx = Math.sin(rotX);
-    let x = p.x * cy + p.z * sy, z = -p.x * sy + p.z * cy;
+    const x = p.x * cy + p.z * sy;
+    let z = -p.x * sy + p.z * cy;
     const y = p.y * cx - z * sx; z = p.y * sx + z * cx;
     const f = 1 / (1.9 - z * 0.55);
     const scale = Math.min(W, H * 1.4) * 0.62;
-    return { sx: W * 0.62 + x * scale * f, sy: H * 0.5 + y * scale * f * 0.9, f, z, hue: p.hue };
+    return { sx: W * 0.62 + x * scale * f, sy: H * 0.5 + y * scale * f * 0.9, f, hue: p.hue };
   };
 
   const frame = () => {
     ctx.clearRect(0, 0, W, H);
-    const P = pts.map(project);
-    for (let i = 0; i < P.length; i++) {
-      for (let j = i + 1; j < P.length; j++) {
-        const dx = P[i].sx - P[j].sx, dy = P[i].sy - P[j].sy, d = dx * dx + dy * dy;
-        if (d < 150 * 150) {
-          const a = (1 - Math.sqrt(d) / 150) * 0.32 * Math.min(P[i].f, P[j].f) * 1.4;
-          ctx.strokeStyle = `hsla(${(P[i].hue + P[j].hue) / 2}, 85%, 70%, ${a.toFixed(3)})`;
-          ctx.lineWidth = 1;
-          ctx.beginPath(); ctx.moveTo(P[i].sx, P[i].sy); ctx.lineTo(P[j].sx, P[j].sy); ctx.stroke();
+    const P = new Array(n);
+    for (let i = 0; i < n; i++) P[i] = project(pts[i]);
+    // Linien nach Deckkraft in Eimer sortieren: ein Pfad pro Eimer statt ein Pfad pro Linie
+    const paths = Array.from({ length: BUCKETS }, () => new Path2D());
+    for (let i = 0; i < n; i++) {
+      for (let j = i + 1; j < n; j++) {
+        const dx = P[i].sx - P[j].sx, dy = P[i].sy - P[j].sy, d2 = dx * dx + dy * dy;
+        if (d2 < LINK * LINK) {
+          const q = (1 - Math.sqrt(d2) / LINK) * Math.min(P[i].f, P[j].f) * 1.4;
+          const b = Math.min(BUCKETS - 1, Math.floor(q * BUCKETS * 0.9));
+          paths[b].moveTo(P[i].sx, P[i].sy); paths[b].lineTo(P[j].sx, P[j].sy);
         }
       }
     }
+    ctx.lineWidth = 1;
+    paths.forEach((path, b) => {
+      ctx.strokeStyle = `hsla(205, 85%, 72%, ${(0.06 + (b / BUCKETS) * 0.34).toFixed(3)})`;
+      ctx.stroke(path);
+    });
     P.forEach(p => {
-      const r = 1 + p.f * 2.2;
       ctx.fillStyle = `hsla(${p.hue}, 90%, 78%, ${Math.min(1, 0.35 + p.f * 0.6).toFixed(2)})`;
-      ctx.beginPath(); ctx.arc(p.sx, p.sy, r, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(p.sx, p.sy, 1 + p.f * 2.2, 0, Math.PI * 2); ctx.fill();
     });
   };
 
   const loop = () => {
-    if (!running) return;
     rotY += 0.0026 + tY * 0.0018; // Grundrotation + Maus
     rotX += (0.25 + tX - rotX) * 0.04;
     frame();
-    requestAnimationFrame(loop);
+    rafId = requestAnimationFrame(loop);
   };
-  const start = () => { if (running || reduceMotion.matches || !visible || document.hidden) return; running = true; requestAnimationFrame(loop); };
-  const stop = () => { running = false; };
+  const start = () => { if (rafId || reduceMotion.matches || !visible || document.hidden) return; rafId = requestAnimationFrame(loop); };
+  const stop = () => { cancelAnimationFrame(rafId); rafId = 0; };
 
   resize();
   frame(); // Standbild (auch bei reduzierter Bewegung)
-  window.addEventListener('resize', () => { resize(); frame(); });
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { resize(); frame(); }, 120);
+  });
   if (finePointer.matches) {
     hero.addEventListener('pointermove', e => {
       const r = hero.getBoundingClientRect();
-      tY = ((e.clientX - r.left) / r.width - 0.5) * 2;
-      tX = ((e.clientY - r.top) / r.height - 0.5) * 0.5;
+      const nx = (e.clientX - r.left) / r.width - 0.5, ny = (e.clientY - r.top) / r.height - 0.5;
+      tY = nx * 2; tX = ny * 0.5;
+      if (parallax) {
+        scene.style.setProperty('--px', `${(-nx * 36).toFixed(1)}px`);
+        scene.style.setProperty('--py', `${(-ny * 26).toFixed(1)}px`);
+      }
     });
-    hero.addEventListener('pointerleave', () => { tX = 0; tY = 0; });
+    hero.addEventListener('pointerleave', () => {
+      tX = 0; tY = 0;
+      scene.style.setProperty('--px', '0px');
+      scene.style.setProperty('--py', '0px');
+    });
   }
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([en]) => { visible = en.isIntersecting; visible ? start() : stop(); }, { threshold: 0 }).observe(hero);
@@ -219,12 +237,12 @@
     e.preventDefault();
     const input = $('input[type="email"]', nl);
     if (!input.checkValidity()) {
-      nlStatus.style.color = '#b91c1c';
+      nlStatus.classList.add('is-error');
       nlStatus.textContent = 'Bitte eine gültige E-Mail-Adresse eingeben.';
       input.focus();
       return;
     }
-    nlStatus.style.color = '';
+    nlStatus.classList.remove('is-error');
     nlStatus.textContent = 'Danke! (Demo: Es wurde nichts gesendet oder gespeichert.)';
     nl.reset();
   });
