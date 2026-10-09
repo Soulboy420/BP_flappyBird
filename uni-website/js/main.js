@@ -35,7 +35,11 @@
     setNav(false);
     // Fokus nicht verlieren: auf die Zielsektion setzen (Menü war per Tastatur/Touch geöffnet)
     const target = wasOpen && link.hash ? $(link.hash) : null;
-    if (target) { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }
+    if (target) {
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+      target.addEventListener('blur', () => target.removeAttribute('tabindex'), { once: true });
+    }
   });
   // Tipp/Klick außerhalb schließt das Menü
   document.addEventListener('pointerdown', e => {
@@ -66,6 +70,11 @@
       ? `Demo: Die Suche nach „${q}“ ist in dieser Vorschau nicht angebunden.`
       : 'Bitte einen Suchbegriff eingeben.';
   });
+  // Sprung zu einem Anker schließt die Suche, damit der sticky Header das Ziel nicht verdeckt
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a && !searchForm.hidden && !searchForm.contains(a)) setSearch(false);
+  });
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
     if (!searchForm.hidden) { setSearch(false); searchToggle.focus(); }
@@ -79,9 +88,9 @@
   const updateSpy = () => {
     spyTick = 0;
     const probe = window.innerHeight * 0.4;
-    spyItems.forEach(({ a, el }) => {
-      const r = el.getBoundingClientRect();
-      const on = r.top <= probe && r.bottom > probe;
+    const states = spyItems.map(({ el }) => { const r = el.getBoundingClientRect(); return r.top <= probe && r.bottom > probe; });
+    spyItems.forEach(({ a }, i) => {
+      const on = states[i];
       a.classList.toggle('is-active', on);
       if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
     });
@@ -120,6 +129,7 @@
     if (reduceMotion.matches) return render(el, target);
     const start = performance.now(), dur = 1600;
     const tick = now => {
+      if (reduceMotion.matches) return render(el, target);
       const t = Math.min(1, (now - start) / dur);
       render(el, target * (1 - Math.pow(1 - t, 4)));
       if (t < 1) requestAnimationFrame(tick);
@@ -272,11 +282,14 @@
     const input = $('input[type="email"]', nl);
     if (!input.checkValidity()) {
       nlStatus.classList.add('is-error');
-      nlStatus.textContent = 'Bitte eine gültige E-Mail-Adresse eingeben.';
+      input.setAttribute('aria-invalid', 'true');
+      input.setAttribute('aria-describedby', nlStatus.id);
+      nlStatus.textContent = input.value.trim() ? 'Bitte eine gültige E-Mail-Adresse eingeben.' : 'Bitte gib deine E-Mail-Adresse ein.';
       input.focus();
       return;
     }
     nlStatus.classList.remove('is-error');
+    input.removeAttribute('aria-invalid');
     nlStatus.textContent = 'Danke! (Demo: Es wurde nichts gesendet oder gespeichert.)';
     nl.reset();
   });
