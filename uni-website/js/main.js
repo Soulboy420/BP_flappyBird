@@ -26,6 +26,11 @@
     if (open) $('a', nav).focus(); // Fokusreihenfolge: Menü steht im DOM vor dem Toggle
   });
   nav.addEventListener('click', e => { if (e.target.closest('a')) setNav(false); });
+  // Menü schließen, wenn der Fokus es verlässt (Tab aus dem letzten Link) oder wenn die Desktop-Navigation greift
+  document.addEventListener('focusin', e => {
+    if (navToggle.getAttribute('aria-expanded') === 'true' && !nav.contains(e.target) && e.target !== navToggle) setNav(false);
+  });
+  window.matchMedia('(min-width: 1171px)').addEventListener('change', e => { if (e.matches) setNav(false); });
 
   /* ---------- Suche ---------- */
   const searchToggle = $('#search-toggle');
@@ -52,7 +57,7 @@
   });
 
   /* ---------- Aktive Navigation ---------- */
-  const navLinks = $$('.main-nav__list a[href^="#"]');
+  const navLinks = $$('.main-nav__list a[href^="#"]:not(.btn)');
   const sections = navLinks.map(a => $(a.getAttribute('href'))).filter(Boolean);
   if ('IntersectionObserver' in window) {
     const spy = new IntersectionObserver(entries => {

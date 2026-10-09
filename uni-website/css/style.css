@@ -307,8 +307,8 @@ svg use { fill: currentColor; }
 .newsletter label { font-weight: 600; font-size: .9rem; margin-top: 6px; }
 .newsletter .btn { margin-top: 6px; }
 .newsletter__note { font-size: .85rem; }
-.newsletter__status { min-height: 1.4em; font-weight: 600; color: #0f766e; }
-.newsletter .newsletter__status.is-error { color: #b91c1c; }
+.newsletter p.newsletter__status { min-height: 1.4em; font-weight: 600; color: #0f766e; }
+.newsletter p.newsletter__status.is-error { color: #b91c1c; }
 
 /* ---------- Rechtliches ---------- */
 .legal { background: var(--bg-alt); padding: 56px 0; font-size: .92rem; color: var(--muted); }
@@ -343,12 +343,13 @@ svg use { fill: currentColor; }
 @media (max-width: 1240px) {
   .icon-btn--text span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 }
+html:not(.js) .nav-toggle, html:not(.js) #search-toggle { display: none; }
+
 @media (max-width: 1170px) {
   .header__inner { gap: 12px; flex-wrap: wrap; height: auto; min-height: var(--header-h); padding-block: 8px; }
   .header__tools { margin-left: auto; }
   .main-nav { order: 5; flex-basis: 100%; margin: 0; }
   .main-nav__list { flex-wrap: wrap; }
-  html:not(.js) .nav-toggle, html:not(.js) #search-toggle { display: none; }
   .js .nav-toggle { display: block; }
   .js .header__inner { flex-wrap: nowrap; height: var(--header-h); padding-block: 0; }
   .js .main-nav { position: absolute; left: 0; right: 0; top: var(--header-h); order: 0; background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 30px 40px -20px rgba(11, 16, 32, .4); padding: 12px 16px 20px; display: none; }
