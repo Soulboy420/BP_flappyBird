@@ -41,9 +41,9 @@
           </ul>
         </nav>
         <div class="lang-switch" role="group" aria-label="Sprache">
-          <a href="#top" lang="de">DE</a>
+          <span class="lang-switch__current" lang="de" aria-current="true">DE</span>
           <span aria-hidden="true">|</span>
-          <span class="lang-switch__soon" lang="en">EN <small>(bald)</small></span>
+          <span class="lang-switch__soon"><span lang="en">EN</span> <small>(bald)</small></span>
         </div>
       </div>
     </div>
@@ -285,7 +285,7 @@
             <ul class="iso" aria-label="Gebäude des Campus">
               <li class="iso__b iso__b--1 iso__b--a"><span>Hauptgebäude</span><small>Lehre</small></li>
               <li class="iso__b iso__b--2 iso__b--b"><span>Forschungsturm</span><small>Forschung</small></li>
-              <li class="iso__b iso__b--3 iso__b--a"><span>Bibliothek am Hafen</span><small>Lehre</small></li>
+              <li class="iso__b iso__b--3 iso__b--a"><span>Bibliothek</span><small>Lehre</small></li>
               <li class="iso__b iso__b--4 iso__b--c"><span>Mensa Nord</span><small>Service</small></li>
               <li class="iso__b iso__b--5 iso__b--b"><span>Labor-Campus</span><small>Forschung</small></li>
               <li class="iso__b iso__b--6 iso__b--c"><span>Hafen-Pavillon</span><small>Service</small></li>
@@ -394,6 +394,7 @@
           <button class="btn" type="submit">Anmelden</button>
           <p class="newsletter__note">Kein Spam. Abmeldung jederzeit möglich.</p>
           <p class="newsletter__status" role="status" aria-live="polite"></p>
+          <noscript><p class="newsletter__note">Die Anmeldung funktioniert nur mit aktiviertem JavaScript.</p></noscript>
         </form>
       </div>
     </section>
@@ -408,7 +409,7 @@
           <ul>
             <li>Umgesetzt: Skip-Link, Landmarken, Überschriftenstruktur, beschriftete Formularfelder.</li>
             <li>Noch zu prüfen: Tastaturbedienung der interaktiven Effekte, Fokus-Anzeige, Verhalten bei „Bewegung reduzieren“.</li>
-            <li>Nicht barrierefrei: Die 3D-Grafiken sind rein dekorativ; die Campus-Übersicht ist schematisch.</li>
+            <li>Einschränkung: Die Campus-Übersicht ist schematisch und als Gebäudeliste lesbar; Zierelemente (3D-Grafiken) sind für Screenreader ausgeblendet.</li>
           </ul>
           <p>Feedback oder Schlichtungsanfrage: <a href="mailto:barrierefrei@example.org">barrierefrei@example.org</a></p></article>
       </div>
