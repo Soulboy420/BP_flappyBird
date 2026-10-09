@@ -103,6 +103,9 @@ svg use { fill: currentColor; }
 .nav-toggle[aria-expanded="true"] .nav-toggle__bars::after { transform: translateY(-7px) rotate(-45deg); }
 .site-search { border-top: 1px solid var(--line); background: #fff; padding: 14px 0; }
 .site-search__inner { display: flex; gap: 12px; }
+.site-search__status { margin: 10px auto 0; font-size: .92rem; color: var(--muted); }
+.site-search__status:empty { display: none; }
+.hero__scene { transform: translate3d(var(--px, 0px), var(--py, 0px), 0); transition: transform .3s ease-out; }
 .site-search input, .newsletter input { flex: 1; width: 100%; padding: .8em 1.1em; border-radius: 14px; border: 1.5px solid var(--line); background: #fff; }
 .site-search input:focus, .newsletter input:focus { outline: none; border-color: var(--indigo); box-shadow: 0 0 0 4px rgba(91, 94, 240, .18); }
 
