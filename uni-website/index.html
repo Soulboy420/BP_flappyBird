@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Universität Nordlicht – Wissen, das leuchtet</title>
+  <meta name="description" content="Universität Nordlicht: Studium, Forschung und Campusleben. Demo-Website – KI-generiertes Beispiel einer modernen Hochschulseite.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <span class="topbar__demo">Demo-Website · Fiktive Universität, erstellt mit KI</span>
+      <nav aria-label="Zielgruppen">
+        <ul class="topbar__list">
+          <li><a href="#studium">Studieninteressierte</a></li>
+          <li><a href="#forschung">Forschende</a></li>
+          <li><a href="#campus">Alumni</a></li>
+          <li><a href="#kontakt">Presse</a></li>
+          <li><button class="lang-switch" type="button" aria-label="Sprache wechseln: Deutsch / English">DE | EN</button></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <header class="site-header" id="top">
+    <div class="container header__inner">
+      <a class="logo" href="#top" aria-label="Universität Nordlicht – Startseite">
+        <svg class="logo__mark" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true">
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#5eead4"/>
+              <stop offset="1" stop-color="#6366f1"/>
+            </linearGradient>
+          </defs>
+          <path d="M24 3 43 14v20L24 45 5 34V14z" fill="url(#lg)"/>
+          <path d="M24 11 35 17.5v13L24 37 13 30.5v-13z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M24 17v14M18 20.5l12 7M30 20.5l-12 7" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span class="logo__text"><strong>Universität</strong> Nordlicht</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="visually-hidden">Menü öffnen</span>
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+        <ul class="main-nav__list">
+          <li><a href="#studium">Studium</a></li>
+          <li><a href="#fakultaeten">Fakultäten</a></li>
+          <li><a href="#forschung">Forschung</a></li>
+          <li><a href="#campus">Campusleben</a></li>
+          <li><a href="#aktuelles">Aktuelles</a></li>
+          <li><a class="btn btn--small" href="#bewerben">Jetzt bewerben</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <p class="eyebrow">Seit 1612 · Hansestadt Nordhafen</p>
+          <h1 id="hero-title">Wissen, das <span class="gradient-text">leuchtet.</span></h1>
+          <p class="hero__lead">Über 28.000 Studierende, 140 Studiengänge und Forschung, die Antworten auf die Fragen von morgen gibt – mitten in einer der lebendigsten Städte des Nordens.</p>
+          <div class="hero__actions">
+            <a class="btn" href="#studium">Studiengänge entdecken</a>
+            <a class="btn btn--ghost" href="#campus">Virtueller Rundgang</a>
+          </div>
+        </div>
+        <div class="hero__scene" aria-hidden="true">
+          <div class="cube">
+            <div class="cube__face cube__face--front">Lehre</div>
+            <div class="cube__face cube__face--back">Zukunft</div>
+            <div class="cube__face cube__face--right">Forschung</div>
+            <div class="cube__face cube__face--left">Gemeinschaft</div>
+            <div class="cube__face cube__face--top">Ideen</div>
+            <div class="cube__face cube__face--bottom">Mut</div>
+          </div>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#schnellzugriff" aria-label="Nach unten scrollen"><span></span></a>
+    </section>
+
+    <!-- SCHNELLZUGRIFF -->
+    <section class="quick" id="schnellzugriff" aria-label="Schnellzugriff">
+      <div class="container">
+        <ul class="quick__grid">
+          <li><a class="quick__card tilt" href="#studium"><span class="quick__icon" aria-hidden="true">🎓</span><strong>Studienangebot</strong><span>Bachelor, Master &amp; mehr</span></a></li>
+          <li><a class="quick__card tilt" href="#bewerben"><span class="quick__icon" aria-hidden="true">📝</span><strong>Bewerbung</strong><span>Fristen &amp; Zulassung</span></a></li>
+          <li><a class="quick__card tilt" href="#campus"><span class="quick__icon" aria-hidden="true">🏛️</span><strong>Campus-Karte</strong><span>Gebäude &amp; Wege</span></a></li>
+          <li><a class="quick__card tilt" href="#aktuelles"><span class="quick__icon" aria-hidden="true">📅</span><strong>Veranstaltungen</strong><span>Vorträge &amp; Festivals</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ZAHLEN -->
+    <section class="stats" aria-label="Die Universität in Zahlen">
+      <div class="container">
+        <ul class="stats__grid">
+          <li><span class="stat__num" data-count="28400">28.400</span><span class="stat__label">Studierende</span></li>
+          <li><span class="stat__num" data-count="140">140</span><span class="stat__label">Studiengänge</span></li>
+          <li><span class="stat__num" data-count="112">112</span><span class="stat__label">Partnerhochschulen weltweit</span></li>
+          <li><span class="stat__num" data-count="6" data-suffix=" Mio. €">6 Mio. €</span><span class="stat__label">Forschungsförderung pro Monat</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- STUDIUM -->
+    <section class="section" id="studium" aria-labelledby="studium-title">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow">Studium</p>
+          <h2 id="studium-title">Finde deinen Weg</h2>
+          <p class="section__lead">Von klassischen Fächern bis zu interdisziplinären Zukunftsstudiengängen – entdecke, was zu dir passt.</p>
+        </header>
+        <ul class="cards">
+          <li class="card tilt">
+            <span class="card__tag">Bachelor</span>
+            <h3>Künstliche Intelligenz &amp; Data Science</h3>
+            <p>Maschinelles Lernen, Statistik und Ethik – praxisnah mit eigenem GPU-Cluster.</p>
+            <a class="card__link" href="#bewerben">Mehr erfahren <span aria-hidden="true">→</span></a>
+          </li>
+          <li class="card tilt">
+            <span class="card__tag">Master</span>
+            <h3>Nachhaltige Energiesysteme</h3>
+            <p>Windkraft, Wasserstoff und Netze der Zukunft – in Kooperation mit der Industrie.</p>
+            <a class="card__link" href="#bewerben">Mehr erfahren <span aria-hidden="true">→</span></a>
+          </li>
+          <li class="card tilt">
+            <span class="card__tag">Bachelor</span>
+            <h3>Medizin &amp; Biotechnologie</h3>
+            <p>Von Anfang an im Labor und am Universitätsklinikum – Forschung trifft Patientenwohl.</p>
+            <a class="card__link" href="#bewerben">Mehr erfahren <span aria-hidden="true">→</span></a>
+          </li>
+          <li class="card tilt">
+            <span class="card__tag">Master</span>
+            <h3>Digital Humanities</h3>
+            <p>Geschichte, Sprache und Kultur mit den Methoden der Informatik neu erforschen.</p>
+            <a class="card__link" href="#bewerben">Mehr erfahren <span aria-hidden="true">→</span></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAKULTÄTEN -->
+    <section class="section section--alt" id="fakultaeten" aria-labelledby="fak-title">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow">Fakultäten</p>
+          <h2 id="fak-title">Sechs Fakultäten, ein Campus</h2>
+        </header>
+        <ul class="faculties">
+          <li class="faculty tilt" style="--hue:172"><span class="faculty__no">01</span><h3>Naturwissenschaften</h3><p>Physik · Chemie · Biologie · Geowissenschaften</p></li>
+          <li class="faculty tilt" style="--hue:238"><span class="faculty__no">02</span><h3>Ingenieurwissenschaften &amp; Informatik</h3><p>Maschinenbau · Elektrotechnik · Informatik</p></li>
+          <li class="faculty tilt" style="--hue:330"><span class="faculty__no">03</span><h3>Medizin</h3><p>Humanmedizin · Pflege · Public Health</p></li>
+          <li class="faculty tilt" style="--hue:28"><span class="faculty__no">04</span><h3>Wirtschaft &amp; Recht</h3><p>BWL · VWL · Rechtswissenschaft</p></li>
+          <li class="faculty tilt" style="--hue:280"><span class="faculty__no">05</span><h3>Geisteswissenschaften</h3><p>Geschichte · Sprachen · Philosophie</p></li>
+          <li class="faculty tilt" style="--hue:200"><span class="faculty__no">06</span><h3>Gesellschaft &amp; Bildung</h3><p>Soziologie · Psychologie · Lehramt</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FORSCHUNG -->
+    <section class="section research" id="forschung" aria-labelledby="forschung-title">
+      <div class="container research__inner">
+        <div class="research__text">
+          <p class="eyebrow">Forschung</p>
+          <h2 id="forschung-title">Spitzenforschung mit Wirkung</h2>
+          <p class="section__lead">In drei Exzellenzclustern arbeiten Forschende aus aller Welt an Lösungen für Klima, Gesundheit und digitale Gesellschaft.</p>
+          <ul class="research__list">
+            <li><strong>Cluster Ozean &amp; Klima</strong> – wie reagiert das Meer auf den Wandel?</li>
+            <li><strong>Cluster Lebende Systeme</strong> – Zellen, Gene, Therapien.</li>
+            <li><strong>Cluster Mensch &amp; Maschine</strong> – vertrauenswürdige KI.</li>
+          </ul>
+          <a class="btn" href="#kontakt">Zur Forschungsdatenbank</a>
+        </div>
+        <div class="research__visual" aria-hidden="true">
+          <div class="orbit">
+            <div class="orbit__core"></div>
+            <div class="orbit__ring orbit__ring--1"><i></i></div>
+            <div class="orbit__ring orbit__ring--2"><i></i></div>
+            <div class="orbit__ring orbit__ring--3"><i></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAMPUS -->
+    <section class="section section--alt" id="campus" aria-labelledby="campus-title">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow">Campusleben</p>
+          <h2 id="campus-title">Mehr als Hörsaal</h2>
+          <p class="section__lead">Über 200 Hochschulgruppen, ein Campus am Wasser und Kultur an jeder Ecke.</p>
+        </header>
+        <ul class="campus-grid">
+          <li class="campus-tile campus-tile--big tilt"><h3>Bibliothek am Hafen</h3><p>1,2 Mio. Medien, 24/7 geöffnet in der Prüfungszeit.</p></li>
+          <li class="campus-tile tilt"><h3>Mensa &amp; Cafés</h3><p>Regional, vegan, günstig.</p></li>
+          <li class="campus-tile tilt"><h3>Hochschulsport</h3><p>Über 120 Kurse – vom Segeln bis Klettern.</p></li>
+          <li class="campus-tile tilt"><h3>Wohnen</h3><p>3.400 Wohnheimplätze am Campus.</p></li>
+          <li class="campus-tile tilt"><h3>Kultur &amp; Musik</h3><p>Orchester, Theater und Campus-Radio.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- AKTUELLES -->
+    <section class="section" id="aktuelles" aria-labelledby="news-title">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow">Aktuelles</p>
+          <h2 id="news-title">Neuigkeiten &amp; Termine</h2>
+        </header>
+        <div class="news">
+          <ul class="news__list">
+            <li class="news-item tilt">
+              <time datetime="2026-10-06">06. Okt 2026</time>
+              <h3>Neuer Supercomputer „Aurora“ geht in Betrieb</h3>
+              <p>Mit 4 Petaflops beschleunigt er Klimamodelle und KI-Forschung der Universität.</p>
+            </li>
+            <li class="news-item tilt">
+              <time datetime="2026-09-29">29. Sep 2026</time>
+              <h3>Exzellenzstrategie: Cluster „Lebende Systeme“ verlängert</h3>
+              <p>Sieben weitere Jahre Förderung für die Zell- und Genforschung.</p>
+            </li>
+            <li class="news-item tilt">
+              <time datetime="2026-09-18">18. Sep 2026</time>
+              <h3>Erstsemester-Woche: Das Programm steht</h3>
+              <p>Campus-Rallye, Hafenfest und Konzert unter freiem Himmel.</p>
+            </li>
+          </ul>
+          <aside class="events" aria-label="Kommende Veranstaltungen">
+            <h3>Kommende Termine</h3>
+            <ul>
+              <li><time datetime="2026-10-14"><b>14</b><span>OKT</span></time><div><strong>Tag der offenen Tür</strong><span>Hauptcampus · 10–16 Uhr</span></div></li>
+              <li><time datetime="2026-10-21"><b>21</b><span>OKT</span></time><div><strong>Public Lecture: KI &amp; Ethik</strong><span>Audimax · 18 Uhr</span></div></li>
+              <li><time datetime="2026-11-04"><b>04</b><span>NOV</span></time><div><strong>Nacht der Wissenschaften</strong><span>Gesamter Campus · ab 17 Uhr</span></div></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEWERBEN -->
+    <section class="cta" id="bewerben" aria-labelledby="cta-title">
+      <div class="container cta__inner">
+        <h2 id="cta-title">Bereit für dein Studium?</h2>
+        <p>Die Bewerbungsphase für das Sommersemester läuft bis zum 15. Januar.</p>
+        <div class="hero__actions">
+          <a class="btn btn--light" href="#kontakt">Online bewerben</a>
+          <a class="btn btn--ghost btn--ghost-light" href="#kontakt">Beratung vereinbaren</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="kontakt">
+    <div class="container footer__grid">
+      <div>
+        <p class="footer__brand"><strong>Universität</strong> Nordlicht</p>
+        <address>Universitätsallee 1<br>20000 Nordhafen<br><a href="mailto:info@example.org">info@example.org</a><br>+49 000 000000</address>
+      </div>
+      <nav aria-label="Footer Studium">
+        <h3>Studium</h3>
+        <ul><li><a href="#studium">Studiengänge</a></li><li><a href="#bewerben">Bewerbung</a></li><li><a href="#campus">Beratung</a></li></ul>
+      </nav>
+      <nav aria-label="Footer Universität">
+        <h3>Universität</h3>
+        <ul><li><a href="#fakultaeten">Fakultäten</a></li><li><a href="#forschung">Forschung</a></li><li><a href="#aktuelles">Presse</a></li></ul>
+      </nav>
+      <nav aria-label="Footer Rechtliches">
+        <h3>Rechtliches</h3>
+        <ul><li><a href="#top">Impressum</a></li><li><a href="#top">Datenschutz</a></li><li><a href="#top">Barrierefreiheit</a></li></ul>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>© 2026 Universität Nordlicht – fiktive Demo-Seite. Alle Inhalte frei erfunden und mit KI erstellt.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
