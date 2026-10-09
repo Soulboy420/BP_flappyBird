@@ -34,6 +34,7 @@ p { margin: 0 0 1em; }
 ul { list-style: none; margin: 0; padding: 0; }
 address { font-style: normal; }
 button, input { font: inherit; color: inherit; }
+section[tabindex="-1"]:focus, [tabindex="-1"]:focus-visible { outline: none; box-shadow: none; }
 :focus-visible { outline: 3px solid var(--indigo-d); outline-offset: 3px; border-radius: 6px; box-shadow: 0 0 0 6px rgba(255, 255, 255, .85); }
 .hero :focus-visible, .research :focus-visible, .cta :focus-visible, .site-footer :focus-visible, .topbar :focus-visible, .events :focus-visible { outline-color: var(--teal); box-shadow: 0 0 0 6px rgba(11, 16, 32, .6); }
 

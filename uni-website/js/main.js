@@ -72,22 +72,24 @@
     if (navOpen()) { setNav(false); navToggle.focus(); }
   });
 
-  /* ---------- Aktive Navigation ---------- */
+  /* ---------- Aktive Navigation (zustandslos: aktuell sichtbarer Abschnitt oder keiner) ---------- */
   const navLinks = $$('.main-nav__list a[href^="#"]:not(.btn)');
-  const sections = navLinks.map(a => $(a.getAttribute('href'))).filter(Boolean);
-  if ('IntersectionObserver' in window) {
-    const spy = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (!en.isIntersecting) return;
-        navLinks.forEach(a => {
-          const on = a.getAttribute('href') === '#' + en.target.id;
-          a.classList.toggle('is-active', on);
-          if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
-        });
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(s => spy.observe(s));
-  }
+  const spyItems = navLinks.map(a => ({ a, el: $(a.getAttribute('href')) })).filter(i => i.el);
+  let spyTick = 0;
+  const updateSpy = () => {
+    spyTick = 0;
+    const probe = window.innerHeight * 0.4;
+    spyItems.forEach(({ a, el }) => {
+      const r = el.getBoundingClientRect();
+      const on = r.top <= probe && r.bottom > probe;
+      a.classList.toggle('is-active', on);
+      if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+    });
+  };
+  const queueSpy = () => { if (!spyTick) spyTick = requestAnimationFrame(updateSpy); };
+  updateSpy();
+  window.addEventListener('scroll', queueSpy, { passive: true });
+  window.addEventListener('resize', queueSpy);
 
   /* ---------- Scroll-Reveal ---------- */
   const revealEls = $$('[data-reveal]');
@@ -110,7 +112,8 @@
 
   /* ---------- Zähler ---------- */
   const counters = $$('[data-count]');
-  const fmt = el => new Intl.NumberFormat(el.dataset.locale || 'de-DE');
+  const formatters = {};
+  const fmt = el => { const l = el.dataset.locale || 'de-DE'; return formatters[l] || (formatters[l] = new Intl.NumberFormat(l)); };
   const render = (el, value) => { el.textContent = fmt(el).format(Math.round(value)) + (el.dataset.suffix || ''); };
   const countUp = el => {
     const target = Number(el.dataset.count);
@@ -151,6 +154,11 @@
       });
     });
   }
+
+  reduceMotion.addEventListener('change', () => {
+    if (!reduceMotion.matches) return;
+    $$('.tilt').forEach(card => { card.classList.remove('is-tilting'); card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
+  });
 
   /* ---------- Hero: Parallax für den Würfel ---------- */
   const hero = $('.hero');
