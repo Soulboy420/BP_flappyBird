@@ -16,19 +16,34 @@
   /* ---------- Mobile Navigation ---------- */
   const nav = $('#main-nav');
   const navToggle = $('.nav-toggle');
+  let closeSearch = () => {};
   const setNav = open => {
+    if (open) closeSearch(); // Menü und Suche nie gleichzeitig offen
     nav.classList.toggle('is-open', open);
     navToggle.setAttribute('aria-expanded', String(open));
   };
+  const navOpen = () => navToggle.getAttribute('aria-expanded') === 'true';
   navToggle.addEventListener('click', () => {
-    const open = navToggle.getAttribute('aria-expanded') !== 'true';
+    const open = !navOpen();
     setNav(open);
     if (open) $('a', nav).focus(); // Fokusreihenfolge: Menü steht im DOM vor dem Toggle
   });
-  nav.addEventListener('click', e => { if (e.target.closest('a')) setNav(false); });
+  nav.addEventListener('click', e => {
+    const link = e.target.closest('a');
+    if (!link) return;
+    const wasOpen = navOpen();
+    setNav(false);
+    // Fokus nicht verlieren: auf die Zielsektion setzen (Menü war per Tastatur/Touch geöffnet)
+    const target = wasOpen && link.hash ? $(link.hash) : null;
+    if (target) { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }
+  });
+  // Tipp/Klick außerhalb schließt das Menü
+  document.addEventListener('pointerdown', e => {
+    if (navOpen() && !nav.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
+  });
   // Menü schließen, wenn der Fokus es verlässt (Tab aus dem letzten Link) oder wenn die Desktop-Navigation greift
   document.addEventListener('focusin', e => {
-    if (navToggle.getAttribute('aria-expanded') === 'true' && !nav.contains(e.target) && e.target !== navToggle) setNav(false);
+    if (navOpen() && !nav.contains(e.target) && e.target !== navToggle) setNav(false);
   });
   window.matchMedia('(min-width: 1171px)').addEventListener('change', e => { if (e.matches) setNav(false); });
 
@@ -42,7 +57,8 @@
     searchToggle.setAttribute('aria-expanded', String(open));
     if (open) searchInput.focus();
   };
-  searchToggle.addEventListener('click', () => setSearch(searchForm.hidden));
+  closeSearch = () => { if (!searchForm.hidden) setSearch(false); };
+  searchToggle.addEventListener('click', () => { if (searchForm.hidden) setNav(false); setSearch(searchForm.hidden); });
   searchForm.addEventListener('submit', e => {
     e.preventDefault();
     const q = searchInput.value.trim();
@@ -53,7 +69,7 @@
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
     if (!searchForm.hidden) { setSearch(false); searchToggle.focus(); }
-    if (navToggle.getAttribute('aria-expanded') === 'true') { setNav(false); navToggle.focus(); }
+    if (navOpen()) { setNav(false); navToggle.focus(); }
   });
 
   /* ---------- Aktive Navigation ---------- */
@@ -115,10 +131,12 @@
   }
 
   /* ---------- 3D-Tilt der Karten ---------- */
-  if (finePointer.matches && !reduceMotion.matches) {
+  const motionOk = () => finePointer.matches && !reduceMotion.matches; // zur Laufzeit geprüft
+  {
     $$('.tilt').forEach(card => {
       const max = card.matches('.quick__card, .campus-tile--big') ? 7 : 10;
       card.addEventListener('pointermove', e => {
+        if (!motionOk()) return;
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
         const y = (e.clientY - r.top) / r.height - 0.5;
@@ -137,7 +155,6 @@
   /* ---------- Hero: Parallax für den Würfel ---------- */
   const hero = $('.hero');
   const scene = $('.hero__scene');
-  const parallax = !reduceMotion.matches;
 
   /* ---------- Hero-Canvas: 3D-Partikelnetz ---------- */
   const canvas = $('#hero-canvas');
@@ -196,13 +213,16 @@
     });
   };
 
-  const loop = () => {
-    rotY += 0.0026 + tY * 0.0018; // Grundrotation + Maus
-    rotX += (0.25 + tX - rotX) * 0.04;
+  let last = 0;
+  const loop = now => {
+    const dt = Math.min(64, now - last || 16.7); // ms, gedeckelt gegen Sprünge nach Tab-Wechsel
+    last = now;
+    rotY += (0.000156 + tY * 0.000108) * dt; // Grundrotation + Maus, unabhängig von der Bildwiederholrate
+    rotX += (0.25 + tX - rotX) * (1 - Math.pow(0.96, dt / 16.7));
     frame();
     rafId = requestAnimationFrame(loop);
   };
-  const start = () => { if (rafId || reduceMotion.matches || !visible || document.hidden) return; rafId = requestAnimationFrame(loop); };
+  const start = () => { if (rafId || reduceMotion.matches || !visible || document.hidden) return; last = 0; rafId = requestAnimationFrame(loop); };
   const stop = () => { cancelAnimationFrame(rafId); rafId = 0; };
 
   resize();
@@ -211,12 +231,13 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => { resize(); frame(); }, 120);
   });
-  if (finePointer.matches) {
+  {
     hero.addEventListener('pointermove', e => {
+      if (!finePointer.matches) return;
       const r = hero.getBoundingClientRect();
       const nx = (e.clientX - r.left) / r.width - 0.5, ny = (e.clientY - r.top) / r.height - 0.5;
-      tY = nx * 2; tX = ny * 0.5;
-      if (parallax) {
+      if (!reduceMotion.matches) { tY = nx * 2; tX = ny * 0.5; }
+      if (motionOk()) {
         scene.style.setProperty('--px', `${(-nx * 36).toFixed(1)}px`);
         scene.style.setProperty('--py', `${(-ny * 26).toFixed(1)}px`);
       }
