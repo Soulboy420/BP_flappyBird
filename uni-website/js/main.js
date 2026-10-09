@@ -59,7 +59,7 @@
   const setSearch = open => {
     searchForm.hidden = !open;
     searchToggle.setAttribute('aria-expanded', String(open));
-    if (open) searchInput.focus();
+    if (open) searchInput.focus(); else searchStatus.textContent = '';
   };
   closeSearch = () => { if (!searchForm.hidden) setSearch(false); };
   searchToggle.addEventListener('click', () => { if (searchForm.hidden) setNav(false); setSearch(searchForm.hidden); });
@@ -277,6 +277,11 @@
   const nl = $('.newsletter');
   const nlStatus = $('.newsletter__status', nl);
   nl.noValidate = true; // eigene, zugängliche Fehlermeldung statt Browser-Tooltip
+  $('input[type="email"]', nl).addEventListener('input', e => {
+    e.target.removeAttribute('aria-invalid');
+    nlStatus.classList.remove('is-error');
+    nlStatus.textContent = '';
+  });
   nl.addEventListener('submit', e => {
     e.preventDefault();
     const input = $('input[type="email"]', nl);
