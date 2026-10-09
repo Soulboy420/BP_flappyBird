@@ -41,9 +41,9 @@
           </ul>
         </nav>
         <div class="lang-switch" role="group" aria-label="Sprache">
-          <a href="#top" lang="de" hreflang="de">DE</a>
+          <a href="#top" lang="de">DE</a>
           <span aria-hidden="true">|</span>
-          <span lang="en" aria-disabled="true" title="English version coming soon">EN</span>
+          <span class="lang-switch__soon" lang="en">EN <small>(bald)</small></span>
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@
         </button>
       </div>
     </div>
-    <form class="site-search" id="site-search" role="search" method="post" action="#top" hidden>
+    <form class="site-search" id="site-search" role="search" method="dialog" hidden>
       <div class="container site-search__inner">
         <label class="visually-hidden" for="q">Suche auf der Website</label>
         <input id="q" name="q" type="search" placeholder="Studiengang, Person oder Thema suchen …" autocomplete="off">
@@ -132,7 +132,7 @@
         <ul class="quick__grid">
           <li><a class="quick__card tilt" href="#studium"><div class="tilt__inner"><svg class="quick__icon" width="36" height="36" aria-hidden="true"><use href="#i-cap"/></svg><strong>Studienangebot</strong><span>Bachelor, Master &amp; mehr</span></div></a></li>
           <li><a class="quick__card tilt" href="#fristen"><div class="tilt__inner"><svg class="quick__icon" width="36" height="36" aria-hidden="true"><use href="#i-doc"/></svg><strong>Bewerbung</strong><span>Fristen &amp; Zulassung</span></div></a></li>
-          <li><a class="quick__card tilt" href="#campus-karte"><div class="tilt__inner"><svg class="quick__icon" width="36" height="36" aria-hidden="true"><use href="#i-map"/></svg><strong>Campus-Karte</strong><span>Gebäude &amp; Wege</span></div></a></li>
+          <li><a class="quick__card tilt" href="#campus-karte"><div class="tilt__inner"><svg class="quick__icon" width="36" height="36" aria-hidden="true"><use href="#i-map"/></svg><strong>Campus-Übersicht</strong><span>Gebäude &amp; Wege</span></div></a></li>
           <li><a class="quick__card tilt" href="#aktuelles"><div class="tilt__inner"><svg class="quick__icon" width="36" height="36" aria-hidden="true"><use href="#i-cal"/></svg><strong>Veranstaltungen</strong><span>Vorträge &amp; Festivals</span></div></a></li>
         </ul>
       </div>
@@ -273,7 +273,7 @@
 
         <div class="campus-map" id="campus-karte" data-reveal>
           <div class="campus-map__text">
-            <h3>Campus-Karte</h3>
+            <h3>Campus-Übersicht</h3>
             <p>Die wichtigsten Gebäude auf einen Blick – vom Hauptgebäude bis zum Hafen-Pavillon. <a href="#anfahrt">Anfahrt &amp; ÖPNV</a></p>
             <ul class="legend">
               <li><span class="legend__dot legend__dot--a" aria-hidden="true"></span>Lehre</li>
@@ -282,15 +282,14 @@
             </ul>
           </div>
           <figure class="campus-map__figure">
-            <ol class="iso" aria-label="Gebäude des Campus">
+            <ul class="iso" aria-label="Gebäude des Campus">
               <li class="iso__b iso__b--1 iso__b--a"><span>Hauptgebäude</span><small>Lehre</small></li>
               <li class="iso__b iso__b--2 iso__b--b"><span>Forschungsturm</span><small>Forschung</small></li>
               <li class="iso__b iso__b--3 iso__b--a"><span>Bibliothek am Hafen</span><small>Lehre</small></li>
               <li class="iso__b iso__b--4 iso__b--c"><span>Mensa Nord</span><small>Service</small></li>
               <li class="iso__b iso__b--5 iso__b--b"><span>Labor-Campus</span><small>Forschung</small></li>
               <li class="iso__b iso__b--6 iso__b--c"><span>Hafen-Pavillon</span><small>Service</small></li>
-            </ol>
-            <figcaption class="visually-hidden">Schematische Darstellung von sechs Campus-Gebäuden um einen zentralen Platz.</figcaption>
+            </ul>
           </figure>
         </div>
       </div>
@@ -387,13 +386,14 @@
             <li><svg width="22" height="22" aria-hidden="true"><use href="#i-globe"/></svg><div><strong>International Office</strong><a href="mailto:international@example.org">international@example.org</a></div></li>
           </ul>
         </div>
-        <form class="newsletter" method="post" action="#beratung" data-reveal>
+        <form class="newsletter" method="dialog" data-reveal>
           <h3>Newsletter für Studieninteressierte</h3>
           <p>Fristen, Infotage und Tipps zur Bewerbung – einmal im Monat.</p>
           <label for="nl-mail">E-Mail-Adresse</label>
           <input id="nl-mail" type="email" name="email" placeholder="du@beispiel.de" autocomplete="email" required>
           <button class="btn" type="submit">Anmelden</button>
-          <p class="newsletter__note" role="status" aria-live="polite">Kein Spam. Abmeldung jederzeit möglich.</p>
+          <p class="newsletter__note">Kein Spam. Abmeldung jederzeit möglich.</p>
+          <p class="newsletter__status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -402,8 +402,15 @@
     <section class="legal" aria-label="Rechtliche Hinweise">
       <div class="container legal__grid">
         <article id="impressum"><h2>Impressum</h2><p>Demo-Seite einer fiktiven Universität. Es gibt keinen realen Anbieter; alle Angaben sind frei erfunden.</p></article>
-        <article id="datenschutz"><h2>Datenschutz</h2><p>Diese Demo erhebt, speichert und übermittelt keinerlei personenbezogene Daten. Suche und Newsletter-Formular sind nur Attrappen: Eingaben werden weder gesendet noch gespeichert.</p></article>
-        <article id="barrierefreiheit"><h2>Barrierefreiheit</h2><p>Stand: Oktober 2026. Ziel ist Konformität mit WCAG 2.1 AA; diese Demo wurde nicht extern zertifiziert. Tastaturbedienung, Fokus-Anzeige und die Einstellung „Bewegung reduzieren“ werden unterstützt. Bekannte Einschränkung: Die 3D-Grafiken sind rein dekorativ. Feedback: <a href="mailto:barrierefrei@example.org">barrierefrei@example.org</a></p></article>
+        <article id="datenschutz"><h2>Datenschutz</h2><p>Diese Demo erhebt, speichert und übermittelt keinerlei personenbezogene Daten. Suche und Newsletter-Formular sind reine Attrappen: Eingaben verlassen Ihren Browser nicht und werden nicht gespeichert.</p></article>
+        <article id="barrierefreiheit"><h2>Barrierefreiheit</h2>
+          <p>Stand: Oktober 2026. Selbsteinschätzung: <strong>teilweise konform</strong> mit WCAG 2.1 AA (angelehnt an BITV 2.0); keine externe Prüfung.</p>
+          <ul>
+            <li>Umgesetzt: Skip-Link, Landmarken, Überschriftenstruktur, beschriftete Formularfelder.</li>
+            <li>Noch zu prüfen: Tastaturbedienung der interaktiven Effekte, Fokus-Anzeige, Verhalten bei „Bewegung reduzieren“.</li>
+            <li>Nicht barrierefrei: Die 3D-Grafiken sind rein dekorativ; die Campus-Übersicht ist schematisch.</li>
+          </ul>
+          <p>Feedback oder Schlichtungsanfrage: <a href="mailto:barrierefrei@example.org">barrierefrei@example.org</a></p></article>
       </div>
     </section>
 
